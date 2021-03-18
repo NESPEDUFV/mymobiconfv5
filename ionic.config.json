@@ -1,0 +1,7 @@
+{
+  "name": "mymobiconf",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

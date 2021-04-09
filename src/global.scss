@@ -1,26 +1,93 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+// http://ionicframework.com/docs/theming/
 
-/* Core CSS required for Ionic components to work properly */
-@import "~@ionic/angular/css/core.css";
 
-/* Basic CSS for apps built with Ionic */
-@import "~@ionic/angular/css/normalize.css";
-@import "~@ionic/angular/css/structure.css";
-@import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
 
-/* Optional CSS utils that can be commented out */
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
-@import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
+// Estilo para thumbnails do app usadas como ícone
+.item ion-thumbnail.imgIcon {
+  min-width: 3rem;
+  min-height: 3rem;
+  img {
+      max-width: 3rem;
+      max-height: 3rem;
+  }
+}
+
+// Para destacar os campos de entrada de texto
+$fundoDestaque: rgb(245,245,245);
+.ios .inputDestacado {
+  background-color: $fundoDestaque;
+}
+
+.md .inputDestacado {
+  background-color: $fundoDestaque;
+}
+
+$card-ios-margin: 12px;
+$card-md-margin: 10px;
+$card-wp-margin: 8px;
+//Estilo para botões abaixo de cards
+.ios .button-u-card {
+  margin-left: $card-ios-margin;
+  margin-right: $card-ios-margin;
+  margin-bottom: $card-ios-margin;
+}
+
+.button-u-card {
+  &.button-ios {
+      margin-left: $card-ios-margin;
+      width: calc(100% - 24px);
+      margin-bottom: $card-ios-margin;
+  }
+  &.button-md {
+      margin-left: $card-md-margin;
+      width: calc(100% - 20px);
+      margin-bottom: $card-md-margin;
+  }
+  &.button-wp {
+      margin-left: $card-wp-margin;
+      width: calc(100% - 16px);
+      margin-bottom: $card-wp-margin;
+  }
+}
+
+.card-img {
+  padding: 10px;
+  width: 100%;
+  height: 35vh;
+  max-height: 450px;
+  div {
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position-x: 50%;
+      background-position-y: 50%;
+  }
+}
+
+//Refreshers
+ion-refresher ion-refresher-content div div {
+  ion-icon {
+      color: white;
+  }
+
+  ion-spinner * {
+      stroke: #fff !important;
+  }
+}
+.has-refresher  .scroll-content {
+  border-top: 0 !important;
+}

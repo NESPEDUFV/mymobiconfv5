@@ -1,8 +1,10 @@
 {
   "name": "v4",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "NESPeD",
+  "homepage": "http://nesped.caf.ufv.br",
+  "private": true,
+
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

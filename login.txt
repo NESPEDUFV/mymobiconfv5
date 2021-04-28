@@ -1,0 +1,94 @@
+
+  /** Formulário do login */
+  loginForm: FormGroup;
+  /** Registra a ação do botão de voltar */
+  private botaoBack: Function;
+  /** Controla se o usuário pode sair da página (vale sempre `false` enquanto não estiver logado) */
+  private leaveCheck: boolean = false;
+
+  /**
+     * Cria os campos do formulário e configura o e-mail como obrigatório
+     * @param platform Usado para registrar uma ação do botão de voltar (Android)
+     * @param formBuilder Usado para criar o formulário de login
+     * @param navCtrl Usado para mostrar a página de signup
+     * @param overlay
+     * @param usuario
+     */
+  constructor(
+    private formBuilder: FormBuilder,
+    private platform: Platform,
+    private navCtrl: NavController,
+    private overlay: OverlaysProvider,
+    private usuario: UsuarioProvider
+
+  ) { }
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: [null, Validators.required],
+      password: [null, Validators.required],
+    });
+  }
+
+  onTeste(){
+    console.log(this.loginForm.value);
+  }
+
+  /**
+     * Ao entrar na página, impede o usuário de voltar uma página
+     */
+   ionViewWillEnter() {
+    this.leaveCheck = false;
+}
+
+/**
+ * Ao sair da página, desfaz o registro de ação do botão de voltar
+ */
+ionViewWillLeave() {
+    this.botaoBack();
+}
+
+/**
+ * Verifica se pode sair da página
+ */
+ionViewCanLeave(): boolean {
+    return this.leaveCheck;
+}
+
+/**
+     * Faz o login por e-mail e vai para a `EventosPage` caso o login seja bem sucedido
+     * @param email E-mail a ser usado para o login
+*/
+/*
+ loginEmail(email: string) {
+   console.log("teste comentario");
+  //Aviso de loading, é exibido até que se tenha obtido resposta do servidor,
+  //ou se tenha excedido o tempo limite de resposta
+  let avisoLoading = this.overlay.createLoading({ content: "Verificando usuário..." });
+  //avisoLoading.present();
+
+*/
+/*
+  this.usuario.loginEmail(email, () => {
+      //Trecho para ativar o tutorial assim que o login for efetuado
+      //o "this.navCtrl.remove(loginIndex);" serve para quando o o usuário sair do tutorial,
+      //fazer com que a página de login não seja mais exibida
+      this.leaveCheck = true;
+      avisoLoading.dismiss();
+      this.navCtrl.pop({ direction: "forward" }); //volta pra página inicial "para frente"
+  }, () => {
+      avisoLoading.dismiss();
+      this.overlay.createAlert('Falha no login','Usuário inexistente.',['OK']
+      );
+  }, () => {
+      avisoLoading.dismiss();
+      this.overlay.createAlert(
+          "Falha na conexão",
+          "Não foi possível se conectar. Verifique sua conexão e tente novamente.",
+         ['OK']
+      )
+  });
+
+
+}
+*/

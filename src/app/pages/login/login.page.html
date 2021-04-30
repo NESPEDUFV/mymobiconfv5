@@ -1,23 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar color = "primary">
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-title>Login</ion-title>
+</ion-toolbar>
 
 <ion-content >
     <ion-card>
-      <form>
+      <form [formGroup] = "loginForm">
         <ion-item class="inputDestacado">
-          <ion-input type="text" placeholder="Email"></ion-input>
+          <ion-input type="text" formControlName="email" placeholder="Email"></ion-input>
         </ion-item>
         <br>
-        <ion-button  expand="block">Entrar</ion-button>
-        <ion-button  expand="block">Entrar com Facebook</ion-button>
+        <ion-button color="primary" expand="block" [disabled]="!loginForm.valid" type="submit" expand="block" (click)="loginEmail(loginForm.value.email)">Entrar</ion-button>
+        <ion-button  color="primary" expand="block">Entrar com Facebook</ion-button>
         <br>
-        <ion-button expand="block" fill="clear">Ou crie uma conta</ion-button>
+        <ion-button expand="block" fill="clear" (click)="irParaSignup()" >Ou crie uma conta</ion-button>
       </form>
     </ion-card>
 

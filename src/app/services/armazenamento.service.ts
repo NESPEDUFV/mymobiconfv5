@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-//import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 /**
  * Gerencia os pedidos de carregar e de salvar do armazenamento local,
  * encapsulando a tecnologia de armazenamento local
  */
 @Injectable()
-export class ArmazenamentoProvider {
+export class ArmazenamentoService {
     /**
      * @param storage Módulo de armazenamento do Ionic
      */

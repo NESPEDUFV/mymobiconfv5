@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NavController, Platform} from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { UsuarioService } from '../../services/usuario.service';
@@ -22,7 +22,6 @@ export class LoginPage implements OnInit {
    * Cria os campos do formulário e configura o e-mail como obrigatório
    * @param platform Usado para registrar uma ação do botão de voltar (Android)
    * @param formBuilder Usado para criar o formulário de login
-   * @param navCtrl Usado para mostrar a página de signup
    * @param overlay
    * @param usuario
    */
@@ -68,9 +67,8 @@ ngOnInit() {
   }
 
 
-
- async loginEmail(email){
-   // this.usuario.loginEmail(email);
+loginEmail(email){
+    //this.usuario.loginEmail(email);
    //this.overlay.createLoading("Verificando usuário..." );
    // avisoLoading.present();
    //this.overlay.showAlert("Falha no login", "usuario inexistente.","OK")
@@ -78,24 +76,25 @@ ngOnInit() {
 
      //Aviso de loading, é exibido até que se tenha obtido resposta do servidor,
         //ou se tenha excedido o tempo limite de resposta
-        let avisoLoading = this.overlay.createLoading("Verificando usuário...");
+
         this.usuario.loginEmail(email, () => {
+         // let avisoLoading = this.overlay.createLoading("Verificando usuário...");
           //Trecho para ativar o tutorial assim que o login for efetuado
           //o "this.navCtrl.remove(loginIndex);" serve para quando o o usuário sair do tutorial,
           //fazer com que a página de login não seja mais exibida
           this.leaveCheck = true;
-          //avisoLoading.dismiss();
+          this.overlay.dismissAllLoaders();
 
-          this.router.navigate(['foward']);//volta pra página inicial "para frente"
+          this.router.navigate(['my-mobi-conf']);//volta pra página inicial "para frente"
       }, () => {
-         // avisoLoading.dismiss();
+        this.overlay.dismissAllLoaders();
           this.overlay.createAlert(
               "Falha no login",
               "Usuário inexistente.",
               'OK'
           );
       }, () => {
-         // avisoLoading.dismiss();
+          this.overlay.dismissAllLoaders();
           this.overlay.createAlert(
               "Falha na conexão",
               "Não foi possível se conectar. Verifique sua conexão e tente novamente.",

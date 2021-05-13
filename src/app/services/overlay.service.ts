@@ -38,7 +38,7 @@ export class OverlayService {
      */
 
     async createAlert(header:string, subheader:string,buttons:string) {
-      let back: Function;
+     // let back: Function;
       const alert = await this.alert.create({
         header: header,
         subHeader: subheader,
@@ -47,7 +47,8 @@ export class OverlayService {
      // alert.onDidDismiss(() => this.amt.next(0); back(); );
       await alert.present();
       this.amt.next(-0.5);
-      this.platform.backButton.subscribeWithPriority(2,() => alert.dismiss());
+      this.dismissAllLoaders();
+     // this.platform.backButton.subscribeWithPriority(2,() => alert.dismiss());
     }
 
     /*
@@ -75,12 +76,29 @@ export class OverlayService {
       message: message,
     });
     /*Falta aqui*/
+    //load.onDidDismiss(() => this.amt.next(0));
    // const teste = await load.onDidDismiss(() => this.amt.next(0));
     await load.present();
     //back = this.platform.subscribeWithPriority(() => { }, 2);
                 this.amt.next(-0.5);
                 load.present();
 
+  }
 
+  /**
+   * No Ionic 5 não existe a propriedade dismiss() utilizada nas versões anteriores,
+   * essa função é um substituto para ela.
+  */
+  async dismissAllLoaders() {
+
+    console.log("dismissAllLoaders");
+    this.amt.next(0);
+    let topLoader = await this.loading.getTop();
+    while (topLoader) {
+      if (!(await topLoader.dismiss())) {
+        throw new Error('Could not dismiss the topmost loader. Aborting...');
+      }
+      topLoader = await this.loading.getTop();
+    }
   }
 }

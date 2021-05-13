@@ -30,7 +30,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-content{
-  --background: #fff url('./assets/img/bg.jpeg') no-repeat center center / cover;
+  --background:  url('./assets/img/bg.jpeg') no-repeat center center / cover;
 }
 
 
@@ -45,6 +45,7 @@ ion-content{
 
 // Para destacar os campos de entrada de texto
 $fundoDestaque: rgb(245,245,245);
+//$fundoDestaque: red;
 .ios .inputDestacado {
   background-color: $fundoDestaque;
 }

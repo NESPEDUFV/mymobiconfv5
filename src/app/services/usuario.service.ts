@@ -25,11 +25,49 @@ export class UsuarioService {
    /** URL da foto do usuário, para quando há login via Facebook */
    private fotoURL: string = "";
 
-  constructor(private servidor: ServidorService) { }
+  constructor(private servidor: ServidorService, private storage: ArmazenamentoService) { }
   getID(): string { return this.dados.ID; }
   getNome(): string { return this.dados.nome; }
   getFotoURL(): string { return this.fotoURL; }
 
+   /**
+     * Salva os dados do usuário no armazenamento local
+     */
+    salvar() {
+      //this.storage.set('usuario', JSON.stringify(this.dados));
+      //this.storage.set('fotoURL', JSON.stringify(this.fotoURL));
+  }
+
+   /**
+     * Carrega os dados do usuário do armazenamento local
+     * @param cb Callback para quando os dados do usuário tiverem sido carregados
+     */
+    carregar(cb?: () => void) {
+      /*
+      let count = 2;
+      let trigger = () => {
+          count--;
+          if (cb && count == 0) cb();
+      }
+      this.storage.get('usuario').then((val) => {
+          this.dados = JSON.parse(val);
+          trigger();
+      });
+      this.storage.get('fotoURL').then((val) => {
+          this.fotoURL = JSON.parse(val);
+          trigger();
+      });
+      */
+  }
+
+   /**
+     * Efetua o logout do app, apagando os dados do usuário
+     */
+    logout() {
+      this.dados = null;
+      this.fotoURL = "";
+      this.salvar();
+  }
     /**
      * @returns Se há dados do usuário
      */
@@ -64,13 +102,46 @@ export class UsuarioService {
  * @param falhaCb Callback executada quando há algum erro na conexão ou falha de resposta
  */
 loginEmail(email: string, loginCb: () => void, usuarioFalhaCb: () => void, falhaCb: () => void) {
+  console.log("Aqui em usuario\n");
+// this.servidor.login.email(email);
+
+  this.servidor.login.email(email).subscribe((data: any) => {
+    if (data.usuario == 0)
+        usuarioFalhaCb();
+    else {
+        this.dados = data.usuario[0];
+        this.fotoURL = "";
+        this.salvar();
+        loginCb();
+    }
+}, () => {
+    falhaCb();
+});
 
 }
 
-/*
-  loginEmail(email: string){
-    console.log(email);
-  }
-*/
+/**
+     * Cria uma nova conta
+     * @param nome Nome do novo usuário
+     * @param email E-mail do novo usuário
+     * @param sucessoCb Callback para quando cria uma nova conta
+     * @param emailRepetidoCb Callback para quando o e-mail já está sendo usado por outra conta
+     * @param falhaCb Callback para quando há falha durante a criação da conta
+     */
 
+
+ signup(nome: string, email: string, sucessoCb?: () => void, emailRepetidoCb?: () => void, falhaCb?: () => void) {
+  console.log("Usuario service\n");
+
+  this.servidor.login.signup(nome, email).subscribe((data: any) => {
+      if (data.success == 1 && sucessoCb)
+          sucessoCb();
+      else if (data.success == 2 && emailRepetidoCb)
+          emailRepetidoCb();
+      else if (falhaCb)
+          falhaCb();
+  }, falhaCb);
 }
+}
+
+

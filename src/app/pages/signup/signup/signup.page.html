@@ -8,11 +8,11 @@
 <ion-content>
   <ion-card class="ion-padding">
     <form [formGroup]="signupForm">
-      <ion-item >
-        <ion-input type="text" formControlName="nome" placeholder="nome" ></ion-input>
+      <ion-item lines = "none"  class="inputDestacado">
+        <ion-input type="text" formControlName="nome" placeholder="Nome" ></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-input type="text" formControlName="email"  placeholder="email"></ion-input>
+      <ion-item lines = "none" class="inputDestacado">
+        <ion-input type="text" formControlName="email"  placeholder="Email"></ion-input>
       </ion-item>
       <br>
       <ion-button  color="primary" expand="block" (click)="signup()" type="submit" [disabled]="!signupForm.valid">Signup</ion-button>

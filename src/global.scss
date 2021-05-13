@@ -46,17 +46,19 @@ ion-content{
 // Para destacar os campos de entrada de texto
 $fundoDestaque: rgb(245,245,245);
 //$fundoDestaque: red;
-.ios .inputDestacado {
-  background-color: $fundoDestaque;
+ .md .inputDestacado {
+  --background:rgb(245,245,245); ;
 }
 
-.md .inputDestacado {
-  background-color: $fundoDestaque;
+.ios .inputDestacado {
+  --background:rgb(245,245,245); ;
 }
+
 
 $card-ios-margin: 12px;
 $card-md-margin: 10px;
 $card-wp-margin: 8px;
+
 //Estilo para botões abaixo de cards
 .ios .button-u-card {
   margin-left: $card-ios-margin;

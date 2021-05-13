@@ -35,7 +35,7 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>HomePage</li>
+  <li>MyMobiConfPage</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,11 +61,17 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/home/home.page.ts</code>
+    <code>src/app/pages/my-mobi-conf/my-mobi-conf/my-mobi-conf.page.ts</code>
 </p>
 
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section>
@@ -85,19 +91,19 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-home</code></td>
+                <td class="col-md-9"><code>app-my-mobi-conf</code></td>
             </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>home.page.scss</code></td>
+                <td class="col-md-9"><code>./my-mobi-conf.page.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>home.page.html</code></td>
+                <td class="col-md-9"><code>./my-mobi-conf.page.html</code></td>
             </tr>
 
 
@@ -111,6 +117,33 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
 
     <section>
     <h3 id="constructor">Constructor</h3>
@@ -123,7 +156,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/home/home.page.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/pages/my-mobi-conf/my-mobi-conf/my-mobi-conf.page.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -135,82 +168,92 @@
 
 
 
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/app/pages/my-mobi-conf/my-mobi-conf/my-mobi-conf.page.ts:12</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 
 @Component({
-  selector: &#x27;app-home&#x27;,
-  templateUrl: &#x27;home.page.html&#x27;,
-  styleUrls: [&#x27;home.page.scss&#x27;],
+  selector: &#x27;app-my-mobi-conf&#x27;,
+  templateUrl: &#x27;./my-mobi-conf.page.html&#x27;,
+  styleUrls: [&#x27;./my-mobi-conf.page.scss&#x27;],
 })
-export class HomePage {
+export class MyMobiConfPage implements OnInit {
 
-  constructor() {}
+  constructor() { }
+
+  ngOnInit() {
+  }
 
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ion-header [translucent]&#x3D;&quot;true&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header&gt;
   &lt;ion-toolbar&gt;
-    &lt;ion-title&gt;
-      Blank
-    &lt;/ion-title&gt;
+    &lt;ion-title&gt;my-mobi-conf&lt;/ion-title&gt;
   &lt;/ion-toolbar&gt;
 &lt;/ion-header&gt;
 
-&lt;ion-content [fullscreen]&#x3D;&quot;true&quot;&gt;
-  &lt;ion-header collapse&#x3D;&quot;condense&quot;&gt;
-    &lt;ion-toolbar&gt;
-      &lt;ion-title size&#x3D;&quot;large&quot;&gt;Blank&lt;/ion-title&gt;
-    &lt;/ion-toolbar&gt;
-  &lt;/ion-header&gt;
+&lt;ion-content&gt;
 
-  &lt;div id&#x3D;&quot;container&quot;&gt;
-    &lt;strong&gt;Ready to create an app?&lt;/strong&gt;
-    &lt;p&gt;Start with Ionic &lt;a target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;https://ionicframework.com/docs/components&quot;&gt;UI Components&lt;/a&gt;&lt;/p&gt;
-  &lt;/div&gt;
 &lt;/ion-content&gt;
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>home.page.scss</code>
+                    <code>./my-mobi-conf.page.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}</code></pre>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -238,10 +281,10 @@ export class HomePage {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-header [translucent]="true">  <ion-toolbar>    <ion-title>      Blank    </ion-title>  </ion-toolbar></ion-header><ion-content [fullscreen]="true">  <ion-header collapse="condense">    <ion-toolbar>      <ion-title size="large">Blank</ion-title>    </ion-toolbar>  </ion-header>  <div id="container">    <strong>Ready to create an app?</strong>    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>  </div></ion-content></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar>    <ion-title>my-mobi-conf</ion-title>  </ion-toolbar></ion-header><ion-content></ion-content></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MyMobiConfPage', 'selector': 'app-my-mobi-conf'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'Teste2Page', 'selector': 'app-teste2'}];
     var DIRECTIVES = [{'name': 'BackgroundDirective', 'selector': '[bg]'}];
-    var ACTUAL_COMPONENT = {'name': 'HomePage'};
+    var ACTUAL_COMPONENT = {'name': 'MyMobiConfPage'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -276,7 +319,7 @@ export class HomePage {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'HomePage.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'MyMobiConfPage.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

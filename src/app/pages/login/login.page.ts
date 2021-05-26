@@ -68,15 +68,9 @@ ngOnInit() {
 
 
 loginEmail(email){
-    //this.usuario.loginEmail(email);
-   //this.overlay.createLoading("Verificando usuário..." );
-   // avisoLoading.present();
-   //this.overlay.showAlert("Falha no login", "usuario inexistente.","OK")
-
-
-     //Aviso de loading, é exibido até que se tenha obtido resposta do servidor,
-        //ou se tenha excedido o tempo limite de resposta
-
+    //Aviso de loading, é exibido até que se tenha obtido resposta do servidor,
+      //ou se tenha excedido o tempo limite de resposta
+    //this.overlay.createLoading("Verificando usuário..." );
         this.usuario.loginEmail(email, () => {
          // let avisoLoading = this.overlay.createLoading("Verificando usuário...");
           //Trecho para ativar o tutorial assim que o login for efetuado
@@ -85,7 +79,7 @@ loginEmail(email){
           this.leaveCheck = true;
           this.overlay.dismissAllLoaders();
 
-          this.router.navigate(['my-mobi-conf']);//volta pra página inicial "para frente"
+          this.router.navigate(['my-mobi-conf']);//vai pra página inicial "para frente"
       }, () => {
         this.overlay.dismissAllLoaders();
           this.overlay.createAlert(
@@ -103,6 +97,28 @@ loginEmail(email){
       });
 
       }
+
+        /**
+     * Faz o login via Facebook e vai para a `EventosPage` caso o login seja bem sucedido
+     */
+    loginFB() {
+      //let avisoLoading = this.overlay.createLoading("Aguardando..." );
+      //avisoLoading.present();
+/*
+      this.usuario.loginFB(() => {
+          this.overlay.dismissAllLoaders();
+          this.leaveCheck = true;
+          this.router.navigate(['my-mobi-conf']);//vai pra página inicial "para frente"
+      }, () => {
+          this.overlay.dismissAllLoaders();
+          this.overlay.createAlert(
+              "Falha na conexão",
+              "Não foi possível se conectar ao Facebook. Verifique sua conexão e tente novamente.",
+              'OK'
+          );
+      });
+*/
+  }
 
   irParaSignup(){
     this.router.navigate(['signup']);

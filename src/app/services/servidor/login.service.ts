@@ -1,5 +1,7 @@
   //import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as firebase from 'firebase/app'; // Firebase Auth - usado para login com facebook
+import 'firebase/auth';
 
 
 /**
@@ -36,6 +38,40 @@ import { HttpClient } from '@angular/common/http';
      */
    email(email: string) {
     return this.http.post(this.url + "/App/loginApp.php", { email: email });
+}
+
+
+ /**
+     * Login via facebook
+     * @param sucesso Callback de sucesso, passa a resposta como parâmetro
+     * @param falha Callbackde falha, é chamada caso a conexão ou o login falhe
+     */
+
+    /*
+  facebookLogin(sucesso: (resposta: firebase.auth.UserCredential) => void, falha: () => void) {
+    let provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithRedirect(provider).then(() => {
+        firebase.auth().getRedirectResult().then((result) => {
+            sucesso(result);
+        }, () => {
+            falha();
+        });
+    }, () => {
+        falha();
+    });
+
+
+/**
+ * Manda informação do login por Facebook para o banco de dados
+ * @param nome Nome do usuário
+ * @param email E-mail do usuário
+ */
+facebookEnviarInfo(nome: string, email: string) {
+    return this.http.post(this.url + "/App/loginFacebookApp.php", {
+        nome: nome,
+        email: email,
+        key: this.key
+    });
 }
 
 }

@@ -94,31 +94,56 @@ export class UsuarioService {
             console.log("Carregar em construção\n");
     }
 
-/**
- * Efetua o login via e-mail
- * @param email E-mail usado no login
- * @param loginCb Callback executada quando há sucesso no login
- * @param usuarioFalhaCb Callback executada quando não existe o email no banco de dados
- * @param falhaCb Callback executada quando há algum erro na conexão ou falha de resposta
- */
-loginEmail(email: string, loginCb: () => void, usuarioFalhaCb: () => void, falhaCb: () => void) {
-  console.log("Aqui em usuario\n");
-// this.servidor.login.email(email);
+  /**
+   * Efetua o login via e-mail
+   * @param email E-mail usado no login
+   * @param loginCb Callback executada quando há sucesso no login
+   * @param usuarioFalhaCb Callback executada quando não existe o email no banco de dados
+   * @param falhaCb Callback executada quando há algum erro na conexão ou falha de resposta
+   */
+  loginEmail(email: string, loginCb: () => void, usuarioFalhaCb: () => void, falhaCb: () => void) {
+    console.log("Aqui em usuario\n");
+  // this.servidor.login.email(email);
 
-  this.servidor.login.email(email).subscribe((data: any) => {
-    if (data.usuario == 0)
-        usuarioFalhaCb();
-    else {
-        this.dados = data.usuario[0];
-        this.fotoURL = "";
-        this.salvar();
-        loginCb();
-    }
-}, () => {
-    falhaCb();
-});
+    this.servidor.login.email(email).subscribe((data: any) => {
+      if (data.usuario == 0)
+          usuarioFalhaCb();
+      else {
+          this.dados = data.usuario[0];
+          this.fotoURL = "";
+          this.salvar();
+          loginCb();
+      }
+  }, () => {
+      falhaCb();
+  });
 
+  }
+
+  /**
+       * Efetua login via Facebook
+       * @param loginCb Callback executada quando há sucesso no login
+       * @param falhaCb Callback executada quando há algum erro na conexão ou no processo de login
+       */
+
+  /*
+ loginFB(loginCb: () => void, falhaCb: () => void) {
+  this.servidor.login.facebookLogin((resposta) => {
+      if (resposta && resposta.user) {
+          this.servidor.login.facebookEnviarInfo(resposta.user.displayName, resposta.user.email).subscribe((data: any) => {
+              if (data.success == 1 || data.success == 2) {
+                  this.dados = data.usuario[0];
+                  this.fotoURL = resposta.user.photoURL;
+                  this.salvar();
+                  loginCb();
+              } else
+                  falhaCb();
+          }, falhaCb);
+      } else
+          falhaCb();
+  }, falhaCb);
 }
+*/
 
 /**
      * Cria uma nova conta

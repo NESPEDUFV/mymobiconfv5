@@ -1,0 +1,22 @@
+<ion-toolbar color = "primary">
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-title>Signup</ion-title>
+</ion-toolbar>
+
+<ion-content>
+  <ion-card class="ion-padding">
+    <form [formGroup]="signupForm">
+      <ion-item lines = "none"  class="inputDestacado">
+        <ion-input type="text" formControlName="nome" placeholder="Nome" ></ion-input>
+      </ion-item>
+      <ion-item lines = "none" class="inputDestacado">
+        <ion-input type="text" formControlName="email"  placeholder="Email"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button  color="primary" expand="block" (click)="signup()" type="submit" [disabled]="!signupForm.valid">Signup</ion-button>
+    </form>
+  </ion-card>
+
+</ion-content>

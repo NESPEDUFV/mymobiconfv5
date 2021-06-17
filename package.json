@@ -4,7 +4,6 @@
   "author": "NESPeD",
   "homepage": "http://nesped.caf.ufv.br",
   "private": true,
-
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -14,16 +13,18 @@
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json -w -s",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "~11.2.0",
     "@angular/core": "~11.2.0",
+    "@angular/fire": "^6.1.4",
     "@angular/forms": "~11.2.0",
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
     "@capacitor/core": "2.4.7",
     "@ionic/angular": "^5.5.2",
+    "@ionic/storage-angular": "^3.0.6",
+    "firebase": "^8.6.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

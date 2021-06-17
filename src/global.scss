@@ -16,6 +16,24 @@
 // automatically applied to the <body> element in the app.
 
 // Estilo para thumbnails do app usadas como ícone
+/** Basic CSS for Ionic Apps */
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+
+/** Optional CSS utilities that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+ion-content{
+  --background:  url('./assets/img/bg.jpeg') no-repeat center center / cover;
+}
+
+
 .item ion-thumbnail.imgIcon {
   min-width: 3rem;
   min-height: 3rem;
@@ -27,17 +45,20 @@
 
 // Para destacar os campos de entrada de texto
 $fundoDestaque: rgb(245,245,245);
-.ios .inputDestacado {
-  background-color: $fundoDestaque;
+//$fundoDestaque: red;
+ .md .inputDestacado {
+  --background:rgb(245,245,245); ;
 }
 
-.md .inputDestacado {
-  background-color: $fundoDestaque;
+.ios .inputDestacado {
+  --background:rgb(245,245,245); ;
 }
+
 
 $card-ios-margin: 12px;
 $card-md-margin: 10px;
 $card-wp-margin: 8px;
+
 //Estilo para botões abaixo de cards
 .ios .button-u-card {
   margin-left: $card-ios-margin;

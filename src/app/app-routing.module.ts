@@ -8,8 +8,20 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'my-mobi-conf',
+    loadChildren: () => import('./pages/my-mobi-conf/my-mobi-conf/my-mobi-conf.module').then( m => m.MyMobiConfPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./pages/signup/signup/signup.module').then( m => m.SignupPageModule)
   },
 ];
 

@@ -80,8 +80,20 @@ const routes: Routes &#x3D; [
   },
   {
     path: &#x27;&#x27;,
-    redirectTo: &#x27;home&#x27;,
+    redirectTo: &#x27;login&#x27;,
     pathMatch: &#x27;full&#x27;
+  },
+  {
+    path: &#x27;login&#x27;,
+    loadChildren: () &#x3D;&gt; &quot;import(&#x27;./pages/login/login.module&#x27;).then( m &#x3D;&gt; m.LoginPageModule)&quot;
+  },
+  {
+    path: &#x27;my-mobi-conf&#x27;,
+    loadChildren: () &#x3D;&gt; &quot;import(&#x27;./pages/my-mobi-conf/my-mobi-conf/my-mobi-conf.module&#x27;).then( m &#x3D;&gt; m.MyMobiConfPageModule)&quot;
+  },
+  {
+    path: &#x27;signup&#x27;,
+    loadChildren: () &#x3D;&gt; &quot;import(&#x27;./pages/signup/signup/signup.module&#x27;).then( m &#x3D;&gt; m.SignupPageModule)&quot;
   },
 ];
 

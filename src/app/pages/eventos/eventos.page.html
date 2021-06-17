@@ -1,0 +1,35 @@
+<ion-toolbar color = "primary">
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-title>Eventos</ion-title>
+</ion-toolbar>
+<ion-toolbar color = "primary">
+  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+</ion-toolbar>
+
+<ion-content padding bg>
+  <ion-refresher >
+      <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card >
+    <ion-item >
+        <ion-spinner item-start></ion-spinner>
+        <p>Carregando eventos...</p>
+    </ion-item>
+    <ion-card-content text-center *>
+        <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
+    </ion-card-content>
+    <ion-card-content >
+        <h2>Não foi possível carregar os eventos.</h2>
+        <p>Verifique sua conexão e tente novamente mais tarde.</p>
+        <p>Você pode puxar a página para baixo para tentar recarregar os eventos.</p>
+    </ion-card-content>
+</ion-card>
+
+
+
+
+
+</ion-content>

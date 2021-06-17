@@ -101,13 +101,21 @@ loginEmail(email){
         /**
      * Faz o login via Facebook e vai para a `EventosPage` caso o login seja bem sucedido
      */
+        /*
+        //teste de background
+        loginFB(){
+          console.log("login\n");
+        }
+        */
+
     loginFB() {
-      //let avisoLoading = this.overlay.createLoading("Aguardando..." );
+      let avisoLoading = this.overlay.createLoading("Aguardando..." );
       //avisoLoading.present();
-/*
+      console.log("login.page\n");
       this.usuario.loginFB(() => {
           this.overlay.dismissAllLoaders();
           this.leaveCheck = true;
+         // console.log("voltou tem que ir pra pagina inicial\n");
           this.router.navigate(['my-mobi-conf']);//vai pra página inicial "para frente"
       }, () => {
           this.overlay.dismissAllLoaders();
@@ -117,7 +125,7 @@ loginEmail(email){
               'OK'
           );
       });
-*/
+
   }
 
   irParaSignup(){

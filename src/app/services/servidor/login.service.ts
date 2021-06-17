@@ -1,6 +1,6 @@
   //import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as firebase from 'firebase/app'; // Firebase Auth - usado para login com facebook
+import  firebase from 'firebase/app'; // Firebase Auth - usado para login com facebook
 import 'firebase/auth';
 
 
@@ -47,8 +47,10 @@ import 'firebase/auth';
      * @param falha Callbackde falha, é chamada caso a conexão ou o login falhe
      */
 
-    /*
+
   facebookLogin(sucesso: (resposta: firebase.auth.UserCredential) => void, falha: () => void) {
+    console.log("Chegou servLogin\n");
+    console.log(firebase);
     let provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithRedirect(provider).then(() => {
         firebase.auth().getRedirectResult().then((result) => {
@@ -60,7 +62,7 @@ import 'firebase/auth';
         falha();
     });
 
-
+  }
 /**
  * Manda informação do login por Facebook para o banco de dados
  * @param nome Nome do usuário

@@ -126,7 +126,7 @@ export class UsuarioService {
        * @param falhaCb Callback executada quando há algum erro na conexão ou no processo de login
        */
 
-  /*
+
  loginFB(loginCb: () => void, falhaCb: () => void) {
   this.servidor.login.facebookLogin((resposta) => {
       if (resposta && resposta.user) {
@@ -143,7 +143,7 @@ export class UsuarioService {
           falhaCb();
   }, falhaCb);
 }
-*/
+
 
 /**
      * Cria uma nova conta

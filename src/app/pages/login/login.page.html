@@ -13,7 +13,7 @@
         </ion-item>
         <br>
         <ion-button color="primary" expand="block" [disabled]="!loginForm.valid" type="submit" expand="block" (click)="loginEmail(loginForm.value.email)">Entrar</ion-button>
-        <ion-button  color="primary" expand="block">Entrar com Facebook</ion-button>
+        <ion-button  color="primary" expand="block"  (click)="loginFB()">Entrar com Facebook</ion-button>
         <br>
         <ion-button expand="block" fill="clear" (click)="irParaSignup()" >Ou crie uma conta</ion-button>
       </form>

@@ -8,27 +8,41 @@
   <ion-searchbar placeholder="Buscar"></ion-searchbar>
 </ion-toolbar>
 
-<ion-content padding bg>
+<ion-content class= "ion-padding" >
   <ion-refresher >
       <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card >
-    <ion-item >
-        <ion-spinner item-start></ion-spinner>
+  <ion-card  class= "ion-padding" *ngIf="estadoLista != enumEstado.Sucesso">
+    <ion-item *ngIf="estadoLista == enumEstado.Carregando" >
+        <ion-spinner ></ion-spinner>
         <p>Carregando eventos...</p>
     </ion-item>
-    <ion-card-content text-center *>
+    <ion-card-content class ="ion-text-center" *ngIf="estadoLista == enumEstado.Falha" >
         <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
     </ion-card-content>
-    <ion-card-content >
+    <ion-card-content  *ngIf="estadoLista == enumEstado.Falha">
         <h2>Não foi possível carregar os eventos.</h2>
         <p>Verifique sua conexão e tente novamente mais tarde.</p>
         <p>Você pode puxar a página para baixo para tentar recarregar os eventos.</p>
     </ion-card-content>
 </ion-card>
 
+<ion-list>
+  <div *ngIf="evento.logoURL" item-start class="evento-logo">
+    <div [style.backgroundImage]="'url(' + evento.logoURL + ')'"></div>
+  </div>
+  <h2>{{evento.nome}}</h2>
+  <p> <strong>{{evento.dataInicio | datas: {tipo: 'compacta', mostrarAno: true} }}</strong>
+      ~ <strong>{{evento.dataFim | datas: {tipo: 'compacta', mostrarAno: true} }}</strong>
+  </p>
+  <p *ngIf="evento.is_online!=1">{{evento.local}}</p>
+  </button>
 
+  <ion-item text-center *ngIf="listaFiltrada.length == 0">
+  <p>Nenhum evento encontrado.</p>
+  </ion-item>
+</ion-list>
 
 
 

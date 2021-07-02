@@ -46,7 +46,7 @@ firebase.initializeApp({
 @NgModule({
   declarations: [
     AppComponent,
-    DatasPipe,
+
 
   ],
   entryComponents: [

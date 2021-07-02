@@ -21,7 +21,6 @@ import 'firebase/auth';
      * @param email E-mail do usuário
      */
     signup(nome: string, email: string) {
-      console.log("chegou login servidor\n");
 
       return this.http.post(this.url + "/App/SignUpApp.php", {
           username: nome,

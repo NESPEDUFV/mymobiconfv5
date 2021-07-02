@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { EventosPageRoutingModule } from './eventos-routing.module';
-
+import { DatasPipe } from 'src/app/pipes/datas.pipe';
 import { EventosPage } from './eventos.page';
 
 @NgModule({
@@ -15,6 +15,6 @@ import { EventosPage } from './eventos.page';
     IonicModule,
     EventosPageRoutingModule
   ],
-  declarations: [EventosPage]
+  declarations: [EventosPage, DatasPipe]
 })
 export class EventosPageModule {}

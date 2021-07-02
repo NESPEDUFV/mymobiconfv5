@@ -28,19 +28,26 @@
     </ion-card-content>
 </ion-card>
 
-<ion-list>
-  <div *ngIf="evento.logoURL" item-start class="evento-logo">
-    <div [style.backgroundImage]="'url(' + evento.logoURL + ')'"></div>
-  </div>
-  <h2>{{evento.nome}}</h2>
-  <p> <strong>{{evento.dataInicio | datas: {tipo: 'compacta', mostrarAno: true} }}</strong>
-      ~ <strong>{{evento.dataFim | datas: {tipo: 'compacta', mostrarAno: true} }}</strong>
-  </p>
-  <p *ngIf="evento.is_online!=1">{{evento.local}}</p>
-  </button>
+<ion-list #lista *ngIf="estadoLista == enumEstado.Sucesso">
+
+  <ion-item  *ngFor="let evento of listaFiltrada" (click)="acessarEvento(evento)">
+
+      <div *ngIf="evento.logoURL" item-start class="evento-logo">
+          <div [style.backgroundImage]="'url(' + evento.logoURL + ')'"></div>
+      </div>
+      <div class="wrapper-text">
+        <h2>{{evento.nome}}</h2>
+      <p> <strong>{{evento.dataInicio | datas: {tipo: 'compacta', mostrarAno: true} }}</strong>
+          ~ <strong>{{evento.dataFim | datas: {tipo: 'compacta', mostrarAno: true} }}</strong>
+      </p>
+      <p *ngIf="evento.is_online!=1">{{evento.local}}</p>
+      </div>
+
+
+  </ion-item>
 
   <ion-item text-center *ngIf="listaFiltrada.length == 0">
-  <p>Nenhum evento encontrado.</p>
+      <p>Nenhum evento encontrado.</p>
   </ion-item>
 </ion-list>
 

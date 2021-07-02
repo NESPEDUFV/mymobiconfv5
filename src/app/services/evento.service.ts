@@ -36,8 +36,10 @@ export interface EventoInterface {
 /**
  * Armazena os dados do evento em que o usuário está inscrito
  */
-@Injectable()
-export class EventoProvider {
+@Injectable({
+  providedIn: 'root',
+})
+export class EventoService {
     /** Dados do evento */
     private dados: EventoInterface = null;
 
@@ -70,6 +72,7 @@ export class EventoProvider {
      */
     salvar(evento: EventoInterface) {
         this.storage.set('evento', JSON.stringify(evento));
+
     }
 
     /**
@@ -126,7 +129,7 @@ export class EventoProvider {
      * @param cb Callback para quando termina de buscar as informações
      */
     buscarInfo(cb?: () => void) {
-       /* this.servidor.eventos.buscarInfo(this.getID()).subscribe((data: any) => {
+        this.servidor.eventos.buscarInfo(this.getID()).subscribe((data: any) => {
             if (data && data.informacao_evento && data.informacao_evento[0]) {
                 this.dados.site = data.informacao_evento[0].SITE;
                 this.dados.email = data.informacao_evento[0].EMAIL;
@@ -144,7 +147,7 @@ export class EventoProvider {
         }, () => {
             this.carregar(cb);
         });
-        */
+
     }
 
     /**
@@ -154,7 +157,7 @@ export class EventoProvider {
      * @param falhaCb Callback executada quando não há resposta do servidor nem há nada salvo no armazenamento local
      */
     buscarLista(sucessoCb: (listaOn: EventoInterface[]) => void, localCb: (listaLocal: EventoInterface[]) => void, falhaCb: () => void) {
-        /*this.servidor.eventos.buscar().subscribe((data: any) => {
+        this.servidor.eventos.buscar().subscribe((data: any) => {
             //Sucesso ao contatar o servidor
             let listaServidor = this.formatarArray((data && data.eventos) ? data.eventos : []);
             this.storage.set('listaEventos', JSON.stringify(listaServidor));
@@ -178,7 +181,7 @@ export class EventoProvider {
                 falhaCb(); //Falha ao carregar do armazenamento
             });
         });
-        */
+
     }
 
     /**
@@ -229,10 +232,10 @@ export class EventoProvider {
      * @param usuarioID ID do usuário
      */
     inscrever(evento?: EventoInterface, usuarioID?: string, idDispositivo?: string ) {
-       /* if (evento)
+        if (evento)
             this.servidor.eventos.atualizarParticipante(evento.ID, usuarioID,idDispositivo).subscribe(() => {});
         this.dados = evento;
         this.salvar(evento);
-        */
+
     }
 }

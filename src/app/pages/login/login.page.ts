@@ -79,7 +79,7 @@ loginEmail(email){
           this.leaveCheck = true;
           this.overlay.dismissAllLoaders();
 
-          this.router.navigate(['my-mobi-conf']);//vai pra página inicial "para frente"
+          this.router.navigate(['eventos']);//vai pra página inicial "para frente"
       }, () => {
         this.overlay.dismissAllLoaders();
           this.overlay.createAlert(
@@ -115,8 +115,7 @@ loginEmail(email){
       this.usuario.loginFB(() => {
           this.overlay.dismissAllLoaders();
           this.leaveCheck = true;
-         // console.log("voltou tem que ir pra pagina inicial\n");
-          this.router.navigate(['my-mobi-conf']);//vai pra página inicial "para frente"
+          this.router.navigate(['eventos']);
       }, () => {
           this.overlay.dismissAllLoaders();
           this.overlay.createAlert(

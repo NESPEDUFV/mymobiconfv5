@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage-angular';
 
 /**
  * Gerencia os pedidos de carregar e de salvar do armazenamento local,
@@ -8,17 +8,26 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class ArmazenamentoService {
     /**
-     * @param storage Módulo de armazenamento do Ionic
+     * @param storage Módulo de armazenamento do Ionic, algumas mudanças foram feitas devida a nova versão do Storage, referencia: https://ionicframework.com/blog/announcing-ionic-storage-v3/
      */
-    constructor(private storage: Storage) { }
 
+    private _storage: Storage | null = null;
+    constructor(private storage: Storage) {
+      this.init();
+    }
+
+    async init() {
+      // If using, define drivers here: await this.storage.defineDriver(/*...*/);
+      const storage = await this.storage.create();
+      this._storage = storage;
+    }
     /**
      * Salva um par de chave-valor
      * @param chave Chave do valor a ser salvo
      * @param valor Valor a ser salvo
      */
-    set(chave: string, valor: any) {
-        return this.storage.set(chave, valor);
+    public set(chave: string, valor: any) {
+         this._storage.set(chave, valor);
     }
 
     /**

@@ -2,7 +2,7 @@ import { UsuarioService } from './../../services/usuario.service';
 import { EventoService, EventoInterface } from 'src/app/services/evento.service';
 import { DatasUtil } from './../../utils/datas';
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
 
@@ -13,6 +13,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class EventoInscricaoPage implements OnInit {
 
+  info: any;
   /** Evento cujas informações serão exibidas */
   eventoEscolhido: EventoInterface;
   /** Versões formatadas das datas de início e fim do evento */
@@ -40,12 +41,34 @@ export class EventoInscricaoPage implements OnInit {
     private toastCtrl: ToastController,
     private evento: EventoService,
     private usuario: UsuarioService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe(params => {
+      console.log(this.router.getCurrentNavigation().extras.state);
+      if(this.router.getCurrentNavigation().extras.state){
+        console.log("has extras");
+        this.eventoEscolhido = this.router.getCurrentNavigation().extras.state.eventoEscolhido;
+        this.desinscrever = this.router.getCurrentNavigation().extras.state.desinscrever;
+      }
+    })
 
-  inscrever(){
-    console.log("inscrever\n");
   }
+
+  /**
+     * Ao entrar na página, carrega os dados a serem exibidos
+     */
+
+ ionViewWillEnter() {
+
+
+
+  this.data.inicio = DatasUtil.completa(this.eventoEscolhido.dataInicio);
+  this.data.fim = DatasUtil.completa(this.eventoEscolhido.dataFim);
+  this.gamificacao = this.eventoEscolhido.gamificacao;
+  console.log("Has gamification: "+ this.eventoEscolhido.gamificacao)
+}
+
 
 
   ngOnInit() {

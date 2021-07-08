@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { ServLogin } from './login.service';
 import { ServEventos } from './eventos.service';
+import { ServParceiros } from './parceiros.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,15 +27,17 @@ export class ServidorService {
 
   /** Reúne as funções referentes aos métodos de login e criação de conta */
   readonly login: ServLogin;
-
-    /** Reúne as funções referentes aos eventos */
-    readonly eventos: ServEventos;
+  /** Reúne as funções referentes aos eventos */
+  readonly eventos: ServEventos;
+  /** Reúne as funções referentes aos parceiros/patrocinadores */
+  readonly parceiros: ServParceiros;
 
 
   constructor(http: HttpClient) {
 
     this.login = new ServLogin(http, this.url, this.key);
     this.eventos = new ServEventos(http, this.url);
+    this.parceiros = new ServParceiros(http, this.url);
   }
 }
 

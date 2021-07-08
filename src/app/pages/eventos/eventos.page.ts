@@ -1,6 +1,7 @@
+
 import { EventoInscricaoPage } from './../evento-inscricao/evento-inscricao.page';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 
 import { EventoService, EventoInterface } from 'src/app/services/evento.service';
@@ -31,6 +32,13 @@ export class EventosPage implements OnInit {
     * @param router Usado para mostrar novas páginas
     * @param config Usado para o tutorial
     * @param evento
+    */
+
+/*
+    parametro = {
+      eventoEscolhido:'teste' ,
+      desinscrever: false
+    }
     */
 
   constructor(
@@ -93,19 +101,25 @@ export class EventosPage implements OnInit {
     }
 }
 
+
+
 /**
      * Acessa página de um dos eventos da lista
      * @param evento Evento a ser acessado
      */
  acessarEvento(evento: EventoInterface) {
  // console.log("Gamification "+evento.gamificacao)
-  this.router.navigate(['evento-inscricao']);
- /*
-  this.router.navigate(EventoInscricaoPage, {
-    eventoEscolhido: evento,
-    desinscrever: this.evento.existeDados() && evento.ID == this.evento.getID()
-});
-*/
+ // this.parametro.eventoEscolhido = evento;
+ // this.parametro.desinscrever = this.evento.existeDados() && evento.ID == this.evento.getID();
+
+  let navigationExtras: NavigationExtras = {
+  state: {
+     eventoEscolhido: evento,
+   }
+  }
+
+  this.router.navigate(['evento-inscricao'],navigationExtras);
+
 }
 
  /**

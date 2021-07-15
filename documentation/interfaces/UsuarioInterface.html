@@ -311,31 +311,56 @@ export class UsuarioService {
             console.log(&quot;Carregar em construção\n&quot;);
     }
 
-/**
- * Efetua o login via e-mail
- * @param email E-mail usado no login
- * @param loginCb Callback executada quando há sucesso no login
- * @param usuarioFalhaCb Callback executada quando não existe o email no banco de dados
- * @param falhaCb Callback executada quando há algum erro na conexão ou falha de resposta
- */
-loginEmail(email: string, loginCb: () &#x3D;&gt; void, usuarioFalhaCb: () &#x3D;&gt; void, falhaCb: () &#x3D;&gt; void) {
-  console.log(&quot;Aqui em usuario\n&quot;);
-// this.servidor.login.email(email);
+  /**
+   * Efetua o login via e-mail
+   * @param email E-mail usado no login
+   * @param loginCb Callback executada quando há sucesso no login
+   * @param usuarioFalhaCb Callback executada quando não existe o email no banco de dados
+   * @param falhaCb Callback executada quando há algum erro na conexão ou falha de resposta
+   */
+  loginEmail(email: string, loginCb: () &#x3D;&gt; void, usuarioFalhaCb: () &#x3D;&gt; void, falhaCb: () &#x3D;&gt; void) {
+    console.log(&quot;Aqui em usuario\n&quot;);
+  // this.servidor.login.email(email);
 
-  this.servidor.login.email(email).subscribe((data: any) &#x3D;&gt; {
-    if (data.usuario &#x3D;&#x3D; 0)
-        usuarioFalhaCb();
-    else {
-        this.dados &#x3D; data.usuario[0];
-        this.fotoURL &#x3D; &quot;&quot;;
-        this.salvar();
-        loginCb();
-    }
-}, () &#x3D;&gt; {
-    falhaCb();
-});
+    this.servidor.login.email(email).subscribe((data: any) &#x3D;&gt; {
+      if (data.usuario &#x3D;&#x3D; 0)
+          usuarioFalhaCb();
+      else {
+          this.dados &#x3D; data.usuario[0];
+          this.fotoURL &#x3D; &quot;&quot;;
+          this.salvar();
+          loginCb();
+      }
+  }, () &#x3D;&gt; {
+      falhaCb();
+  });
 
+  }
+
+  /**
+       * Efetua login via Facebook
+       * @param loginCb Callback executada quando há sucesso no login
+       * @param falhaCb Callback executada quando há algum erro na conexão ou no processo de login
+       */
+
+
+ loginFB(loginCb: () &#x3D;&gt; void, falhaCb: () &#x3D;&gt; void) {
+  this.servidor.login.facebookLogin((resposta) &#x3D;&gt; {
+      if (resposta &amp;&amp; resposta.user) {
+          this.servidor.login.facebookEnviarInfo(resposta.user.displayName, resposta.user.email).subscribe((data: any) &#x3D;&gt; {
+              if (data.success &#x3D;&#x3D; 1 || data.success &#x3D;&#x3D; 2) {
+                  this.dados &#x3D; data.usuario[0];
+                  this.fotoURL &#x3D; resposta.user.photoURL;
+                  this.salvar();
+                  loginCb();
+              } else
+                  falhaCb();
+          }, falhaCb);
+      } else
+          falhaCb();
+  }, falhaCb);
 }
+
 
 /**
      * Cria uma nova conta

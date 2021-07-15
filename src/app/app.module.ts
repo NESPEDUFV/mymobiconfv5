@@ -17,6 +17,7 @@ import { ArmazenamentoService } from './services/armazenamento.service';
 
 //Firebase para login com facebook
 import firebase from 'firebase/app';
+import { DatasPipe } from './pipes/datas.pipe';
 /*
 firebase.initializeApp({
   apiKey: "AIzaSyAkHLLB16yu5m5zE8qnGZLeQS0XD63DT7A",
@@ -45,6 +46,7 @@ firebase.initializeApp({
 @NgModule({
   declarations: [
     AppComponent,
+
 
   ],
   entryComponents: [

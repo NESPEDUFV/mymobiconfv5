@@ -168,6 +168,9 @@
                                 <a href="#loginEmail">loginEmail</a>
                             </li>
                             <li>
+                                <a href="#loginFB">loginFB</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                         </ul>
@@ -450,8 +453,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/app/pages/login/login.page.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/pages/login/login.page.ts:130</a></div>
                 </td>
             </tr>
 
@@ -528,6 +531,47 @@
                     </div>
                     <div class="io-description">
                         
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loginFB"></a>
+                    <span class="name">
+                        <b>
+                            loginFB
+                        </b>
+                        <a href="#loginFB"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loginFB()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/pages/login/login.page.ts:111</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Faz o login via Facebook e vai para a <code>EventosPage</code> caso o login seja bem sucedido</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
                     </div>
                 </td>
             </tr>
@@ -760,15 +804,9 @@ ngOnInit() {
 
 
 loginEmail(email){
-    //this.usuario.loginEmail(email);
-   //this.overlay.createLoading(&quot;Verificando usuário...&quot; );
-   // avisoLoading.present();
-   //this.overlay.showAlert(&quot;Falha no login&quot;, &quot;usuario inexistente.&quot;,&quot;OK&quot;)
-
-
-     //Aviso de loading, é exibido até que se tenha obtido resposta do servidor,
-        //ou se tenha excedido o tempo limite de resposta
-
+    //Aviso de loading, é exibido até que se tenha obtido resposta do servidor,
+      //ou se tenha excedido o tempo limite de resposta
+    //this.overlay.createLoading(&quot;Verificando usuário...&quot; );
         this.usuario.loginEmail(email, () &#x3D;&gt; {
          // let avisoLoading &#x3D; this.overlay.createLoading(&quot;Verificando usuário...&quot;);
           //Trecho para ativar o tutorial assim que o login for efetuado
@@ -777,7 +815,7 @@ loginEmail(email){
           this.leaveCheck &#x3D; true;
           this.overlay.dismissAllLoaders();
 
-          this.router.navigate([&#x27;my-mobi-conf&#x27;]);//volta pra página inicial &quot;para frente&quot;
+          this.router.navigate([&#x27;eventos&#x27;]);//vai pra página inicial &quot;para frente&quot;
       }, () &#x3D;&gt; {
         this.overlay.dismissAllLoaders();
           this.overlay.createAlert(
@@ -795,6 +833,35 @@ loginEmail(email){
       });
 
       }
+
+        /**
+     * Faz o login via Facebook e vai para a &#x60;EventosPage&#x60; caso o login seja bem sucedido
+     */
+        /*
+        //teste de background
+        loginFB(){
+          console.log(&quot;login\n&quot;);
+        }
+        */
+
+    loginFB() {
+      let avisoLoading &#x3D; this.overlay.createLoading(&quot;Aguardando...&quot; );
+      //avisoLoading.present();
+      console.log(&quot;login.page\n&quot;);
+      this.usuario.loginFB(() &#x3D;&gt; {
+          this.overlay.dismissAllLoaders();
+          this.leaveCheck &#x3D; true;
+          this.router.navigate([&#x27;eventos&#x27;]);
+      }, () &#x3D;&gt; {
+          this.overlay.dismissAllLoaders();
+          this.overlay.createAlert(
+              &quot;Falha na conexão&quot;,
+              &quot;Não foi possível se conectar ao Facebook. Verifique sua conexão e tente novamente.&quot;,
+              &#x27;OK&#x27;
+          );
+      });
+
+  }
 
   irParaSignup(){
     this.router.navigate([&#x27;signup&#x27;]);
@@ -816,12 +883,12 @@ loginEmail(email){
 &lt;ion-content &gt;
     &lt;ion-card class&#x3D; &quot;ion-padding&quot;&gt;
       &lt;form [formGroup] &#x3D; &quot;loginForm&quot;&gt;
-        &lt;ion-item class&#x3D;&quot;inputDestacado&quot;&gt;
+        &lt;ion-item  lines &#x3D; &quot;none&quot; class&#x3D;&quot;inputDestacado&quot;&gt;
           &lt;ion-input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;email&quot; placeholder&#x3D;&quot;Email&quot;&gt;&lt;/ion-input&gt;
         &lt;/ion-item&gt;
         &lt;br&gt;
         &lt;ion-button color&#x3D;&quot;primary&quot; expand&#x3D;&quot;block&quot; [disabled]&#x3D;&quot;!loginForm.valid&quot; type&#x3D;&quot;submit&quot; expand&#x3D;&quot;block&quot; (click)&#x3D;&quot;loginEmail(loginForm.value.email)&quot;&gt;Entrar&lt;/ion-button&gt;
-        &lt;ion-button  color&#x3D;&quot;primary&quot; expand&#x3D;&quot;block&quot;&gt;Entrar com Facebook&lt;/ion-button&gt;
+        &lt;ion-button  color&#x3D;&quot;primary&quot; expand&#x3D;&quot;block&quot;  (click)&#x3D;&quot;loginFB()&quot;&gt;Entrar com Facebook&lt;/ion-button&gt;
         &lt;br&gt;
         &lt;ion-button expand&#x3D;&quot;block&quot; fill&#x3D;&quot;clear&quot; (click)&#x3D;&quot;irParaSignup()&quot; &gt;Ou crie uma conta&lt;/ion-button&gt;
       &lt;/form&gt;
@@ -864,8 +931,8 @@ loginEmail(email){
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-toolbar color = "primary">  <ion-buttons slot="start">    <ion-back-button></ion-back-button>  </ion-buttons>  <ion-title>Login</ion-title></ion-toolbar><ion-content >    <ion-card class= "ion-padding">      <form [formGroup] = "loginForm">        <ion-item class="inputDestacado">          <ion-input type="text" formControlName="email" placeholder="Email"></ion-input>        </ion-item>        <br>        <ion-button color="primary" expand="block" [disabled]="!loginForm.valid" type="submit" expand="block" (click)="loginEmail(loginForm.value.email)">Entrar</ion-button>        <ion-button  color="primary" expand="block">Entrar com Facebook</ion-button>        <br>        <ion-button expand="block" fill="clear" (click)="irParaSignup()" >Ou crie uma conta</ion-button>      </form>    </ion-card></ion-content></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MyMobiConfPage', 'selector': 'app-my-mobi-conf'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'Teste2Page', 'selector': 'app-teste2'}];
+        var COMPONENT_TEMPLATE = '<div><ion-toolbar color = "primary">  <ion-buttons slot="start">    <ion-back-button></ion-back-button>  </ion-buttons>  <ion-title>Login</ion-title></ion-toolbar><ion-content >    <ion-card class= "ion-padding">      <form [formGroup] = "loginForm">        <ion-item  lines = "none" class="inputDestacado">          <ion-input type="text" formControlName="email" placeholder="Email"></ion-input>        </ion-item>        <br>        <ion-button color="primary" expand="block" [disabled]="!loginForm.valid" type="submit" expand="block" (click)="loginEmail(loginForm.value.email)">Entrar</ion-button>        <ion-button  color="primary" expand="block"  (click)="loginFB()">Entrar com Facebook</ion-button>        <br>        <ion-button expand="block" fill="clear" (click)="irParaSignup()" >Ou crie uma conta</ion-button>      </form>    </ion-card></ion-content></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'EventoInfoPage', 'selector': 'app-evento-info'},{'name': 'EventoInscricaoPage', 'selector': 'app-evento-inscricao'},{'name': 'EventosPage', 'selector': 'app-eventos'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MyMobiConfPage', 'selector': 'app-my-mobi-conf'},{'name': 'ParceirosPage', 'selector': 'app-parceiros'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'TutorialComponent', 'selector': 'app-tutorial'}];
     var DIRECTIVES = [{'name': 'BackgroundDirective', 'selector': '[bg]'}];
     var ACTUAL_COMPONENT = {'name': 'LoginPage'};
 </script>

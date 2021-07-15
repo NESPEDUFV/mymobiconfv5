@@ -1,0 +1,65 @@
+<!-- Informações do Evento e Utilidades -->
+
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>{{nome}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content bg>
+  <ion-card>
+      <div *ngIf="logoURL!=''" class="card-img">
+          <div [style.backgroundImage]="'url(' + logoURL + ')'"></div>
+      </div>
+      <ion-card-content>
+          <ion-card-title>{{nome}}</ion-card-title>
+          <ion-list class="icones-pequenos">
+              <ion-item class = "text-wrap">
+                  <p *ngIf="is_online == 1" class="isOnline">
+                      <strong> EVENTO ONLINE</strong>
+                  </p>
+                  <p *ngIf="is_online != 1" class="isOnline">
+                      <strong>EVENTO PRESENCIAL</strong>
+                  </p>
+              </ion-item>
+              <ion-item class = "text-wrap">
+                  <ion-icon name="calendar" item-start></ion-icon>
+                  <p>De
+                      <strong>{{dataInicio}}</strong>
+                      <br>a
+                      <strong>{{dataFim}}</strong>
+                  </p>
+              </ion-item>
+               <ion-item class = "text-wrap" *ngIf="is_online != 1">
+                  <ion-icon name="pin" item-start></ion-icon>
+                  <p>Local:</p>
+                  <p>{{local}}</p>
+              </ion-item>
+               <ion-item class = "text-wrap"*ngIf="is_online == 1 && link_principal!=''">
+                  <ion-icon name="phone-portrait" item-start></ion-icon>
+                  <p>Link principal:</p>
+                  <p><a [href]="link_principal">{{link_principal}}</a></p>
+              </ion-item>
+              <ion-item class = "text-wrap" *ngIf="site != ''">
+                  <ion-icon name="globe" item-start></ion-icon>
+                  <p>Site:</p>
+                  <a [href]="site">{{site}}</a>
+              </ion-item>
+              <ion-item class = "text-wrap" *ngIf="email != ''">
+                  <ion-icon name="mail" item-start></ion-icon>
+                  <p>Email:</p>
+                  <a [href]="'mailto:' + email">{{email}}</a>
+              </ion-item>
+              <ion-item class = "text-wrap" *ngIf="telefone != ''">
+                  <ion-icon name="call" item-start></ion-icon>
+                  <p>Telefone:</p>
+                  <p>{{telefone}}</p>
+              </ion-item>
+              <ion-item class = "text-wrap" *ngIf="gamificacao != 0">
+                  <ion-icon name="game-controller-b" item-start></ion-icon>
+                  <p>Este evento possui gamificação!</p>
+              </ion-item>
+          </ion-list>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

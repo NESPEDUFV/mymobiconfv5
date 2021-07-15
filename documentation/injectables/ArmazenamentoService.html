@@ -74,6 +74,21 @@ encapsulando a tecnologia de armazenamento local</p>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_storage">_storage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -90,9 +105,14 @@ encapsulando a tecnologia de armazenamento local</p>
                                 <a href="#get">get</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#init">init</a>
+                            </li>
+                            <li>
                                 <a href="#remove">remove</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#set">set</a>
                             </li>
                         </ul>
@@ -118,7 +138,7 @@ encapsulando a tecnologia de armazenamento local</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/services/armazenamento.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/armazenamento.service.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -132,7 +152,6 @@ encapsulando a tecnologia de armazenamento local</p>
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -147,10 +166,6 @@ encapsulando a tecnologia de armazenamento local</p>
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <code><p>Módulo de armazenamento do Ionic</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -188,8 +203,8 @@ encapsulando a tecnologia de armazenamento local</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/app/services/armazenamento.service.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/services/armazenamento.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -229,8 +244,8 @@ encapsulando a tecnologia de armazenamento local</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/app/services/armazenamento.service.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/app/services/armazenamento.service.ts:38</a></div>
                 </td>
             </tr>
 
@@ -289,6 +304,47 @@ encapsulando a tecnologia de armazenamento local</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="init"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            init
+                        </b>
+                        <a href="#init"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>init()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/app/services/armazenamento.service.ts:19</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
                         <b>
@@ -307,8 +363,8 @@ encapsulando a tecnologia de armazenamento local</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/app/services/armazenamento.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/services/armazenamento.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -369,6 +425,7 @@ encapsulando a tecnologia de armazenamento local</p>
                     <a name="set"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Public</span>
                             set
                         </b>
                         <a href="#set"><span class="icon ion-ios-link"></span></a>
@@ -377,15 +434,16 @@ encapsulando a tecnologia de armazenamento local</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>set(chave: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, valor: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>set(chave: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, valor: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/services/armazenamento.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/services/armazenamento.service.ts:29</a></div>
                 </td>
             </tr>
 
@@ -445,7 +503,7 @@ encapsulando a tecnologia de armazenamento local</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
@@ -456,13 +514,76 @@ encapsulando a tecnologia de armazenamento local</p>
         </tbody>
     </table>
 </section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_storage"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _storage</b>
+                            <a href="#_storage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Storage | null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/armazenamento.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                          <div class="io-description">
+                                  <b>Parameters :</b>
+                                  <table class="params">
+                                      <thead>
+                                          <tr>
+                                                <td>Name</td>
+                                                    <td>Description</td>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                                <tr>
+                                                        <td>storage</td>
+                                                        <td>
+                                                                <code><p>Módulo de armazenamento do Ionic, algumas mudanças foram feitas devida a nova versão do Storage, referencia: <a href="https://ionicframework.com/blog/announcing-ionic-storage-v3/">https://ionicframework.com/blog/announcing-ionic-storage-v3/</a></p>
+</code>
+                                                        </td>
+                                                </tr>
+                                      </tbody>
+                                  </table>
+                          </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { Storage } from &#x27;@ionic/storage&#x27;;
+import { Storage } from &#x27;@ionic/storage-angular&#x27;;
 
 /**
  * Gerencia os pedidos de carregar e de salvar do armazenamento local,
@@ -471,17 +592,26 @@ import { Storage } from &#x27;@ionic/storage&#x27;;
 @Injectable()
 export class ArmazenamentoService {
     /**
-     * @param storage Módulo de armazenamento do Ionic
+     * @param storage Módulo de armazenamento do Ionic, algumas mudanças foram feitas devida a nova versão do Storage, referencia: https://ionicframework.com/blog/announcing-ionic-storage-v3/
      */
-    constructor(private storage: Storage) { }
 
+    private _storage: Storage | null &#x3D; null;
+    constructor(private storage: Storage) {
+      this.init();
+    }
+
+    async init() {
+      // If using, define drivers here: await this.storage.defineDriver(/*...*/);
+      const storage &#x3D; await this.storage.create();
+      this._storage &#x3D; storage;
+    }
     /**
      * Salva um par de chave-valor
      * @param chave Chave do valor a ser salvo
      * @param valor Valor a ser salvo
      */
-    set(chave: string, valor: any) {
-        return this.storage.set(chave, valor);
+    public set(chave: string, valor: any) {
+         this._storage.set(chave, valor);
     }
 
     /**

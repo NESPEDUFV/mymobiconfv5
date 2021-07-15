@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'eventos',
+    loadChildren: () => import('./pages/eventos/eventos.module').then( m => m.EventosPageModule)
+  },
+  {
     path: 'my-mobi-conf',
     loadChildren: () => import('./pages/my-mobi-conf/my-mobi-conf/my-mobi-conf.module').then( m => m.MyMobiConfPageModule)
   },
@@ -23,6 +27,21 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup/signup.module').then( m => m.SignupPageModule)
   },
+
+  {
+    path: 'eventos-info',
+    loadChildren: () => import('./pages/evento-info/evento-info.module').then( m => m.EventoInfoPageModule)
+  },
+  {
+    path: 'evento-inscricao',
+    loadChildren: () => import('./pages/evento-inscricao/evento-inscricao.module').then( m => m.EventoInscricaoPageModule)
+  },
+  {
+    path: 'parceiros',
+    loadChildren: () => import('./pages/parceiros/parceiros.module').then( m => m.ParceirosPageModule)
+  },
+
+
 ];
 
 @NgModule({

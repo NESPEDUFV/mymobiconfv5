@@ -1,0 +1,2177 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>v4 documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">v4 documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>AtividadesService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/atividades.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#atividades">atividades</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#agendar">agendar</a>
+                            </li>
+                            <li>
+                                <a href="#apagar">apagar</a>
+                            </li>
+                            <li>
+                                <a href="#buscar">buscar</a>
+                            </li>
+                            <li>
+                                <a href="#carregar">carregar</a>
+                            </li>
+                            <li>
+                                <a href="#comecou">comecou</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#criarArvore">criarArvore</a>
+                            </li>
+                            <li>
+                                <a href="#disponivel">disponivel</a>
+                            </li>
+                            <li>
+                                <a href="#estaNaAgenda">estaNaAgenda</a>
+                            </li>
+                            <li>
+                                <a href="#estaNaHora">estaNaHora</a>
+                            </li>
+                            <li>
+                                <a href="#existeDados">existeDados</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatarHora">formatarHora</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatarLista">formatarLista</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatarObj">formatarObj</a>
+                            </li>
+                            <li>
+                                <a href="#getAtividadePorID">getAtividadePorID</a>
+                            </li>
+                            <li>
+                                <a href="#listarAgendadas">listarAgendadas</a>
+                            </li>
+                            <li>
+                                <a href="#listarEmOrdem">listarEmOrdem</a>
+                            </li>
+                            <li>
+                                <a href="#listarPorDia">listarPorDia</a>
+                            </li>
+                            <li>
+                                <a href="#salvar">salvar</a>
+                            </li>
+                            <li>
+                                <a href="#temAlgoAgendado">temAlgoAgendado</a>
+                            </li>
+                            <li>
+                                <a href="#verificarConflito">verificarConflito</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(storage: <a href="../injectables/ArmazenamentoService.html">ArmazenamentoService</a>, servidor: <a href="../injectables/ServidorService.html">ServidorService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/services/atividades.service.ts:55</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>storage</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ArmazenamentoService.html" target="_self" >ArmazenamentoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>servidor</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ServidorService.html" target="_self" >ServidorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agendar"></a>
+                    <span class="name">
+                        <b>
+                            agendar
+                        </b>
+                        <a href="#agendar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>agendar(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, permitirConflito: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/app/services/atividades.service.ts:259</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adiciona ou remove da agenda uma atividade (pode haver conflito)</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>ID da atividade a ser adicionada à agenda</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>permitirConflito</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Se pode haver conflito de horário entre atividades</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Se pôde colocar a atividade na agenda</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="apagar"></a>
+                    <span class="name">
+                        <b>
+                            apagar
+                        </b>
+                        <a href="#apagar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>apagar()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/services/atividades.service.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Apaga as atividades, inclusive do armazenamento local</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buscar"></a>
+                    <span class="name">
+                        <b>
+                            buscar
+                        </b>
+                        <a href="#buscar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>buscar(eventoID: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sucessoCb?: () => void, falhaCb?: () => void)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/services/atividades.service.ts:117</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Busca as atividades do servidor</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>eventoID</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>ID do evento cujas atividades serão carregadas</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sucessoCb</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Callback chamada quando consegue carregar as atividades</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>falhaCb</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Callback chamada quando as outras alternativas falham</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="carregar"></a>
+                    <span class="name">
+                        <b>
+                            carregar
+                        </b>
+                        <a href="#carregar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>carregar(sucessoCb?: () => void, falhaCb?: () => void)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/services/atividades.service.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Carrega as atividades do armazenamento local</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sucessoCb</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Callback para ser executada quando termina de carregar e têm dados salvos</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>falhaCb</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Callback para ser execitada quando temrmina de carregar e não há dados</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="comecou"></a>
+                    <span class="name">
+                        <b>
+                            comecou
+                        </b>
+                        <a href="#comecou"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>comecou(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/app/services/atividades.service.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>ID da atividade</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Se passou da hora de início da atividade</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="criarArvore"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            criarArvore
+                        </b>
+                        <a href="#criarArvore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>criarArvore(json?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">src/app/services/atividades.service.ts:176</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cria uma árvore de atividades</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>json</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>String no formato JSON que representa uma árvore</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AtividadeInterface.html" target="_self" >HITree&lt;AtividadeInterface&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disponivel"></a>
+                    <span class="name">
+                        <b>
+                            disponivel
+                        </b>
+                        <a href="#disponivel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>disponivel(sucessoCb: () => void, falhaCb?: () => void)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/services/atividades.service.ts:104</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Executa uma dada ação após garantir que as atividades foram carregadas</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sucessoCb</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Callback executada após garantir que as atividades foram carregadas</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>falhaCb</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Callback executada após falha no carregamento das atividades</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estaNaAgenda"></a>
+                    <span class="name">
+                        <b>
+                            estaNaAgenda
+                        </b>
+                        <a href="#estaNaAgenda"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>estaNaAgenda(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/app/services/atividades.service.ts:210</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>ID da atividade verificada</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Se a atividade está na agenda</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estaNaHora"></a>
+                    <span class="name">
+                        <b>
+                            estaNaHora
+                        </b>
+                        <a href="#estaNaHora"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>estaNaHora(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="233"
+                            class="link-to-prism">src/app/services/atividades.service.ts:233</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>ID da atividade</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Se está dentro do horário de uma dada atividade</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="existeDados"></a>
+                    <span class="name">
+                        <b>
+                            existeDados
+                        </b>
+                        <a href="#existeDados"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>existeDados()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/app/services/atividades.service.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Informa se existem dados das atividades</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Se existem dados das atividades</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatarHora"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatarHora
+                        </b>
+                        <a href="#formatarHora"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatarHora(dia: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, hora: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/app/services/atividades.service.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Converte formato de data e hora do servidor para Date</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dia</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Dia da atividade no formato do servidor</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>hora</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Hora da atividade no formato do servidor</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Objeto do tipo Date convertido</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatarLista"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatarLista
+                        </b>
+                        <a href="#formatarLista"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatarLista(atividades: any[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/services/atividades.service.ts:130</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cria array associativa formatada das atividades para padronização dentro do app</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>atividades</td>
+                                    <td>
+                                            <code>any[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Array de atividades</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AtividadeInterface.html" target="_self" >HITree&lt;AtividadeInterface&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Array associativa das atividadades formatadas</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatarObj"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatarObj
+                        </b>
+                        <a href="#formatarObj"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatarObj(atividade: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">src/app/services/atividades.service.ts:154</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adequa o formato do objeto de uma atividade para padronização dentro do app</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>atividade</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Atividade no formato do servidor</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AtividadeInterface.html" target="_self" >AtividadeInterface</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Atividade formatada</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAtividadePorID"></a>
+                    <span class="name">
+                        <b>
+                            getAtividadePorID
+                        </b>
+                        <a href="#getAtividadePorID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAtividadePorID(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/app/services/atividades.service.ts:199</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>ID da atividade buscada</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AtividadeInterface.html" target="_self" >AtividadeInterface</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Atividade referente ao ID passado</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listarAgendadas"></a>
+                    <span class="name">
+                        <b>
+                            listarAgendadas
+                        </b>
+                        <a href="#listarAgendadas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>listarAgendadas(agora?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="320"
+                            class="link-to-prism">src/app/services/atividades.service.ts:320</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista todas as atividades agendadas, em ordem cronológica</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>agora</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Limita para mostrar apenas as agendadas no momento corrente</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AtividadeInterface.html" target="_self" >AtividadeInterface[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Lista de atividades agendadas</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listarEmOrdem"></a>
+                    <span class="name">
+                        <b>
+                            listarEmOrdem
+                        </b>
+                        <a href="#listarEmOrdem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>listarEmOrdem()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">src/app/services/atividades.service.ts:278</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AtividadeInterface.html" target="_self" >AtividadeInterface[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Array com todas as atividades em ordem cronológica</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listarPorDia"></a>
+                    <span class="name">
+                        <b>
+                            listarPorDia
+                        </b>
+                        <a href="#listarPorDia"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>listarPorDia(agenda?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="289"
+                            class="link-to-prism">src/app/services/atividades.service.ts:289</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>agenda</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>Se deve incluir apenas as atividades agendadas</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/AtivNoDiaInterface.html" target="_self" >AtivNoDiaInterface[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Array cujos elementos representam os dias e que são arrays das atividades naquele dia</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="salvar"></a>
+                    <span class="name">
+                        <b>
+                            salvar
+                        </b>
+                        <a href="#salvar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>salvar()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/app/services/atividades.service.ts:62</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Salva as atividades no armazenamento local</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="temAlgoAgendado"></a>
+                    <span class="name">
+                        <b>
+                            temAlgoAgendado
+                        </b>
+                        <a href="#temAlgoAgendado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>temAlgoAgendado()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">src/app/services/atividades.service.ts:222</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Informa se existe alguma atividade agendada</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Se existe alguma atividade agendada</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="verificarConflito"></a>
+                    <span class="name">
+                        <b>
+                            verificarConflito
+                        </b>
+                        <a href="#verificarConflito"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>verificarConflito(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="335"
+                            class="link-to-prism">src/app/services/atividades.service.ts:335</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>ID da atividade a ser conferida</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Se há conflito entre uma atividade e qualquer outra da lista</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="atividades"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            atividades</b>
+                            <a href="#atividades"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/AtividadeInterface.html" target="_self" >HITree&lt;AtividadeInterface&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/services/atividades.service.ts:55</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Armazena a lista de atividades </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HITree } from &#x27;./../utils/hi-tree&#x27;;
+import { DatasUtil } from &#x27;./../utils/datas&#x27;;
+import { ServidorService } from &#x27;./servidor/servidor.service&#x27;;
+import { ArmazenamentoService } from &#x27;./armazenamento.service&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+
+
+
+
+
+
+/** Dados de uma atividade */
+export interface AtividadeInterface {
+  /** ID da atividade */
+  ID: string
+  /** Tipo da atividade */
+  tipo: string
+  /** Título da atividade */
+  titulo: string
+  /** Tema da atividade */
+  tema: string
+  /** Descrição da atividade */
+  descricao: string
+  /** Horário em que a atividade começa */
+  horaInicio: Date
+  /** Horário em que a atividade termina */
+  horaFim: Date
+  /** Quem é o responsável pela atividade */
+  responsavel: string
+  /** Local da atividade */
+  local: string
+  /** Link para acesso da atividade */
+  link_principal: string
+  /** Logradouro da atividade */
+  logradouro: string
+  /** Se a atividade está na agenda */
+  estaNaAgenda: boolean
+  /** define se mostra ou não a notificação */
+  mostraNotif: boolean
+}
+
+/** Array de atividades com seu dia */
+export interface AtivNoDiaInterface {
+  /** Dia em que ocorre a lista de atividades */
+  data: Date
+  /** Lista de atividades ocorrendo no dia */
+  ativ: AtividadeInterface[]
+}
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class AtividadesService {
+  /** Armazena a lista de atividades */
+  private atividades: HITree&lt;AtividadeInterface&gt; &#x3D; null;
+
+  constructor(private storage: ArmazenamentoService, private servidor: ServidorService) { }
+
+    /**
+     * Salva as atividades no armazenamento local
+     */
+  salvar() {
+    this.storage.set(&#x27;atividades&#x27;, JSON.stringify(this.atividades));
+  }
+
+  /**
+   * Carrega as atividades do armazenamento local
+   * @param sucessoCb Callback para ser executada quando termina de carregar e têm dados salvos
+   * @param falhaCb Callback para ser execitada quando temrmina de carregar e não há dados
+   */
+  carregar(sucessoCb?: () &#x3D;&gt; void, falhaCb?: () &#x3D;&gt; void) {
+      this.storage.get(&#x27;atividades&#x27;).then((val) &#x3D;&gt; {
+          if (val &amp;&amp; JSON.parse(val)) {
+              this.atividades &#x3D; this.criarArvore(val);
+              if (sucessoCb) sucessoCb();
+          } else
+              if (falhaCb) falhaCb();
+      })
+  }
+
+  /**
+   * Apaga as atividades, inclusive do armazenamento local
+   */
+  apagar() {
+      if (!this.atividades) return;
+      this.atividades.clear();
+      this.atividades &#x3D; null;
+      this.salvar();
+  }
+
+  /**
+   * Informa se existem dados das atividades
+   * @returns Se existem dados das atividades
+   */
+  existeDados(): boolean {
+      return this.atividades !&#x3D; null;
+  }
+
+  /**
+   * Executa uma dada ação após garantir que as atividades foram carregadas
+   * @param sucessoCb Callback executada após garantir que as atividades foram carregadas
+   * @param falhaCb Callback executada após falha no carregamento das atividades
+   */
+  disponivel(sucessoCb: () &#x3D;&gt; void, falhaCb?: () &#x3D;&gt; void) {
+      if (this.existeDados())
+          sucessoCb();
+      else
+          this.carregar(sucessoCb, falhaCb);
+  }
+
+  /**
+   * Busca as atividades do servidor
+   * @param eventoID ID do evento cujas atividades serão carregadas
+   * @param sucessoCb Callback chamada quando consegue carregar as atividades
+   * @param falhaCb Callback chamada quando as outras alternativas falham
+   */
+  buscar(eventoID: string, sucessoCb?: () &#x3D;&gt; void, falhaCb?: () &#x3D;&gt; void) {
+      this.servidor.atividades.buscar(eventoID).subscribe((data: any) &#x3D;&gt; {
+          this.atividades &#x3D; this.formatarLista((data &amp;&amp; data.atividades) ? data.atividades : []);
+          this.salvar();
+          if (sucessoCb) sucessoCb();
+      }, () &#x3D;&gt; { if (falhaCb) falhaCb() });
+  }
+
+  /**
+   * Cria array associativa formatada das atividades para padronização dentro do app
+   * @param atividades Array de atividades
+   * @returns Array associativa das atividadades formatadas
+   */
+  private formatarLista(atividades: any[]): HITree&lt;AtividadeInterface&gt; {
+      let arvore &#x3D; this.criarArvore();
+      for (let ativ of atividades)
+          arvore.add(this.formatarObj(ativ));
+      return arvore;
+  }
+
+  /**
+   * Converte formato de data e hora do servidor para Date
+   * @param dia Dia da atividade no formato do servidor
+   * @param hora Hora da atividade no formato do servidor
+   * @returns Objeto do tipo Date convertido
+   */
+  private formatarHora(dia: string, hora: string): Date {
+      let data &#x3D; new Date(dia.replace(/-/g, &quot;/&quot;));
+      data.setHours(+hora.match(/\d+/g)[0], +hora.match(/\d+/g)[1], +hora.match(/\d+/g)[2]);
+      return data;
+  }
+
+  /**
+   * Adequa o formato do objeto de uma atividade para padronização dentro do app
+   * @param atividade Atividade no formato do servidor
+   * @returns Atividade formatada
+   */
+  private formatarObj(atividade: any): AtividadeInterface {
+      return {
+          ID: atividade.ID,
+          tipo: atividade.tipo,
+          titulo: atividade.Nome,
+          tema: atividade.Tema,
+          descricao: atividade.Descricao,
+          horaInicio: this.formatarHora(atividade.Data, atividade.Hora_inicio),
+          horaFim: this.formatarHora(atividade.Data, atividade.Hora_fim),
+          responsavel: atividade.responsavel,
+          local: atividade.local,
+          link_principal: atividade.link_principal,
+          logradouro: atividade.logradouro,
+          estaNaAgenda: false,
+          mostraNotif: false
+      };
+  }
+
+  /**
+   * Cria uma árvore de atividades
+   * @param json String no formato JSON que representa uma árvore
+   */
+  private criarArvore(json?: string): HITree&lt;AtividadeInterface&gt; {
+      let arvore &#x3D; new HITree&lt;AtividadeInterface&gt;(
+          ativ &#x3D;&gt; ativ.ID,
+          ativ &#x3D;&gt; ativ.horaInicio.getTime(),
+          ativ &#x3D;&gt; ativ.horaFim.getTime(),
+          json
+      );
+      if (json) {
+          let h: any; // Converter : string -&gt; Date
+          arvore.forEach(ativ &#x3D;&gt; {
+              h &#x3D; ativ.horaInicio;
+              ativ.horaInicio &#x3D; new Date(h);
+              h &#x3D; ativ.horaFim;
+              ativ.horaFim &#x3D; new Date(h);
+          });
+      }
+      return arvore;
+  }
+
+  /**
+   * @param id ID da atividade buscada
+   * @returns Atividade referente ao ID passado
+   */
+  getAtividadePorID(id: string): AtividadeInterface {
+      if (this.atividades)
+          return this.atividades.getByID(id);
+      else
+          null;
+  }
+
+  /**
+   * @param id ID da atividade verificada
+   * @returns Se a atividade está na agenda
+   */
+  estaNaAgenda(id: string): boolean {
+      if (this.atividades) {
+          let ativ &#x3D; this.atividades.getByID(id);
+          return ativ ? ativ.estaNaAgenda : false;
+      } else
+          return false;
+  }
+
+  /**
+   * Informa se existe alguma atividade agendada
+   * @returns Se existe alguma atividade agendada
+   */
+  temAlgoAgendado(): boolean {
+      if (this.atividades)
+          return this.atividades.some(ativ &#x3D;&gt; ativ.estaNaAgenda);
+      else
+          return false;
+  }
+
+  /**
+   * @param id ID da atividade
+   * @returns Se está dentro do horário de uma dada atividade
+   */
+  estaNaHora(id: string): boolean {
+      if (this.atividades) {
+          let ativ &#x3D; this.atividades.getByID(id);
+          return ativ ? DatasUtil.estaNaHora(ativ.horaInicio, ativ.horaFim) : false;
+      } else
+          return false;
+  }
+
+  /**
+   * @param id ID da atividade
+   * @returns Se passou da hora de início da atividade
+   */
+  comecou(id: string): boolean {
+      if (this.atividades) {
+          let ativ &#x3D; this.atividades.getByID(id);
+          return ativ ? DatasUtil.estaNaHora(ativ.horaInicio) : false;
+      } else
+          return false;
+  }
+
+  /**
+   * Adiciona ou remove da agenda uma atividade (pode haver conflito)
+   * @param id ID da atividade a ser adicionada à agenda
+   * @param permitirConflito Se pode haver conflito de horário entre atividades
+   * @returns Se pôde colocar a atividade na agenda
+   */
+  agendar(id: string, permitirConflito: boolean): boolean {
+      if (this.atividades) {
+          let ativ &#x3D; this.atividades.getByID(id);
+          if (!ativ) return false;
+          if (!permitirConflito &amp;&amp; !ativ.estaNaAgenda &amp;&amp; this.verificarConflito(id))
+              return false;
+          else {
+              ativ.estaNaAgenda &#x3D; !ativ.estaNaAgenda;
+              ativ.mostraNotif &#x3D; true;
+              this.salvar();
+              return true;
+          }
+      } else
+          return false;
+  }
+
+  /**
+   * @returns Array com todas as atividades em ordem cronológica
+   */
+  listarEmOrdem(): AtividadeInterface[] {
+      if (!this.atividades) return [];
+      let lista: AtividadeInterface[] &#x3D; [];
+      this.atividades.forEach(ativ &#x3D;&gt; lista.push(ativ));
+      return lista;
+  }
+
+  /**
+   * @param agenda Se deve incluir apenas as atividades agendadas
+   * @returns Array cujos elementos representam os dias e que são arrays das atividades naquele dia
+   */
+  listarPorDia(agenda?: boolean): AtivNoDiaInterface[] {
+      if (!this.atividades) return [];
+      let listaPorDia: AtivNoDiaInterface[] &#x3D; [];
+      let listaOrdenada &#x3D; this.listarEmOrdem();
+      if (listaOrdenada.length &lt;&#x3D; 0) return [];
+
+      let dia: Date &#x3D; new Date(listaOrdenada[0].horaInicio.getTime());
+      dia.setHours(0, 0, 0, 0);
+      let i: number &#x3D; 0;
+      listaPorDia.push({ data: dia, ativ: [] });
+
+      for (let ativ of listaOrdenada) {
+          let inicio: Date &#x3D; new Date(ativ.horaInicio.getTime());
+          inicio.setHours(0, 0, 0, 0);
+          if (inicio.getTime() !&#x3D; dia.getTime()) {
+              dia &#x3D; inicio;
+              listaPorDia.push({ data: dia, ativ: [] });
+              i++;
+          }
+          if (!agenda || ativ.estaNaAgenda)
+              listaPorDia[i].ativ.push(ativ);
+      }
+
+      return listaPorDia;
+  }
+
+  /**
+   * Lista todas as atividades agendadas, em ordem cronológica
+   * @param agora Limita para mostrar apenas as agendadas no momento corrente
+   * @returns Lista de atividades agendadas
+   */
+  listarAgendadas(agora?: boolean): AtividadeInterface[] {
+      if (this.atividades) {
+          if (agora)
+              return this.atividades.getByPoint(Date.now(), DatasUtil.MargemErroTempo).filter(ativ &#x3D;&gt;
+                  ativ.estaNaAgenda);
+          else
+              return this.atividades.filter(ativ &#x3D;&gt; ativ.estaNaAgenda);
+      } else
+          return [];
+  }
+
+  /**
+   * @param id ID da atividade a ser conferida
+   * @returns Se há conflito entre uma atividade e qualquer outra da lista
+   */
+  verificarConflito(id: string): boolean {
+      if (!this.atividades) return false;
+      let ativ &#x3D; this.atividades.getByID(id);
+      if (!ativ) return false;
+      return this.atividades.getByInterval(ativ.horaInicio.getTime(), ativ.horaFim.getTime(), true)
+          .filter(ativ &#x3D;&gt; ativ.estaNaAgenda).length &gt; 0;
+  }
+
+
+
+
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AtividadesService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

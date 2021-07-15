@@ -1,3 +1,5 @@
+import { ServNoticias } from './noticias.service';
+import { ServAtividades } from './atividades.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -25,12 +27,18 @@ export class ServidorService {
   /** @ignore */
   private key: string = "scape20132015appKey#releaseVersionApril2016";
 
+  /** Reúne as funções referentes às atividades */
+  readonly atividades: ServAtividades;
   /** Reúne as funções referentes aos métodos de login e criação de conta */
   readonly login: ServLogin;
   /** Reúne as funções referentes aos eventos */
   readonly eventos: ServEventos;
+
+  readonly noticias: ServNoticias;
+  /** Reúne as funções referentes às salas off-topic */
   /** Reúne as funções referentes aos parceiros/patrocinadores */
   readonly parceiros: ServParceiros;
+
 
 
   constructor(http: HttpClient) {
@@ -38,6 +46,8 @@ export class ServidorService {
     this.login = new ServLogin(http, this.url, this.key);
     this.eventos = new ServEventos(http, this.url);
     this.parceiros = new ServParceiros(http, this.url);
+    this.atividades  = new ServAtividades(http, this.url);
+    this.noticias  = new ServNoticias(http, this.url);
   }
 }
 

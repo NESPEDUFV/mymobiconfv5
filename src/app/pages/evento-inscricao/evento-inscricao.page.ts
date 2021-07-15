@@ -1,3 +1,9 @@
+import { ParceirosService } from './../../services/parceiros.service';
+import { FirebaseService } from './../../services/firebase/firebase.service';
+import { NotificacoesService } from './../../services/notificacoes.service';
+import { NoticiaService } from './../../services/noticia.service';
+import { AtividadesService } from './../../services/atividades.service';
+import { HITree } from './../../utils/hi-tree';
 import { UsuarioService } from './../../services/usuario.service';
 import { EventoService, EventoInterface } from 'src/app/services/evento.service';
 import { DatasUtil } from './../../utils/datas';
@@ -41,6 +47,11 @@ export class EventoInscricaoPage implements OnInit {
     private toastCtrl: ToastController,
     private evento: EventoService,
     private usuario: UsuarioService,
+    private atividades: AtividadesService,
+    private parceiros: ParceirosService,
+    private noticias: NoticiaService,
+    private notif: NoticiaService,
+    private firebase: FirebaseService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -62,14 +73,34 @@ export class EventoInscricaoPage implements OnInit {
  ionViewWillEnter() {
 
 
-
+  //this.eventoEscolhido = this.navParams.get('eventoEscolhido');
+  //this.desinscrever = this.navParams.get('desinscrever');
   this.data.inicio = DatasUtil.completa(this.eventoEscolhido.dataInicio);
   this.data.fim = DatasUtil.completa(this.eventoEscolhido.dataFim);
   this.gamificacao = this.eventoEscolhido.gamificacao;
   console.log("Has gamification: "+ this.eventoEscolhido.gamificacao)
 }
 
+   /**
+     * Se inscreve/desinscreve num/de um evento
+     */
+    inscrever() {
+      this.atividades.apagar();
+      this.noticias.apagar();
+      this.notif.apagar();
+      this.parceiros.apagar();
+      if (this.desinscrever)
+          this.evento.inscrever(null);
+      else
+          this.evento.inscrever(this.eventoEscolhido, this.usuario.getID(),this.firebase.getIdDispositivo());
 
+      this.toastCtrl.create({
+          message: (this.desinscrever ? "Des" : "I") + "nscrito com sucesso!",
+          duration: 1000,
+          position: "bottom"
+      });
+      this.router.navigate(['my-mobi-conf']);
+  }
 
   ngOnInit() {
   }

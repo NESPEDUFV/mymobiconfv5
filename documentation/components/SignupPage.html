@@ -599,11 +599,11 @@ export class SignupPage implements OnInit {
 &lt;ion-content&gt;
   &lt;ion-card class&#x3D;&quot;ion-padding&quot;&gt;
     &lt;form [formGroup]&#x3D;&quot;signupForm&quot;&gt;
-      &lt;ion-item &gt;
-        &lt;ion-input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;nome&quot; placeholder&#x3D;&quot;nome&quot; &gt;&lt;/ion-input&gt;
+      &lt;ion-item lines &#x3D; &quot;none&quot;  class&#x3D;&quot;inputDestacado&quot;&gt;
+        &lt;ion-input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;nome&quot; placeholder&#x3D;&quot;Nome&quot; &gt;&lt;/ion-input&gt;
       &lt;/ion-item&gt;
-      &lt;ion-item&gt;
-        &lt;ion-input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;email&quot;  placeholder&#x3D;&quot;email&quot;&gt;&lt;/ion-input&gt;
+      &lt;ion-item lines &#x3D; &quot;none&quot; class&#x3D;&quot;inputDestacado&quot;&gt;
+        &lt;ion-input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;email&quot;  placeholder&#x3D;&quot;Email&quot;&gt;&lt;/ion-input&gt;
       &lt;/ion-item&gt;
       &lt;br&gt;
       &lt;ion-button  color&#x3D;&quot;primary&quot; expand&#x3D;&quot;block&quot; (click)&#x3D;&quot;signup()&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!signupForm.valid&quot;&gt;Signup&lt;/ion-button&gt;
@@ -647,8 +647,8 @@ export class SignupPage implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-toolbar color = "primary">  <ion-buttons slot="start">    <ion-back-button></ion-back-button>  </ion-buttons>  <ion-title>Signup</ion-title></ion-toolbar><ion-content>  <ion-card class="ion-padding">    <form [formGroup]="signupForm">      <ion-item >        <ion-input type="text" formControlName="nome" placeholder="nome" ></ion-input>      </ion-item>      <ion-item>        <ion-input type="text" formControlName="email"  placeholder="email"></ion-input>      </ion-item>      <br>      <ion-button  color="primary" expand="block" (click)="signup()" type="submit" [disabled]="!signupForm.valid">Signup</ion-button>    </form>  </ion-card></ion-content></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MyMobiConfPage', 'selector': 'app-my-mobi-conf'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'Teste2Page', 'selector': 'app-teste2'}];
+        var COMPONENT_TEMPLATE = '<div><ion-toolbar color = "primary">  <ion-buttons slot="start">    <ion-back-button></ion-back-button>  </ion-buttons>  <ion-title>Signup</ion-title></ion-toolbar><ion-content>  <ion-card class="ion-padding">    <form [formGroup]="signupForm">      <ion-item lines = "none"  class="inputDestacado">        <ion-input type="text" formControlName="nome" placeholder="Nome" ></ion-input>      </ion-item>      <ion-item lines = "none" class="inputDestacado">        <ion-input type="text" formControlName="email"  placeholder="Email"></ion-input>      </ion-item>      <br>      <ion-button  color="primary" expand="block" (click)="signup()" type="submit" [disabled]="!signupForm.valid">Signup</ion-button>    </form>  </ion-card></ion-content></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'EventoInfoPage', 'selector': 'app-evento-info'},{'name': 'EventoInscricaoPage', 'selector': 'app-evento-inscricao'},{'name': 'EventosPage', 'selector': 'app-eventos'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MyMobiConfPage', 'selector': 'app-my-mobi-conf'},{'name': 'ParceirosPage', 'selector': 'app-parceiros'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'TutorialComponent', 'selector': 'app-tutorial'}];
     var DIRECTIVES = [{'name': 'BackgroundDirective', 'selector': '[bg]'}];
     var ACTUAL_COMPONENT = {'name': 'SignupPage'};
 </script>

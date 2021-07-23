@@ -53,10 +53,8 @@ export class LoginPage implements OnInit {
 
 }
 
-async ngOnInit() {
-  this.loading2 = await this.loadingController.create({
-    message: 'Connecting ...'
-  });
+ ngOnInit() {
+
 }
   /**
    * Ao entrar na página, impede o usuário de voltar uma página
@@ -111,36 +109,8 @@ loginEmail(email){
 
       }
 
-        /**
-     * Faz o login via Facebook e vai para a `EventosPage` caso o login seja bem sucedido
-     */
-        /*
-        //teste de background
-        loginFB(){
-          console.log("login\n");
-        }
-        */
-
-    loginFB() {
-      let avisoLoading = this.overlay.createLoading("Aguardando..." );
-      //avisoLoading.present();
-      console.log("login.page\n");
-      this.usuario.loginFB(() => {
-          this.overlay.dismissAllLoaders();
-          this.leaveCheck = true;
-          this.router.navigate(['eventos']);
-      }, () => {
-          this.overlay.dismissAllLoaders();
-          this.overlay.createAlert(
-              "Falha na conexão",
-              "Não foi possível se conectar ao Facebook. Verifique sua conexão e tente novamente.",
-              'OK'
-          );
-      });
-
-  }
-
   GoogleLogin(){
+    this.overlay.createLoading("Carregando....");
     let params: any;
     if (this.platform.is('cordova')) {
       if (this.platform.is('android')) {
@@ -165,6 +135,8 @@ loginEmail(email){
         console.log('success in google login', success);
         this.isGoogleLogin = true;
         this.user =  success.user;
+        this.overlay.dismissAllLoaders();
+        this.leaveCheck = true;
         this.router.navigate(['eventos']);
       }).catch(err => {
         console.log(err.message, 'error in google login');

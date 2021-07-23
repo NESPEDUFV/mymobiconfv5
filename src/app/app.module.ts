@@ -8,6 +8,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { environment } from 'src/environments/environment';
 
 import { LoginPage } from './pages/login/login.page';
 import { UsuarioService } from './services/usuario.service';
@@ -30,7 +34,7 @@ firebase.initializeApp({
 */
 
 //Teste com outro projeto mymobiconf
-
+/*
 firebase.initializeApp({
   apiKey: "AIzaSyAmsfAFa2HQXuBUEWg5ZVmJPpGoSHqpJm8",
   authDomain: "testeloginfbmmbc.firebaseapp.com",
@@ -40,7 +44,7 @@ firebase.initializeApp({
   appId: "1:510883437950:web:8cc51634d0aa6a185b272f"
 
 })
-
+*/
 
 
 @NgModule({
@@ -57,11 +61,13 @@ firebase.initializeApp({
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HttpClientModule,
+    HttpClientModule,GooglePlus,
     ArmazenamentoService,
     UsuarioService,
     OverlayService,

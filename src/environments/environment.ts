@@ -4,7 +4,7 @@
 import firebase from "firebase"
 export const environment = {
   production: false,
-  firebase: {
+  firebaseConfig: {
   apiKey: "AIzaSyAkHLLB16yu5m5zE8qnGZLeQS0XD63DT7A",
   authDomain: "mymobiconf-3.firebaseapp.com",
   databaseURL: "https://mymobiconf-3.firebaseio.com",

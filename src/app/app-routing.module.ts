@@ -37,9 +37,38 @@ const routes: Routes = [
     loadChildren: () => import('./pages/evento-inscricao/evento-inscricao.module').then( m => m.EventoInscricaoPageModule)
   },
   {
+    path: 'atividades',
+    loadChildren: () => import('./pages/atividades/atividades.module').then( m => m.AtividadesPageModule)
+  },
+  {
+    path: 'questionarios',
+    loadChildren: () => import('./pages/questionarios/questionarios.module').then( m => m.QuestionariosPageModule)
+  },
+  {
+    path: 'opinar',
+    loadChildren: () => import('./pages/opinar/opinar.module').then( m => m.OpinarPageModule)
+  },
+  {
     path: 'parceiros',
     loadChildren: () => import('./pages/parceiros/parceiros.module').then( m => m.ParceirosPageModule)
   },
+  {
+    path: 'noticias',
+    loadChildren: () => import('./pages/noticias/noticias.module').then( m => m.NoticiasPageModule)
+  },
+  {
+    path: 'social',
+    loadChildren: () => import('./pages/social/social.module').then( m => m.SocialPageModule)
+  },
+  {
+    path: 'salas-off-topic',
+    loadChildren: () => import('./pages/salas-off-topic/salas-off-topic.module').then( m => m.SalasOffTopicPageModule)
+  },
+  {
+    path: 'opcoes-enviar-perguntas',
+    loadChildren: () => import('./pages/opcoes-enviar-perguntas/opcoes-enviar-perguntas.module').then( m => m.OpcoesEnviarPerguntasPageModule)
+  },
+
 
 
 ];

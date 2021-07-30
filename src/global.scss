@@ -42,6 +42,8 @@ ion-content{
       max-height: 3rem;
   }
 }
+@import url(http://fonts.googleapis.com/css?family=Oxygen);
+$font-family-base: "Oxygen", sans-serif !default;
 
 // Para destacar os campos de entrada de texto
 $fundoDestaque: rgb(245,245,245);

@@ -20,7 +20,7 @@
   <ion-card>
     <a class="botao-quadrado" *ngFor="let b of botoes">
         <div id="container">
-            <ion-button class="button" #principais fill="clear" expand="block">
+            <ion-button class="button" #principais fill="clear" expand="block" (click)="acessarPagina(b.pagina)">
                 <div id="out">
                     <div id="in">
                         <img src="assets/img/{{b.id}}.png">

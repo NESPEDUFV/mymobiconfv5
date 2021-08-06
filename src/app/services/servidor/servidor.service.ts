@@ -1,3 +1,4 @@
+import { ServSalas } from './salas-off-topic.service';
 import { ServNoticias } from './noticias.service';
 import { ServAtividades } from './atividades.service';
 import { Injectable } from '@angular/core';
@@ -33,9 +34,10 @@ export class ServidorService {
   readonly login: ServLogin;
   /** Reúne as funções referentes aos eventos */
   readonly eventos: ServEventos;
+  /** Reúne as funções referentes às salas off-topic */
+  readonly salas: ServSalas;
 
   readonly noticias: ServNoticias;
-  /** Reúne as funções referentes às salas off-topic */
   /** Reúne as funções referentes aos parceiros/patrocinadores */
   readonly parceiros: ServParceiros;
 
@@ -46,6 +48,7 @@ export class ServidorService {
     this.login = new ServLogin(http, this.url, this.key);
     this.eventos = new ServEventos(http, this.url);
     this.parceiros = new ServParceiros(http, this.url);
+    this.salas = new ServSalas(http, this.url);
     this.atividades  = new ServAtividades(http, this.url);
     this.noticias  = new ServNoticias(http, this.url);
   }

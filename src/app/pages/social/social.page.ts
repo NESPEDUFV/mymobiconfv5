@@ -1,3 +1,4 @@
+import { OverlayService } from './../../services/overlay.service';
 import { OpcoesEnviarPerguntasPage } from './../opcoes-enviar-perguntas/opcoes-enviar-perguntas.page';
 import { SalasOffTopicPage } from './../salas-off-topic/salas-off-topic.page';
 import { EventoService, EventoInterface } from 'src/app/services/evento.service';
@@ -20,19 +21,26 @@ export class SocialPage implements OnInit {
   /**
  * @param router Usado para mudança de páginas
  * @param evento Usado para adquirir o ID do evento
+ * @param overlay Usado para criar sobreposições no app
  */
   constructor(
     private router: Router,
     private alertCtrl: AlertController,
-    private evento: EventoService
+    private evento: EventoService,
+    private overlay: OverlayService
     ) { }
 
   ngOnInit() {
+
   }
 
   acessarPagina(pagina){
+
+
     if(pagina==SalasOffTopicPage){
+
       this.is_online = this.evento.getIsOnline()
+      console.log(this.is_online);
       if(this.is_online==1)
         this.router.navigate(['salas-off-topic']);
       else
@@ -40,21 +48,19 @@ export class SocialPage implements OnInit {
     }else{
       this.router.navigate(['opcoes-enviar-perguntas']);
     }
+
   }
 
   ajudaGeral() {
-    this.mostraAlerta("Atenção",
-        "<html>" +
-        "Esta funcionalidade é restrita para eventos online<br><br>" +
-        "</html>");
+    this.overlay.dismissAllLoaders();
+          this.overlay.createAlert(
+              "Atenção",
+              "Esta funcionalidade é restrita para eventos online",
+              'OK'
+          );
   }
 
-  private mostraAlerta(titulo: string, subtitulo: string) {
-    let alert = this.alertCtrl.create({
-      header: 'titulo',
-      message: 'subtitulo',
-      buttons: ['OK']
-    });
+
 
 }
-}
+

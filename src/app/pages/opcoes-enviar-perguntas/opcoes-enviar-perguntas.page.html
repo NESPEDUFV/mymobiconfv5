@@ -5,15 +5,15 @@
 
   <ion-toolbar #botoes color="primary">
     <ion-buttons left>
-        <button *ngIf="diaSelecionado>hoje" ion-button icon-only (click)="slidesDias.slidePrev()" [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isBeginning()">
-            <ion-icon name="md-arrow-dropleft"></ion-icon>
-        </button>
+        <ion-button *ngIf="diaSelecionado>hoje"(click)="slidesDias.slidePrev()" [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isBeginning()">
+            <ion-icon name="md-arrow-dropleft" ></ion-icon>
+        </ion-button>
     </ion-buttons>
     <ion-title text-center>{{diaSelecionado}}</ion-title>
     <ion-buttons right>
-        <button ion-button icon-only (click)="slidesDias.slideNext()" [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isEnd()">
+        <ion-button icon-only (click)="slidesDias.slideNext()" [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isEnd()">
             <ion-icon name="md-arrow-dropright"></ion-icon>
-        </button>
+        </ion-button>
     </ion-buttons>
 </ion-toolbar>
 
@@ -30,7 +30,8 @@
         </button>
     </ion-list>
 </ion-card>
-<ion-slides  class="dias" (ionSlideDidChange)="mudouDia()">
+<!--<ion-slides  class="dias" (ionSlideDidChange)="mudouDia()">-->
+  <ion-slides  class="dias" >
     <ion-slide *ngIf="estado == estadoLista.Sucesso && listaPorDia.length <= 0">
         <ion-card>
             <ion-card-content>
@@ -52,13 +53,13 @@
                 <h2>Não foi possível carregar as atividades.</h2>
                 <p>Verifique sua conexão e tente novamente mais tarde.</p>
                 <br>
-                <button ion-button full clear (click)="carregar()">Tentar novamente</button>
+                <ion-button full fill = "clear" (click)="carregar()">Tentar novamente</ion-button>
             </ion-card-content>
         </ion-card>
     </ion-slide>
 
     <ion-slide *ngFor="let dia of listaFiltrada">
-        <ion-scroll scrollY="true">
+        <div>
             <ion-card>
                 <ion-list>
                     <button ion-item *ngFor="let ativ of dia.ativ" (click)="acessarRanking(ativ)">
@@ -72,7 +73,7 @@
 
 
             </ion-card>
-        </ion-scroll>
+        </div>
     </ion-slide>
 </ion-slides>
 

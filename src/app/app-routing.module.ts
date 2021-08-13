@@ -72,6 +72,10 @@ const routes: Routes = [
     path: 'ranking-perguntas',
     loadChildren: () => import('./pages/ranking-perguntas/ranking-perguntas.module').then( m => m.RankingPerguntasPageModule)
   },
+  {
+    path: 'enviar-pergunta',
+    loadChildren: () => import('./pages/enviar-pergunta/enviar-pergunta.module').then( m => m.EnviarPerguntaPageModule)
+  },
 
 
 

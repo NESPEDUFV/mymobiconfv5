@@ -1,6 +1,4 @@
-import { ServSalas } from './salas-off-topic.service';
-import { ServNoticias } from './noticias.service';
-import { ServAtividades } from './atividades.service';
+import { ServVotos } from './votos.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,6 +6,10 @@ import { HttpClient } from '@angular/common/http';
 import { ServLogin } from './login.service';
 import { ServEventos } from './eventos.service';
 import { ServParceiros } from './parceiros.service';
+import { ServPerguntas } from './perguntas.service';
+import { ServSalas } from './salas-off-topic.service';
+import { ServNoticias } from './noticias.service';
+import { ServAtividades } from './atividades.service';
 
 @Injectable({
   providedIn: 'root'
@@ -36,10 +38,15 @@ export class ServidorService {
   readonly eventos: ServEventos;
   /** Reúne as funções referentes às salas off-topic */
   readonly salas: ServSalas;
+   /** Reúne as funções referentes às perguntas */
+   readonly perguntas: ServPerguntas;
+  /** Reúne as funções referentes aos votos */
+    readonly votos: ServVotos;
 
   readonly noticias: ServNoticias;
   /** Reúne as funções referentes aos parceiros/patrocinadores */
   readonly parceiros: ServParceiros;
+
 
 
 
@@ -51,6 +58,9 @@ export class ServidorService {
     this.salas = new ServSalas(http, this.url);
     this.atividades  = new ServAtividades(http, this.url);
     this.noticias  = new ServNoticias(http, this.url);
+    this.perguntas = new ServPerguntas(http, this.url);
+    this.votos = new ServVotos(http, this.url);
+
   }
 }
 

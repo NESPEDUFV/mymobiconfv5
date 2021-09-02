@@ -32,7 +32,11 @@ export class SalasOffTopicPage implements OnInit {
   constructor(
         private salas: SalasOffTopicService,
         private evento: EventoService,
-  ) { }
+  ) {
+    console.log(this.evento.getID());
+    console.log("salas buscar no construtor: ", this.salas.buscar('289'));
+    console.log("lista salas construtor: ", this.salas.getLista());
+   }
 
   ngOnInit() {
   }
@@ -43,10 +47,12 @@ export class SalasOffTopicPage implements OnInit {
      */
     carregar(refresher?) {
       this.estado = EstadoLista.Carregando;
+      console.log("salas buscar: ", this.salas.buscar(this.evento.getID()));
       this.salas.buscar(this.evento.getID(), () => {
           this.lista = this.salas.getLista();
+          console.log("lista dentro do carregar: ", this.lista);
           this.estado = EstadoLista.Sucesso;
-         // this.doRefresh()
+          //this.doRefresh()
           if (refresher) refresher.complete();
       }, () => {
           this.estado = EstadoLista.Falha;

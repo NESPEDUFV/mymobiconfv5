@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>enviar-pergunta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content bg>
+  <ion-card padding>
+    <div class="centro">
+        <h2 *ngIf="atividade" class="centro"><b>{{(atividade)?atividade.titulo:"-"}}</b></h2>
+        <h2 *ngIf="!atividade" class="centro"><b>Dúvidas do evento</b></h2>
+        <p>Seu nome aparecerá para os administradores do myMobiConf e para os demais participantes!</p>
+    </div>
+</ion-card>
+<ion-card class="enviar">
+    <form (ngSubmit)="enviaPergunta()">
+
+        <ion-toolbar>
+            <ion-textarea elastic [content]="content" placeholder="Digite aqui sua pergunta..." [(ngModel)]="pergunta"
+                [ngModelOptions]="{standalone: true}"></ion-textarea>
+
+            <div class="centro">
+                <button ion-button round type="submit" [disabled]="pergunta?.trim().length == 0">Adicionar pergunta</button>
+            </div>
+        </ion-toolbar>
+    </form>
+</ion-card>
+
 
 </ion-content>

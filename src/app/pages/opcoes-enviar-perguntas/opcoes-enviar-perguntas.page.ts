@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ConfigService } from './../../services/config.service';
 import { EstadoLista } from './../../enums/estado-lista.enum';
 import { DatasUtil } from './../../utils/datas';
@@ -43,6 +43,12 @@ export class OpcoesEnviarPerguntasPage implements OnInit {
   /** Versão filtrada da `listaPorDia` */
   listaFiltrada: AtivNoDiaInterface[] = [];
 
+  sliderConfig = {
+    slidesPerView: 1.6,
+    spaceBetween: 10,
+    centeredSlides: true
+  };
+
   /**
    * @param router Usado para mostrar outras páginas
    * @param evento Usado para adquirir o ID do evento
@@ -60,6 +66,7 @@ export class OpcoesEnviarPerguntasPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    console.log("evento em opções enviar perguntas",this.evento);
     this.isOnline  = this.evento.getIsOnline();
     if (!this.voltando) { //Entrando na página, carrega a lista de atividades
         this.abaSelecionada = Aba.Programacao;
@@ -77,13 +84,14 @@ export class OpcoesEnviarPerguntasPage implements OnInit {
 acessarRanking(ativ?: AtividadeInterface) {
     this.voltando = true;
     if(ativ){
-      //falta incluir extras
-      this.router.navigate(['ranking-perguntas']);
-      //this.navCtrl.push(RankingPerguntasPage, { ativ: ativ });
+      let navigationExtras: NavigationExtras = {
+        state: {
+          ativEscolhida: ativ
+         }
+        }
+        this.router.navigate(['ranking-perguntas'],navigationExtras);
     }else{
-      //Esse aqui não tem navigation extras
       this.router.navigate(['ranking-perguntas']);
-      //this.navCtrl.push(RankingPerguntasPage);
     }
 
 }
@@ -99,10 +107,12 @@ carregar() {
         this.mudouAba();
         //this.mudouDia();
         this.estado = EstadoLista.Sucesso;
+        /*
         setTimeout(() => {
             this.slidesDias.slideTo(this.indexDiaSlides(), 500);
 
         }, 200);
+        */
     }
 
     this.atividades.disponivel(aoCarregar, () => {
@@ -128,9 +138,13 @@ indexDiaSlides(): number {
             index++;
         else
             break;
+
+    console.log("slide dias", this.slidesDias);
+
     /*
-    if (index == this.slidesDias.length())
+    if (index ==  this.slidesDias.length())
         index--;
+
 */
     this.hoje = DatasUtil.compacta(hoje, true);;
     return index;

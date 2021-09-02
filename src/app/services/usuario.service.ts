@@ -34,8 +34,9 @@ export class UsuarioService {
      * Salva os dados do usuário no armazenamento local
      */
     salvar() {
-      //this.storage.set('usuario', JSON.stringify(this.dados));
-      //this.storage.set('fotoURL', JSON.stringify(this.fotoURL));
+      console.log("salvar usuario");
+      this.storage.set('usuario', JSON.stringify(this.dados));
+      this.storage.set('fotoURL', JSON.stringify(this.fotoURL));
   }
 
    /**
@@ -43,7 +44,7 @@ export class UsuarioService {
      * @param cb Callback para quando os dados do usuário tiverem sido carregados
      */
     carregar(cb?: () => void) {
-      /*
+
       let count = 2;
       let trigger = () => {
           count--;
@@ -57,7 +58,8 @@ export class UsuarioService {
           this.fotoURL = JSON.parse(val);
           trigger();
       });
-      */
+
+      console.log("carregar usuario");
   }
 
    /**

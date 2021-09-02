@@ -95,12 +95,15 @@ carregar(refresher?) {
      */
       acessarEnviar(ativ?: AtividadeInterface) {
         if(ativ){
-          //aqui precisa mandar a atividade
-          this.router.navigate(['enviar-pergunta'])
-            //this.navCtrl.push(EnviarPerguntaPage, { ativ: ativ });
+          let navigationExtras: NavigationExtras = {
+            state: {
+              ativEscolhida: ativ
+             }
+            }
+          this.router.navigate(['enviar-pergunta'],navigationExtras)
+
         }else{
           this.router.navigate(['enviar-pergunta'])
-          //this.navCtrl.push(EnviarPerguntaPage);
         }
 
     }

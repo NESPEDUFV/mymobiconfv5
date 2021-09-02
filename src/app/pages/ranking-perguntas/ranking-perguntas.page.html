@@ -6,7 +6,7 @@
 
 <ion-content auto-hide>
 
-  <ion-refresher (ionRefresh)="carregar($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="carregar($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
@@ -17,22 +17,13 @@
     </h2>
     <p>Atualize esta página periodicamente para ver os votos dos demais participantes</p>
     <div>
-        <button *ngIf="atividade"  shape = "round" (click)="acessarEnviar(atividade)">Adicionar pergunta</button>
+        <ion-button *ngIf="atividade"  shape = "round" (click)="acessarEnviar(atividade)">Adicionar pergunta</ion-button>
         <ion-button *ngIf="!atividade"  shape = "round" (click)="acessarEnviar()">Adicionar pergunta</ion-button>
     </div>
 </ion-card>
 
 <ng-container *ngIf="estado == enumEstado.Sucesso">
   <ion-card text-wrap *ngFor="let pergunta of lista">
-      <!--    Estrutura para ideias futuras - mostrar favoritos
-      <ion-item *ngIf="pergunta.favorito>=50" class="centro">
-          <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='star'></ion-icon>
-              Uma das favoritas...
-          </button>
-      </ion-item>
-      -->
-
       <ion-item ion-item detail-none>
           {{pergunta.pergunta}}
       </ion-item>
@@ -40,7 +31,8 @@
       <ion-item ion-item detail-none class="esquerda altura">
           <b>{{pergunta.nome}}</b>
       </ion-item>
-      <ion-row padding>
+
+      <ion-row>
           <ion-col class="esquerda">
               <div *ngIf="pergunta.id_participante == id_user">
                   <p style="font-size:10px"><i>Você não pode curtir suas próprias perguntas</i></p>
@@ -49,21 +41,13 @@
 
           <ion-col class="direita">
               <div>
-                  <button ion-button icon-start clear small (click)="enviarVoto(pergunta)" [disabled]="pergunta.id_participante == id_user" class="direita {{pergunta.votou == 1 ? 'votou' : ''}} {{pergunta.votou == 0 ? 'naoVotou' : ''}}">
+                  <ion-button  icon-start fill = "clear" small (click)="enviarVoto(pergunta)" [disabled]="pergunta.id_participante == id_user" class="direita {{pergunta.votou == 1 ? 'votou' : ''}} {{pergunta.votou == 0 ? 'naoVotou' : ''}}">
                       <ion-icon name="thumbs-up"></ion-icon>
                       <div>{{pergunta.qtd_votos}} Likes</div>
-                  </button>
+                  </ion-button>
               </div>
           </ion-col>
       </ion-row>
-      <!--
-      <div>
-          <button ion-button round (click)="enviarVoto(pergunta)" [disabled]="pergunta.id_participante == id_user">Curtir pergunta</button>
-      </div>
-      <div *ngIf="pergunta.votou == 1">
-          <p>VOCE JA CURTIU ISSO AKI</p>
-      </div>
-      -->
   </ion-card>
 
   <ion-card *ngIf="lista.length == 0">

@@ -37,9 +37,12 @@ export class MyMobiConfPage implements OnInit {
     private evento: EventoService,
     private overlay: OverlayService,
     private router: Router,
-  ) { }
+  ) {
+    console.log(this.evento.buscarInfo());
+   }
 
   ngOnInit() {
+
   }
     /** Define os botões principais */
     botoes: { id: string, label: string, pagina: string}[] = [
@@ -62,7 +65,8 @@ export class MyMobiConfPage implements OnInit {
       console.log(pagina);
       //if (!this.ready) return;
       if (this.evento.existeDados()){
-        console.log("dentro if\n");
+       // console.log("dentro if\n");
+        //console.log(this.evento.getNome())
         this.router.navigate([pagina]);
       }
 

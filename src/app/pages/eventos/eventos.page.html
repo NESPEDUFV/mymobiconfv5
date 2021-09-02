@@ -9,7 +9,7 @@
 </ion-toolbar>
 
 <ion-content class= "ion-padding" >
-  <ion-refresher >
+  <ion-refresher slot="fixed" (ionRefresh)="carregar($event)">
       <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 

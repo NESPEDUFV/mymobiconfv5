@@ -7,9 +7,10 @@ import { HITree } from './../../utils/hi-tree';
 import { UsuarioService } from './../../services/usuario.service';
 import { EventoService, EventoInterface } from 'src/app/services/evento.service';
 import { DatasUtil } from './../../utils/datas';
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, NavigationExtras} from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class EventoInscricaoPage implements OnInit {
   desinscrever: boolean;
   /** Verifica a se o evento possui gamificação */
   gamificacao: number = 0;
+
 
 
    /**
@@ -53,16 +55,19 @@ export class EventoInscricaoPage implements OnInit {
     private notif: NoticiaService,
     private firebase: FirebaseService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: Storage
   ) {
     this.route.queryParams.subscribe(params => {
-      console.log(this.router.getCurrentNavigation().extras.state);
+
       if(this.router.getCurrentNavigation().extras.state){
         console.log("has extras");
         this.eventoEscolhido = this.router.getCurrentNavigation().extras.state.eventoEscolhido;
         this.desinscrever = this.router.getCurrentNavigation().extras.state.desinscrever;
+
       }
     })
+
 
   }
 
@@ -71,6 +76,7 @@ export class EventoInscricaoPage implements OnInit {
      */
 
  ionViewWillEnter() {
+
 
 
   //this.eventoEscolhido = this.navParams.get('eventoEscolhido');
@@ -85,21 +91,34 @@ export class EventoInscricaoPage implements OnInit {
      * Se inscreve/desinscreve num/de um evento
      */
     inscrever() {
+      //console.log(this.routerparams)
       this.atividades.apagar();
       this.noticias.apagar();
       this.notif.apagar();
       this.parceiros.apagar();
-      if (this.desinscrever)
-          this.evento.inscrever(null);
-      else
-          this.evento.inscrever(this.eventoEscolhido, this.usuario.getID(),this.firebase.getIdDispositivo());
+      if (this.desinscrever){
+        console.log("if evento inscrição");
+        this.evento.inscrever(null);
+      }
+
+      else{
+        console.log("else evento inscrição");
+        this.evento.inscrever(this.eventoEscolhido, this.usuario.getID(),this.firebase.getIdDispositivo());
+
+      }
 
       this.toastCtrl.create({
           message: (this.desinscrever ? "Des" : "I") + "nscrito com sucesso!",
           duration: 1000,
           position: "bottom"
       });
-      this.router.navigate(['my-mobi-conf']);
+      let navigationExtras: NavigationExtras = {
+        state: {
+           eventoinscrito: this.eventoEscolhido,
+         }
+        }
+
+      this.router.navigate(['my-mobi-conf'], navigationExtras);
   }
 
   ngOnInit() {

@@ -38,7 +38,7 @@ export class SocialPage implements OnInit {
 
 
     if(pagina==SalasOffTopicPage){
-
+      console.log("evento é online em social page: ", this.evento.getIsOnline());
       this.is_online = this.evento.getIsOnline()
       console.log(this.is_online);
       if(this.is_online==1)
@@ -52,6 +52,7 @@ export class SocialPage implements OnInit {
   }
 
   ajudaGeral() {
+    console.log(this.evento);
     this.overlay.dismissAllLoaders();
           this.overlay.createAlert(
               "Atenção",

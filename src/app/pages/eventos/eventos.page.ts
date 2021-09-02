@@ -34,12 +34,6 @@ export class EventosPage implements OnInit {
     * @param evento
     */
 
-/*
-    parametro = {
-      eventoEscolhido:'teste' ,
-      desinscrever: false
-    }
-    */
 
   constructor(
 
@@ -109,12 +103,11 @@ export class EventosPage implements OnInit {
      */
  acessarEvento(evento: EventoInterface) {
  // console.log("Gamification "+evento.gamificacao)
- // this.parametro.eventoEscolhido = evento;
- // this.parametro.desinscrever = this.evento.existeDados() && evento.ID == this.evento.getID();
 
   let navigationExtras: NavigationExtras = {
   state: {
-     eventoEscolhido: evento,
+    eventoEscolhido: evento,
+    desinscrever: this.evento.existeDados() && evento.ID == this.evento.getID()
    }
   }
 

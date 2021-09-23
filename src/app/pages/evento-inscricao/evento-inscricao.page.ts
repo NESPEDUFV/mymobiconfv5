@@ -91,7 +91,7 @@ export class EventoInscricaoPage implements OnInit {
      * Se inscreve/desinscreve num/de um evento
      */
     inscrever() {
-      //console.log(this.routerparams)
+      console.log("click");
       this.atividades.apagar();
       this.noticias.apagar();
       this.notif.apagar();

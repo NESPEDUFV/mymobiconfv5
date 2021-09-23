@@ -66,7 +66,15 @@ export class EnviarPerguntaPage implements OnInit {
       if (online) {
 
           // call functions or methods that need to execute when app goes online (such as sync() etc)
-
+          /**
+            * Quando carrega a página pela primeira vez, configura a lista de opiniões para
+            * ser atualizada sempre que se detectar reconexão de rede
+          */
+           this.connectivityProvider.observarConexao('perguntas-recarregar', () => {
+            setTimeout(() => {
+                this.atualizarLista();
+            }, 1000);
+        });
       } else {
 
           // call functions on network offline, such as firebase.goOffline()

@@ -76,6 +76,10 @@ const routes: Routes = [
     path: 'enviar-pergunta',
     loadChildren: () => import('./pages/enviar-pergunta/enviar-pergunta.module').then( m => m.EnviarPerguntaPageModule)
   },
+  {
+    path: 'noticia',
+    loadChildren: () => import('./pages/noticia/noticia.module').then( m => m.NoticiaPageModule)
+  },
 
 
 

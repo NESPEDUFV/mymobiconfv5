@@ -47,7 +47,7 @@ export class MyMobiConfPage implements OnInit {
     /** Define os botões principais */
     botoes: { id: string, label: string, pagina: string}[] = [
       { id: "atividades", label: "Atividades", pagina: 'atividades' },
-      { id: "questionarios", label: "Questionários", pagina: 'questionarios'  },
+      { id: "questionarios", label: "Questionários", pagina: 'questionario'  },
       { id: "opinar", label: "Opinar", pagina: 'opinar'  },
       { id: "parceiros", label: "Parceiros", pagina: 'parceiros'  },
       { id: "noticias", label: "Notícias", pagina:'noticias'},

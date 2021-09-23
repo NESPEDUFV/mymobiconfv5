@@ -10,6 +10,7 @@ import { ServPerguntas } from './perguntas.service';
 import { ServSalas } from './salas-off-topic.service';
 import { ServNoticias } from './noticias.service';
 import { ServAtividades } from './atividades.service';
+import { ServQuestionarios } from './questionario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,8 @@ export class ServidorService {
   /** Reúne as funções referentes aos parceiros/patrocinadores */
   readonly parceiros: ServParceiros;
 
+  readonly questionarios: ServQuestionarios;
+
 
 
 
@@ -57,6 +60,7 @@ export class ServidorService {
     this.parceiros = new ServParceiros(http, this.url);
     this.salas = new ServSalas(http, this.url);
     this.atividades  = new ServAtividades(http, this.url);
+    this.questionarios = new ServQuestionarios(http, this.url);
     this.noticias  = new ServNoticias(http, this.url);
     this.perguntas = new ServPerguntas(http, this.url);
     this.votos = new ServVotos(http, this.url);

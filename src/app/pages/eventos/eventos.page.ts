@@ -103,7 +103,7 @@ export class EventosPage implements OnInit {
      */
  acessarEvento(evento: EventoInterface) {
  // console.log("Gamification "+evento.gamificacao)
-
+  console.log("acessar evento\n");
   let navigationExtras: NavigationExtras = {
   state: {
     eventoEscolhido: evento,

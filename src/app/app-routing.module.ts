@@ -80,6 +80,10 @@ const routes: Routes = [
     path: 'noticia',
     loadChildren: () => import('./pages/noticia/noticia.module').then( m => m.NoticiaPageModule)
   },
+  {
+    path: 'questionario',
+    loadChildren: () => import('./pages/questionario/questionario.module').then( m => m.QuestionarioPageModule)
+  },
 
 
 

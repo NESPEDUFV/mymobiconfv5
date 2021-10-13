@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'my-mobi-conf',
-    loadChildren: () => import('./pages/my-mobi-conf/my-mobi-conf/my-mobi-conf.module').then( m => m.MyMobiConfPageModule)
+    loadChildren: () => import('./pages/my-mobi-conf/my-mobi-conf.module').then( m => m.MyMobiConfPageModule)
   },
   {
     path: 'signup',
@@ -83,6 +83,10 @@ const routes: Routes = [
   {
     path: 'questionario',
     loadChildren: () => import('./pages/questionario/questionario.module').then( m => m.QuestionarioPageModule)
+  },
+  {
+    path: 'questionarios',
+    loadChildren: () => import('./pages/questionarios/questionarios.module').then( m => m.QuestionariosPageModule)
   },
 
 

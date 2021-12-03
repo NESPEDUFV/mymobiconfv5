@@ -32,8 +32,6 @@
     "cordova": "^10.0.0",
     "firebase": "^8.8.0",
     "ionic": "^5.4.16",
-    "phonegap-plugin-multidex": "^1.0.0",
-    "phonegap-plugin-push": "^2.3.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

@@ -18,6 +18,10 @@ import { DatasUtil } from '../../utils/datas';
 import {OpinarPage} from '../opinar/opinar.page';
 import { MenuController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { FcmService } from 'src/app/services/firebase/fcm.service';
 
 
 @Component({
@@ -39,7 +43,11 @@ export class MyMobiConfPage implements OnInit {
     private evento: EventoService,
     private overlay: OverlayService,
     private router: Router,
-    private firebaseNotif: FirebaseService
+    private firebaseNotif: FirebaseService,
+    private platform: Platform,
+//   private splashScreen: SplashScreen,
+  //  private statusBar: StatusBar,
+    private fcmService: FcmService
   ) {
     console.log(this.evento.buscarInfo());
    }
@@ -81,6 +89,18 @@ ionViewWillEnter() {
       { id: "social", label: "Social", pagina: 'social'}
   ];
 
+
+  /**Teste de notificao
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+     // this.splashScreen.hide();
+
+      // Trigger the push setup
+      this.fcmService.initPush();
+    });
+  }
+  */
 
 
    /**

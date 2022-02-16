@@ -29,6 +29,7 @@ export class FirebaseService {
   }
 
   pushSetup(){
+
     const options: PushOptions = {
         android: {
 

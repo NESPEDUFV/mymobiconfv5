@@ -17,8 +17,8 @@ import { ServQuestionarios } from './questionario.service';
 })
 export class ServidorService {
   /** URL do servidor */
-  private url: string = "http://200.131.220.164/scapeteste/versaoteste_php/mymobiconfapp-php/";
-  //private url: string = "http://200.131.220.164/scapeteste/master_php/mymobiconfapp-php/";
+  //private url: string = "http://200.131.220.164/scapeteste/versaoteste_php/mymobiconfapp-php/";
+  private url: string = "http://200.131.220.164/scapeteste/master_php/mymobiconfapp-php/";
 
   //private url: string = "http://200.131.220.164/scapeteste/versaoteste_php/mymobiconfapp-php/";
   //private url: string = "http://200.131.220.164/scapeteste/secom2020PHP/mymobiconfapp-php/";

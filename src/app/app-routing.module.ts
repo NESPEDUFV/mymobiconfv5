@@ -88,6 +88,11 @@ const routes: Routes = [
     path: 'questionarios',
     loadChildren: () => import('./pages/questionarios/questionarios.module').then( m => m.QuestionariosPageModule)
   },
+  // {
+  //   path: 'atividade-info',
+  //   loadChildren: () => import('./pages/atividade-info/atividade-info.module').then( m => m.AtividadeInfoPageModule)
+  // },
+
 
 
 

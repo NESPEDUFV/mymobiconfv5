@@ -1,0 +1,4 @@
+<div #msg id="msg"><p>{{steps[i]?.msg}}</p></div>
+<div #hole id="hole"></div>
+<div id="cover" (click)="onClick($event)"></div>
+<button #skipBtn ion-button clear color="light" id="skip-btn" (click)="skip()" [hidden]="i==steps.length-1">{{skipMsg}} > </button>

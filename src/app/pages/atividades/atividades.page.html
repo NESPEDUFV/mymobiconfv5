@@ -1,9 +1,53 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>atividades</ion-title>
+    <ion-segment #alternar color="light" [(ngModel)]="abaSelecionada">
+      <ion-segment-button [value]="aba.Agenda">
+          Agenda
+      </ion-segment-button>
+      <ion-segment-button [value]="aba.Programacao">
+          Programação
+      </ion-segment-button>
+  </ion-segment>
   </ion-toolbar>
+
+  <ion-toolbar color="primary" no-border-top>
+    <ion-searchbar color="primary" [(ngModel)]="filtroBusca" (ionInput)="filtrarLista()" placeholder="Buscar por nome ou local..."></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-toolbar #botoes color="primary">
+    <ion-buttons left>
+        <button ion-button icon-only (click)="slidesDias.slidePrev()" [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isBeginning()">
+          <ion-icon name="caret-back-outline"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title text-center>{{diaSelecionado}}</ion-title>
+    <ion-buttons right>
+        <button ion-button icon-only (click)="slidesDias.slideNext()" [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isEnd()">
+          <ion-icon name="caret-forward-outline"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content bg>
+  <!-- <swiper
+  pager="true"
+  [initialSlide]="0"
+  [slidesPerView]="1"
+  [autoplay]="true"
+  [loop]="true"
+  #slideWithNav
+  (swiper)="mudouAba($event)"
+  (slideChange)="mudouDia(sliderOne,slideWithNav)"
+>
+  <ng-template swiperSlide *ngFor="let s of sliderOne.slidesItems">
+	<img src="https://picsum.photos/300/200?t={{s.id}}" />
+	<div class="slide-text"><span>Slide id {{s.id}}</span></div>
+  </ng-template>
+</swiper> -->
 </ion-content>
+
+
+
+
+<app-tutorial *ngIf="ativarTut" [steps]="passos" (check)="viuTutorial($event)"></app-tutorial>

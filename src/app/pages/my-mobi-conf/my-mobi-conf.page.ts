@@ -122,6 +122,17 @@ ionViewWillEnter() {
           this.alertEvento();
   }
 
+  /**
+     * Acessa a página de utilidades do evento
+     */
+   acessarUtils() {
+    if (!this.ready) return;
+    if (this.evento.existeDados())
+        this.router.navigate(['eventos-info']);
+    else
+        this.alertEvento();
+}
+
 
    /**
      * Apresenta um alerta de nenhum evento inscrito

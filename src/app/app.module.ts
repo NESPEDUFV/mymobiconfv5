@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -23,6 +24,9 @@ import { ArmazenamentoService } from './services/armazenamento.service';
 import firebase from 'firebase/app';
 import { DatasPipe } from './pipes/datas.pipe';
 import { Push } from '@ionic-native/push/ngx';
+import { SharedModule } from './components/shared.module';
+//import { SwiperModule } from 'swiper/angular';
+//import { SwiperModule } from 'ngx-swiper-wrapper';
 /*
 firebase.initializeApp({
   apiKey: "AIzaSyAkHLLB16yu5m5zE8qnGZLeQS0XD63DT7A",
@@ -64,7 +68,10 @@ firebase.initializeApp({
     IonicStorageModule.forRoot(),
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    SharedModule,
+    //SwiperModule
+
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

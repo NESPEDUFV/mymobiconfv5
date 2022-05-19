@@ -1,3 +1,4 @@
+//import { DatasPipe } from './../../pipes/datas.pipe';
 import { SharedModule } from './../../components/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +18,6 @@ import { AtividadesPage } from './atividades.page';
     IonicModule,
     AtividadesPageRoutingModule,
     SharedModule,
-    //SwiperModule
   ],
   declarations: [AtividadesPage]
 })

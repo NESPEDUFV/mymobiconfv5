@@ -1,3 +1,4 @@
+import { TutorialComponent } from './components/tutorial/tutorial.component';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -70,6 +71,7 @@ firebase.initializeApp({
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     SharedModule,
+
     //SwiperModule
 
   ],

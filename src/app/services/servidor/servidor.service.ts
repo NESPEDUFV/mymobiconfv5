@@ -11,6 +11,7 @@ import { ServSalas } from './salas-off-topic.service';
 import { ServNoticias } from './noticias.service';
 import { ServAtividades } from './atividades.service';
 import { ServQuestionarios } from './questionario.service';
+import { ServOpnioes } from './serv-opnioes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,8 @@ export class ServidorService {
   readonly eventos: ServEventos;
   /** Reúne as funções referentes às salas off-topic */
   readonly salas: ServSalas;
+   /** Reúne as funções referentes às opiniões */
+   readonly opinioes: ServOpnioes;
    /** Reúne as funções referentes às perguntas */
    readonly perguntas: ServPerguntas;
   /** Reúne as funções referentes aos votos */
@@ -59,6 +62,7 @@ export class ServidorService {
     this.eventos = new ServEventos(http, this.url);
     this.parceiros = new ServParceiros(http, this.url);
     this.salas = new ServSalas(http, this.url);
+    this.opinioes = new ServOpnioes(http, this.url);
     this.atividades  = new ServAtividades(http, this.url);
     this.questionarios = new ServQuestionarios(http, this.url);
     this.noticias  = new ServNoticias(http, this.url);

@@ -7,6 +7,8 @@ import { IonSlides } from '@ionic/angular';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PassosTutorial, PassosMsgs } from '../../components/tutorial/passos';
 import { AtivNoDiaInterface } from 'src/app/services/atividades.service';
+
+
 //import Swiper from 'swiper';
 
 enum Aba { Agenda, Programacao }
@@ -72,7 +74,8 @@ export class AtividadesPage implements OnInit {
     private router: Router,
     private evento: EventoService,
     private atividades: AtividadesService,
-    private config: ConfigService
+    private config: ConfigService,
+
   ) { }
 
   ngOnInit() {
@@ -117,8 +120,8 @@ export class AtividadesPage implements OnInit {
       this.diaSelecionado = "-";
       let aoCarregar = () => {
           this.abaSelecionada = (this.atividades.temAlgoAgendado()) ? Aba.Agenda : Aba.Programacao;
-          // this.mudouAba();
-          // this.mudouDia();
+          this.mudouAba();
+          this.mudouDia();
           this.estado = EstadoLista.Sucesso;
           setTimeout(() => {
               this.slidesDias.slideTo(this.indexDiaSlides(), 500);
@@ -183,7 +186,7 @@ export class AtividadesPage implements OnInit {
   /**
    * Quando o usuário muda a aba, atualiza a lista
    */
-  mudouAba(event: any) {
+  mudouAba() {
       this.listaPorDia = this.atividades.listarPorDia(this.abaSelecionada == Aba.Agenda);
       this.copiarLista();
       this.filtroBusca = "";
@@ -192,7 +195,7 @@ export class AtividadesPage implements OnInit {
   /**
    * Quando o usuário muda o dia, atualiza o título do dia selecionado
    */
-  mudouDia(t1:any,t2:any) {
+  mudouDia() {
       // let iDia = this.slidesDias.getActiveIndex();
       // if (iDia < 0)
       //     iDia = 0;
@@ -209,8 +212,13 @@ export class AtividadesPage implements OnInit {
    */
   copiarLista() {
       this.listaFiltrada = [];
-      for (let dia of this.listaPorDia)
-          this.listaFiltrada.push({ data: dia.data, ativ: dia.ativ });
+      for (let dia of this.listaPorDia){
+        console.log("dia: ", dia);
+        this.listaFiltrada.push({ data: dia.data, ativ: dia.ativ });
+        console.log("listafiltrada: ", this.listaFiltrada);
+        console.log("lista: ", this.lista);
+      }
+
   }
 
   /**

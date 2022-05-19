@@ -1,9 +1,81 @@
+<!-- Opinar -->
 <ion-header>
-  <ion-toolbar>
-    <ion-title>opinar</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Opinar</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content bg>
+  <ion-card *ngFor="let op of listaOpinioes">
+    <ion-card-content [innerHTML]="op.texto"></ion-card-content>
+    <ion-row class="timestamp">
+        <ion-col class="time">
+            <p>{{op.horaEnvio}}</p>
+        </ion-col>
+        <ion-col class="icon" col-2>
+            <!--Gamification-->
+            <ion-icon *ngIf="!op.anonimo" name="eye"></ion-icon>
+            <ion-icon *ngIf="op.anonimo" name="eye-off"></ion-icon>
+            <!--/Gamification-->
+            <ion-icon [name]="(op.enviada)?'checkmark':'time'"></ion-icon>
+        </ion-col>
+    </ion-row>
+</ion-card>
 </ion-content>
+
+<ion-footer>
+   <!--Gamification-->
+   <ion-item *ngIf="participaGame">
+
+    <ion-label>
+        <b #privacidade (click)="anonimo = !anonimo;">
+            <ion-icon *ngIf="!anonimo" name="eye"></ion-icon>
+            <ion-icon *ngIf="anonimo" name="eye-off"></ion-icon>
+            {{!anonimo?'Não ':''}}Anônimo
+        </b>
+
+        <a #hashtags class="mostrarHashtags" (click)="mostraTextoHashtags()">Hashtags</a>
+    </ion-label>
+</ion-item>
+<!--/Gamification-->
+
+  <form #campo (ngSubmit)="enviaOpiniao()">
+
+      <ion-toolbar class="d-flex">
+          <ion-textarea elastic  placeholder="Digite aqui sua opinião..." [(ngModel)]="texto"
+              [ngModelOptions]="{standalone: true}"></ion-textarea>
+
+          <ion-buttons icon-right>
+              <ion-button color="primary" type="submit" slot = "icon-only" [disabled]="texto?.trim().length == 0">
+                <ion-icon name="send-outline"></ion-icon>
+              </ion-button>
+          </ion-buttons>
+      </ion-toolbar>
+  </form>
+</ion-footer>
+
+<ion-card *ngIf="participaGame && mostrarTextoHashtags" class="listarHashtags">
+  <div class="fechar" (click)="mostrarTextoHashtags=false">X</div>
+  <h3>Hashtags disponíveis</h3>
+
+  <div class="listaHashtags">
+      <ion-list *ngFor="let h of hashtags">
+          <a (click)="addTexto(h.hashtag);">{{h.hashtag}}</a> - {{h.nome}}
+      </ion-list>
+  </div>
+</ion-card>
+
+<ion-card *ngIf="ganhou" class="ganhouConquista">
+      <div class="fechar" (click)="ganhou=false">X</div>
+          <h1><b>Parabéns!!!</b></h1>
+      <br>
+
+          Você ganhou uma <b>Conquista de Opinião</b>!
+
+
+      <img src="assets/img/game/conquistas_trofeus/opiniao.png" class="imgConquista" />
+  </ion-card>
+
+<app-tutorial *ngIf="ativarTut" [steps]="passos" (check)="viuTutorial($event)"></app-tutorial>
+
+

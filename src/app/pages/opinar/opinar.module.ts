@@ -1,3 +1,4 @@
+import { TutorialComponent } from './../../components/tutorial/tutorial.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { OpinarPage } from './opinar.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    OpinarPageRoutingModule
+    OpinarPageRoutingModule,
+
   ],
   declarations: [OpinarPage]
 })

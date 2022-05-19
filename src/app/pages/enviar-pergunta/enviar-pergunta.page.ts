@@ -109,8 +109,8 @@ export class EnviarPerguntaPage implements OnInit {
 
  async mostraAlerta(titulo: string, subtitulo: string) {
   const alert = await this.alertCtrl.create({
-    header: 'titulo',
-    subHeader: 'subtitulo',
+    header: titulo,
+    subHeader: subtitulo,
     buttons: ['Ok']
   });
   await alert.present();

@@ -17,13 +17,13 @@
       </ion-slide>
 
     </ion-slides> -->
-    <ion-buttons slot="start" >
+    <ion-buttons slots="start" >
         <ion-button *ngIf="diaSelecionado>hoje"(click)="slidesDias.slidePrev()" [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isBeginning()">
             <ion-icon name="caret-back-outline"></ion-icon>
         </ion-button>
     </ion-buttons>
     <ion-title text-center>{{diaSelecionado}}</ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slots="end">
         <ion-button icon-only (click)="slidesDias.slideNext()" [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isEnd()">
           <ion-icon name="caret-forward-outline"></ion-icon>
         </ion-button>

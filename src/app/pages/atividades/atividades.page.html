@@ -64,7 +64,7 @@
                         <button ion-item *ngFor="let ativ of dia.ativ" [attr.marcador]="(ativ.estaNaAgenda)?'agenda':'prog'" (click)="acessarAtividade(ativ)">
                             <ion-avatar item-start text-center>
                               <!--Configurar pipe-->
-                                <h1>{{ativ.horaInicio }}</h1>
+                                <h1>{{ativ.horaInicio | datas: {tipo: 'hora'} }}</h1>
                                 {{ativ.horaInicio }}
                             </ion-avatar>
                             <h2 class="nomeAtiv" text-wrap>{{ativ.titulo}}</h2>

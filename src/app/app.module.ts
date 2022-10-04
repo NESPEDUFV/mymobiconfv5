@@ -22,8 +22,7 @@ import { OverlayService } from './services/overlay.service';
 import { ArmazenamentoService } from './services/armazenamento.service';
 
 //Firebase para login com facebook
-import firebase from 'firebase/app';
-import { DatasPipe } from './pipes/datas.pipe';
+//import firebase from 'firebase/app';
 import { Push } from '@ionic-native/push/ngx';
 import { SharedModule } from './components/shared.module';
 //import { SwiperModule } from 'swiper/angular';
@@ -57,7 +56,6 @@ firebase.initializeApp({
   declarations: [
     AppComponent,
 
-
   ],
   entryComponents: [
 
@@ -71,6 +69,7 @@ firebase.initializeApp({
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     SharedModule,
+
 
     //SwiperModule
 

@@ -1,0 +1,24 @@
+<!-- Configurações -->
+
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>Configurações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding bg>
+  <ion-list>
+      <ion-item>
+          <ion-label>Notificações</ion-label>
+          <ion-toggle [(ngModel)]="notif" (ionChange)="mudarConfig(cfg.AtivarNotif,notif)"></ion-toggle>
+      </ion-item>
+      <ion-item>
+          <ion-label>Conflito de atividades</ion-label>
+          <ion-toggle [(ngModel)]="conflito" (ionChange)="mudarConfig(cfg.PermitirConflito,conflito)"></ion-toggle>
+      </ion-item>
+      <button ion-item (click)="ativarTutoriais()">Reativar tutoriais</button>
+  </ion-list>
+
+  <button ion-button block icon-left (click)="logout()">
+      <ion-icon name="log-out"></ion-icon> Sair</button>
+</ion-content>

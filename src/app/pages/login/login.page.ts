@@ -49,6 +49,10 @@ export class LoginPage implements OnInit {
       email: ['', Validators.email]
      });
 
+    this.platform.backButton.subscribeWithPriority(5, () => {
+      navigator['app'].exitApp();
+    });
+
 
 
 }

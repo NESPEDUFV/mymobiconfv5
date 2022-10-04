@@ -52,6 +52,24 @@ export class OverlayService {
     }
 
 
+    async presentAlertConfirm(header:string, message: string, buttons:string, callback:any) {
+      const alert = await this.alert.create({
+
+        header: header,
+        message: message,
+        buttons: [
+          {
+            text:buttons,
+            handler: () => {
+              callback
+            },
+          },
+        ],
+      });
+
+      await alert.present();
+    }
+
 
   /**
      * Cria um loading que muda a quantidade de overlay automaticamente

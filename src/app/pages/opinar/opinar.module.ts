@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { OpinarPageRoutingModule } from './opinar-routing.module';
 
 import { OpinarPage } from './opinar.page';
+import { SharedModule } from 'src/app/components/shared.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { OpinarPage } from './opinar.page';
     FormsModule,
     IonicModule,
     OpinarPageRoutingModule,
+    SharedModule,
 
   ],
   declarations: [OpinarPage]

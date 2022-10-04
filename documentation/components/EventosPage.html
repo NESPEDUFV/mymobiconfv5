@@ -215,15 +215,15 @@
                                         <tbody>
                                                 <tr>
                                                         <td>router</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                         <td>
                                                                 <code><p>Usado para mostrar novas páginas</p>
 </code>
@@ -231,15 +231,15 @@
                                                 </tr>
                                                 <tr>
                                                         <td>evento</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/EventoService.html" target="_self" >EventoService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                         <td>
                                                         </td>
                                                 </tr>
@@ -257,7 +257,7 @@
 
 
     <section>
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -332,7 +332,7 @@
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -446,7 +446,7 @@
 
                     </div>
                     <div class="io-description">
-                        
+
                     </div>
                 </td>
             </tr>
@@ -536,7 +536,7 @@
     </table>
 </section>
     <section>
-    
+
         <h3 id="inputs">
             Properties
         </h3>
@@ -862,7 +862,7 @@ export class EventosPage implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ion-toolbar color &#x3D; &quot;primary&quot;&gt;
-  &lt;ion-buttons slot&#x3D;&quot;start&quot;&gt;
+  &lt;ion-buttons slots&#x3D;&quot;start&quot;&gt;
     &lt;ion-back-button&gt;&lt;/ion-back-button&gt;
   &lt;/ion-buttons&gt;
   &lt;ion-title&gt;Eventos&lt;/ion-title&gt;
@@ -973,14 +973,14 @@ export class EventosPage implements OnInit {
         </div>
     </div>
 
-    
+
 </div>
 
 <script src="../js/libs/vis.min.js"></script>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ion-toolbar color = "primary">  <ion-buttons slot="start">    <ion-back-button></ion-back-button>  </ion-buttons>  <ion-title>Eventos</ion-title></ion-toolbar><ion-toolbar color = "primary">  <ion-searchbar placeholder="Buscar"></ion-searchbar></ion-toolbar><ion-content class= "ion-padding" >  <ion-refresher >      <ion-refresher-content></ion-refresher-content>  </ion-refresher>  <ion-card  class= "ion-padding" *ngIf="estadoLista != enumEstado.Sucesso">    <ion-item *ngIf="estadoLista == enumEstado.Carregando" >        <ion-spinner ></ion-spinner>        <p>Carregando eventos...</p>    </ion-item>    <ion-card-content class ="ion-text-center" *ngIf="estadoLista == enumEstado.Falha" >        <ion-icon name="warning" style="font-size:7vh;"></ion-icon>    </ion-card-content>    <ion-card-content  *ngIf="estadoLista == enumEstado.Falha">        <h2>Não foi possível carregar os eventos.</h2>        <p>Verifique sua conexão e tente novamente mais tarde.</p>        <p>Você pode puxar a página para baixo para tentar recarregar os eventos.</p>    </ion-card-content></ion-card><ion-list #lista *ngIf="estadoLista == enumEstado.Sucesso">  <ion-item  *ngFor="let evento of listaFiltrada" (click)="acessarEvento(evento)">      <div *ngIf="evento.logoURL" item-start class="evento-logo">          <div [style.backgroundImage]="\'url(\' + evento.logoURL + \')\'"></div>      </div>      <div class="wrapper-text">        <h2>{{evento.nome}}</h2>      <p> <strong>{{evento.dataInicio | datas: {tipo: \'compacta\', mostrarAno: true} }}</strong>          ~ <strong>{{evento.dataFim | datas: {tipo: \'compacta\', mostrarAno: true} }}</strong>      </p>      <p *ngIf="evento.is_online!=1">{{evento.local}}</p>      </div>  </ion-item>  <ion-item text-center *ngIf="listaFiltrada.length == 0">      <p>Nenhum evento encontrado.</p>  </ion-item></ion-list></ion-content></div>'
+        var COMPONENT_TEMPLATE = '<div><ion-toolbar color = "primary">  <ion-buttons slots="start">    <ion-back-button></ion-back-button>  </ion-buttons>  <ion-title>Eventos</ion-title></ion-toolbar><ion-toolbar color = "primary">  <ion-searchbar placeholder="Buscar"></ion-searchbar></ion-toolbar><ion-content class= "ion-padding" >  <ion-refresher >      <ion-refresher-content></ion-refresher-content>  </ion-refresher>  <ion-card  class= "ion-padding" *ngIf="estadoLista != enumEstado.Sucesso">    <ion-item *ngIf="estadoLista == enumEstado.Carregando" >        <ion-spinner ></ion-spinner>        <p>Carregando eventos...</p>    </ion-item>    <ion-card-content class ="ion-text-center" *ngIf="estadoLista == enumEstado.Falha" >        <ion-icon name="warning" style="font-size:7vh;"></ion-icon>    </ion-card-content>    <ion-card-content  *ngIf="estadoLista == enumEstado.Falha">        <h2>Não foi possível carregar os eventos.</h2>        <p>Verifique sua conexão e tente novamente mais tarde.</p>        <p>Você pode puxar a página para baixo para tentar recarregar os eventos.</p>    </ion-card-content></ion-card><ion-list #lista *ngIf="estadoLista == enumEstado.Sucesso">  <ion-item  *ngFor="let evento of listaFiltrada" (click)="acessarEvento(evento)">      <div *ngIf="evento.logoURL" item-start class="evento-logo">          <div [style.backgroundImage]="\'url(\' + evento.logoURL + \')\'"></div>      </div>      <div class="wrapper-text">        <h2>{{evento.nome}}</h2>      <p> <strong>{{evento.dataInicio | datas: {tipo: \'compacta\', mostrarAno: true} }}</strong>          ~ <strong>{{evento.dataFim | datas: {tipo: \'compacta\', mostrarAno: true} }}</strong>      </p>      <p *ngIf="evento.is_online!=1">{{evento.local}}</p>      </div>  </ion-item>  <ion-item text-center *ngIf="listaFiltrada.length == 0">      <p>Nenhum evento encontrado.</p>  </ion-item></ion-list></ion-content></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'EventoInfoPage', 'selector': 'app-evento-info'},{'name': 'EventoInscricaoPage', 'selector': 'app-evento-inscricao'},{'name': 'EventosPage', 'selector': 'app-eventos'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'MyMobiConfPage', 'selector': 'app-my-mobi-conf'},{'name': 'ParceirosPage', 'selector': 'app-parceiros'},{'name': 'SignupPage', 'selector': 'app-signup'},{'name': 'TutorialComponent', 'selector': 'app-tutorial'}];
     var DIRECTIVES = [{'name': 'BackgroundDirective', 'selector': '[bg]'}];
     var ACTUAL_COMPONENT = {'name': 'EventosPage'};
@@ -996,7 +996,7 @@ export class EventosPage implements OnInit {
 
 
 
-                   
+
 
 
 

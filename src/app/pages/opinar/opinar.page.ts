@@ -118,22 +118,17 @@ export class OpinarPage implements OnInit {
         // }
     }
 
+  /**
+   * Quando carrega a página pela primeira vez, configura a lista de opiniões para
+   * ser atualizada sempre que se detectar reconexão de rede
+   */
   ngOnInit() {
-  }
 
-
-    /**
-     * Quando carrega a página pela primeira vez, configura a lista de opiniões para
-     * ser atualizada sempre que se detectar reconexão de rede
-     */
-     ionViewDidLoad() {
-
-
-      this.rede.observarConexao('opinioes-recarregar', () => {
-          setTimeout(() => {
-              this.atualizarLista();
-          }, 1000);
-      });
+      // this.rede.observarConexao('opinioes-recarregar', () => {
+      //     setTimeout(() => {
+      //         this.atualizarLista();
+      //     }, 1000);
+      // });
       if (!this.config.tutorialFoiVisto(PassosTutorial.Opinioes)) {
           if(this.participaGame){
               this.passos = [
@@ -151,13 +146,18 @@ export class OpinarPage implements OnInit {
       }
   }
 
+
   /**
    * Ao entrar na página, chama `atualizarLista` e vai até o fim da página
    */
   ionViewWillEnter() {
+    console.log('will enter', this.passos);
       this.atualizarLista();
       this.scrollToBottom();
+      console.log('config',!this.config.tutorialFoiVisto(PassosTutorial.Opinioes) );
+      console.log('passos opnioes', PassosTutorial.Opinioes);
       if (!this.config.tutorialFoiVisto(PassosTutorial.Opinioes)) {
+        console.log('oooooooooooooiiiiiiii');
           this.passos[0].el = this.tutCampo;
           if(this.participaGame){
               this.passos[1].el = this.tutAnonimo;
@@ -165,6 +165,7 @@ export class OpinarPage implements OnInit {
           }
           this.ativarTut = true;
       }
+      console.log('will enter', this.passos);
   }
 
   mostraTextoHashtags() {
@@ -201,6 +202,7 @@ export class OpinarPage implements OnInit {
    * Atualiza a lista, marcando o horário e se já foi enviada
    */
   atualizarLista() {
+    console.log('atualizar lista');
       this.listaOpinioes = [];
       for (let op of this.opinioes.getLista(this.evento.getID(), this.usuario.getID()))
           this.listaOpinioes.push({
@@ -329,6 +331,7 @@ addTexto(a: string) {
  * Passa a página até seu final, após um pequeno intervalo de tempo
  */
 scrollToBottom() {
+  console.log('scrollToBottom');
     setTimeout(() => {
         this.content.scrollToBottom(0);
     }, 200);

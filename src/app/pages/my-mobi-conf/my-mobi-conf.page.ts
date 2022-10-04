@@ -53,14 +53,11 @@ export class MyMobiConfPage implements OnInit {
    }
 
   ngOnInit() {
-
-  }
-  ionViewDidLoad() {
     this.firebaseNotif.getNoticiaBehavior().subscribe((val : boolean) => {
-        this.consultaNotifica(val)
-    })
+      this.consultaNotifica(val)
+  })
 
-    // O código abaixo é a antiga forma de funcionamento, criada pelo Henrique. Ela teve que ser alterada, porque uma condição teve que ser verificada(se tem gamificaçãão ou não)
+   // O código abaixo é a antiga forma de funcionamento, criada pelo Henrique. Ela teve que ser alterada, porque uma condição teve que ser verificada(se tem gamificaçãão ou não)
     /*
     let msgs: string[] = PassosMsgs[PassosTutorial.PagPrincipal];
         this.passos.push({ el: this.tutUtils, msg: msgs[0] });
@@ -69,13 +66,10 @@ export class MyMobiConfPage implements OnInit {
         this.tutBotoes.forEach((el, i) => { this.passos.push({ el: el, msg: msgs[i + 3] }); });
         this.passos.push({ el: this.tutMenu, msg: msgs[msgs.length - 1] });
     */
-}
+  }
 
 ionViewWillEnter() {
 
-  this.firebaseNotif.getNoticiaBehavior().subscribe((val : boolean) => {
-      this.consultaNotifica(val)
-  })
 
 
 }

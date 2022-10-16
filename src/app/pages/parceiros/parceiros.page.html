@@ -12,7 +12,7 @@
 
 <ng-container *ngIf="estado == enumEstado.Sucesso">
   <ion-card *ngIf="listaParceiros.length == 0">
-      <ion-card-content text-center>
+      <ion-card-content class="ion-text-center">
           <p>Não há nenhum parceiro deste evento.</p>
       </ion-card-content>
   </ion-card>
@@ -22,13 +22,37 @@
           <div *ngIf="p.urlImg && p.urlImg != ''" class="p-img" [attr.tamanho]="tamanhoCard[p.prioridade]">
               <div [style.backgroundImage]="'url(' + p.urlImg + ')'"></div>
           </div>
-          <ion-item text-center>
-              <ion-avatar item-right class="medalha">
+          <!-- <ion-item class='d-flex ion-text-center ion-justify-content-center'>
+             <div class="d-flex flex-column">
+              <h2 >{{p.nome}}</h2>
+              <a *ngIf="p.url" [href]="p.url">{{p.url}}</a>
+             </div>
+
+              <ion-avatar class="text" slot="end" class="medalha">
                   <img [src]="imgMedalha[p.prioridade]">
               </ion-avatar>
-              <h2>{{p.nome}}</h2>
-              <a *ngIf="p.url" [href]="p.url">{{p.url}}</a>
+
+          </ion-item> -->
+
+          <ion-item class="d-flex ion-no-margin ion-no-padding">
+            <ion-grid>
+              <ion-row class="ion-justify-content-center p-0">
+                  <ion-col class="ion-text-center p-0">
+                    <h2  >{{p.nome}}</h2>
+                  </ion-col>
+              </ion-row>
+              <ion-row class="ion-justify-content-center p-0">
+                <ion-col class="ion-text-center p-0">
+                  <a *ngIf="p.url" [href]="p.url">{{p.url}}</a>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-avatar slot="end" class="medalha">
+              <img [src]="imgMedalha[p.prioridade]">
+          </ion-avatar>
+
           </ion-item>
+
       </ion-card>
   </div>
 </ng-container>

@@ -81,7 +81,8 @@ export class TutorialComponent implements OnInit {
    public wd: number;
    /** Altura da tela */
    public ht: number;
-   /** Registra ação do botão de voltar (Android) */
+  /** Registra ação do botão de voltar (Android) */
+  private botaoBack: Function;
 
 
 
@@ -93,24 +94,23 @@ export class TutorialComponent implements OnInit {
   constructor(private platform: Platform, private renderer: Renderer2, private overlay: OverlayService) {
     this.wd = platform.width();
     this.ht = platform.height();
+
   }
 
   ngOnInit() {}
 
-    /**
+     /**
      * Ao inicializar o componente, ele exibe o tutorial, centralizando o destaque e configurando os
      * estilos e as transições de cada elemento
      */
-     ngAfterViewInit() {
+      ngAfterViewInit() {
 
-     }
-
-     public  botaoBack(){
-      this.platform.backButton.subscribeWithPriority(10,() => this.skip());
         this.renderer.setStyle(this.hole.nativeElement, 'transform', `matrix(1,0,0,1,
             ${this.wd / 2},${this.ht / 2}
         )`);
+
         setTimeout(() => {
+
             this.renderer.setStyle(this.hole.nativeElement, 'outline-width', '9999px');
             this.renderer.setStyle(this.hole.nativeElement, 'color', 'rgba(0, 0, 0, 0.7)');
             this.renderer.setStyle(this.msg.nativeElement, 'opacity', '1');
@@ -118,13 +118,14 @@ export class TutorialComponent implements OnInit {
             this.overlay.set(-0.7);
             this.focus();
         }, 0);
-     }
+    }
 
 
   /**
    * Chamada sempre que o usuário clica/toca na tela
    */
   onClick(event:any) {
+    //console.log("click", event);
       if (this.i < this.steps.length)
           this.i++;
       this.focus();
@@ -136,18 +137,18 @@ export class TutorialComponent implements OnInit {
    */
   private focus() {
       this.check.emit(this.i);
-      console.log('olha i aí',this.i);
-      console.log('steps', this.steps);
+      //console.log('olha i aí',this.i);
+      //console.log('steps', this.steps);
       if (this.i == -1 || this.i == this.steps.length) {
           this.overlay.set(0);
           this.botaoBack();
       }
       let left, top, wd, ht;
       if (0 <= this.i && this.i < this.steps.length) {
-        console.log('olha i aí',this.i);
+        /* console.log('olha i aí',this.i);
         console.log('steps inteiro', this.steps);
           console.log('steps', this.steps[0]);
-          console.log('steps na posição i', this.steps[this.i]);
+          console.log('steps na posição i', this.steps[this.i]); */
           ({ left, top } = this.elementPosition(this.steps[this.i].el.nativeElement));
           wd = this.steps[this.i].el.nativeElement.offsetWidth;
           ht = this.steps[this.i].el.nativeElement.offsetHeight;
@@ -180,7 +181,7 @@ export class TutorialComponent implements OnInit {
    */
   private elementPosition(native): { left: number, top: number } {
       let left = 0, top = 0;
-      console.log('oi opnião', native);
+      //console.log('oi opnião', native);
       while (native) {
           left += native.offsetLeft - native.scrollLeft;
           top += native.offsetTop - native.scrollTop;

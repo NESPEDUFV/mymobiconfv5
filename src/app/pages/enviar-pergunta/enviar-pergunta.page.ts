@@ -32,7 +32,7 @@ export class EnviarPerguntaPage implements OnInit {
         enviada: boolean
     }[] = [];
     /** Entrada de pergunta do usuário */
-    private pergunta: string = "";
+    pergunta: string = "";
 
     private anonimo: boolean = true;
 

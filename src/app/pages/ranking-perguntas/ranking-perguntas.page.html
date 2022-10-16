@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>ranking-perguntas</ion-title>
+    <ion-title>Ranking de perguntas</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,15 +24,15 @@
 
 <ng-container *ngIf="estado == enumEstado.Sucesso">
   <ion-card text-wrap *ngFor="let pergunta of lista">
-      <ion-item ion-item detail-none>
-          {{pergunta.pergunta}}
+      <ion-item detail="false" lines="none" class="ion-margin-top" >
+        {{pergunta.pergunta}}
       </ion-item>
 
-      <ion-item ion-item detail-none class="esquerda altura">
+      <ion-item  detail="false" class="esquerda" lines="none">
           <b>{{pergunta.nome}}</b>
       </ion-item>
 
-      <ion-row>
+      <ion-row class="ion-no-margin">
           <ion-col class="esquerda">
               <div *ngIf="pergunta.id_participante == id_user">
                   <p style="font-size:10px"><i>Você não pode curtir suas próprias perguntas</i></p>
@@ -72,9 +72,4 @@
 </ion-card-content>
 </ion-card>
 
-<ion-fab right bottom  >
-<button ion-fab color="primary" >
-    <ion-icon name="arrow-down"></ion-icon>
-</button>
-</ion-fab>
 </ion-content>

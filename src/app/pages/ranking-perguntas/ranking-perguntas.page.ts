@@ -70,7 +70,7 @@ carregar(refresher?) {
         this.perguntas.buscar(this.evento.getID(),this.usuario.getID(),this.atividade.ID, () => {
             this.lista = this.perguntas.getLista();
             this.estado = EstadoLista.Sucesso;
-            //this.checkForScrollbar()
+
             if (refresher) refresher.complete();
         }, () => {
             this.estado = EstadoLista.Falha;
@@ -80,7 +80,7 @@ carregar(refresher?) {
         this.perguntas.buscar(this.evento.getID(),this.usuario.getID(),"0", () => {
             this.lista = this.perguntas.getLista();
             this.estado = EstadoLista.Sucesso;
-            //this.checkForScrollbar()
+
             if (refresher) refresher.complete();
         }, () => {
             this.estado = EstadoLista.Falha;
@@ -89,60 +89,74 @@ carregar(refresher?) {
     }
   }
 
-     /**
-     * Acessa a página de envio de perguntas
-     * @param ativ Atividade a ser acessada
-     */
-      acessarEnviar(ativ?: AtividadeInterface) {
-        if(ativ){
-          let navigationExtras: NavigationExtras = {
-            state: {
-              ativEscolhida: ativ
-             }
-            }
-          this.router.navigate(['enviar-pergunta'],navigationExtras)
+  getContent() {
+    console.log('oi');
+    return document.querySelector('ion-content');
+  }
 
-        }else{
-          this.router.navigate(['enviar-pergunta'])
-        }
-
+  scrollToBottom(){
+    this.hasScrollbar = false;
+    this.getContent().scrollToBottom(500);
     }
 
-       /**
-     * curte uma pergunta
-     * @param pergunta pergunta a ser curtida
-     */
-        enviarVoto(pergunta: RankingPerguntasInterface){
-          this.votos.enviarVoto(pergunta.id_pergunta, this.usuario.getID());
 
-          setTimeout(() => {
-              let toastSucesso = this.toastCtrl.create({
-                  message: "Voto adicionado com sucesso!",
-                  duration: 1500,
-                  position: 'bottom'
-              });
-              let toastConflito = this.toastCtrl.create({
-                  message: "Voto removido com sucesso!",
-                  duration: 1500,
-                  position: 'bottom'
-              });
 
-              /*
-              if (pergunta.votou == 0){
-                  toastSucesso.present();
-                  pergunta.votou = 1;
-                  pergunta.qtd_votos = (1+parseInt(pergunta.qtd_votos)).toString();
-                  //pergunta.favorito= parseInt(pergunta.qtd_votos);
-              }else if (pergunta.votou == 1){
-                  toastConflito.present();
-                  pergunta.votou = 0;
-                  pergunta.qtd_votos  = (-1+parseInt(pergunta.qtd_votos)).toString();
-                  //pergunta.favorito= parseInt(pergunta.qtd_votos);
-              }
-              */
-          }, 100);
 
+
+    /**
+   * Acessa a página de envio de perguntas
+   * @param ativ Atividade a ser acessada
+   */
+    acessarEnviar(ativ?: AtividadeInterface) {
+      if(ativ){
+        let navigationExtras: NavigationExtras = {
+          state: {
+            ativEscolhida: ativ
+            }
+          }
+        this.router.navigate(['enviar-pergunta'],navigationExtras)
+
+      }else{
+        this.router.navigate(['enviar-pergunta'])
       }
+
+  }
+
+    /**
+ * curte uma pergunta
+ * @param pergunta pergunta a ser curtida
+ */
+    enviarVoto(pergunta: RankingPerguntasInterface){
+      this.votos.enviarVoto(pergunta.id_pergunta, this.usuario.getID());
+
+      setTimeout(() => {
+          let toastSucesso = this.toastCtrl.create({
+              message: "Voto adicionado com sucesso!",
+              duration: 1500,
+              position: 'bottom'
+          });
+          let toastConflito = this.toastCtrl.create({
+              message: "Voto removido com sucesso!",
+              duration: 1500,
+              position: 'bottom'
+          });
+
+          /*
+          if (pergunta.votou == 0){
+              toastSucesso.present();
+              pergunta.votou = 1;
+              pergunta.qtd_votos = (1+parseInt(pergunta.qtd_votos)).toString();
+              //pergunta.favorito= parseInt(pergunta.qtd_votos);
+          }else if (pergunta.votou == 1){
+              toastConflito.present();
+              pergunta.votou = 0;
+              pergunta.qtd_votos  = (-1+parseInt(pergunta.qtd_votos)).toString();
+              //pergunta.favorito= parseInt(pergunta.qtd_votos);
+          }
+          */
+      }, 100);
+
+  }
 
 
 

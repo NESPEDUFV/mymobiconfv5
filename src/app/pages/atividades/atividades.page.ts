@@ -7,6 +7,7 @@ import { IonSlides } from '@ionic/angular';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PassosTutorial, PassosMsgs } from '../../components/tutorial/passos';
 import { AtivNoDiaInterface } from 'src/app/services/atividades.service';
+import { DatasUtil } from 'src/app/utils/datas';
 
 
 //import Swiper from 'swiper';
@@ -59,7 +60,7 @@ export class AtividadesPage implements OnInit {
    /** Versão filtrada da `listaPorDia` */
    listaFiltrada: AtivNoDiaInterface[] = [];
 
-   sliderOne: any;
+  sliderOne: any;
   sliderTwo: any;
   sliderThree: any;
 
@@ -125,6 +126,7 @@ export class AtividadesPage implements OnInit {
           this.estado = EstadoLista.Sucesso;
           setTimeout(() => {
               this.slidesDias.slideTo(this.indexDiaSlides(), 500);
+
               //Preparar o tutorial
               if (!this.config.tutorialFoiVisto(PassosTutorial.Atividades)) {
                   this.passos = [
@@ -161,8 +163,12 @@ export class AtividadesPage implements OnInit {
           else
               break;
 
-      // if (index == this.slidesDias.length())
-      //     index--;
+      let size;
+      this.slidesDias.length().then(number =>{
+        size = number
+      });
+      if (index == size)
+          index--;
 
       return index;
   }
@@ -170,7 +176,8 @@ export class AtividadesPage implements OnInit {
   /**
    * Filtra a lista de atividades quando o usuário digita algo
    */
-  filtrarLista() {
+  filtrarLista(event?: any) {
+
       let filtro = this.filtroBusca && this.filtroBusca.trim();
       if (filtro && filtro != "") {
           for (let i in this.listaPorDia) {
@@ -196,15 +203,27 @@ export class AtividadesPage implements OnInit {
    * Quando o usuário muda o dia, atualiza o título do dia selecionado
    */
   mudouDia() {
-      // let iDia = this.slidesDias.getActiveIndex();
-      // if (iDia < 0)
-      //     iDia = 0;
-      // else if (iDia >= this.slidesDias.length())
-      //     iDia = this.slidesDias.length() - 1;
-      // if (this.listaPorDia.length > 0)
-      //     this.diaSelecionado = DatasUtil.compacta(this.listaPorDia[iDia].data, true);
-      // else
-      //     this.diaSelecionado = "-";
+      let iDia;
+      let Lenght;
+      this.slidesDias.length().then(
+        (lenght) => {
+          Lenght = lenght;
+        }
+      );
+      this.slidesDias.getActiveIndex().then(
+        (index) => {
+          iDia = index;
+          if (iDia < 0)
+            iDia = 0;
+          else if (iDia >= Lenght)
+              iDia = Lenght - 1;
+          if (this.listaPorDia.length > 0)
+              this.diaSelecionado = DatasUtil.compacta(this.listaPorDia[iDia].data, true);
+          else
+              this.diaSelecionado = "-";
+        }
+      );
+
   }
 
   /**
@@ -213,10 +232,7 @@ export class AtividadesPage implements OnInit {
   copiarLista() {
       this.listaFiltrada = [];
       for (let dia of this.listaPorDia){
-        console.log("dia: ", dia);
         this.listaFiltrada.push({ data: dia.data, ativ: dia.ativ });
-        console.log("listafiltrada: ", this.listaFiltrada);
-        console.log("lista: ", this.lista);
       }
 
   }

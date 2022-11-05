@@ -1,5 +1,5 @@
 import { VotosService } from './../../services/votos.service';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { PerguntasService,RankingPerguntasInterface } from './../../services/perguntas.service';
 import { UsuarioService } from './../../services/usuario.service';
 import { AtividadeInterface } from './../../services/atividades.service';
@@ -41,35 +41,52 @@ export class RankingPerguntasPage implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private toastCtrl: ToastController,
     private perguntas: PerguntasService,
     private usuario: UsuarioService,
     private evento: EventoService,
     private votos: VotosService
-  ) { }
-
-  ngOnInit() {
-  }
-
-  /**
+  ) {
+    /**
      * Ao entrar na página, chama o método `carregar`
      */
-   ionViewWillEnter() {
-    //this.atividade = this.navParams.get('ativ');
+    this.route.queryParams.subscribe(params => {
+      if(this.router.getCurrentNavigation().extras.state){
+        console.log('has extras', this.router.getCurrentNavigation().extras);
+        this.atividade = this.router.getCurrentNavigation().extras.state.ativEscolhida;
+      }
+    });
     this.carregar();
-    this.id_user = this.usuario.getID();
-}
+      this.id_user = this.usuario.getID();
+  }
+
+  ngOnInit() {
+
+  }
+
+//   /**
+//      * Ao entrar na página, chama o método `carregar`
+//      */
+//    ionViewWillEnter() {
+//     //this.atividade = this.navParams.get('ativ');
+//     this.carregar();
+//     this.id_user = this.usuario.getID();
+// }
 
 /**
  * Carrega a lista de perguntas, também chamada ao se puxar o refresher
  * @param refresher Refresher da página
  */
 carregar(refresher?) {
+  console.log('atividade: ', this.atividade);
     this.estado = EstadoLista.Carregando;
     if(this.atividade){
+      console.log("atividade: ",this.atividade);
         this.perguntas.buscar(this.evento.getID(),this.usuario.getID(),this.atividade.ID, () => {
             this.lista = this.perguntas.getLista();
             this.estado = EstadoLista.Sucesso;
+            console.log("lista: ",this.lista);
 
             if (refresher) refresher.complete();
         }, () => {
@@ -80,7 +97,7 @@ carregar(refresher?) {
         this.perguntas.buscar(this.evento.getID(),this.usuario.getID(),"0", () => {
             this.lista = this.perguntas.getLista();
             this.estado = EstadoLista.Sucesso;
-
+            console.log("lista: ",this.lista);
             if (refresher) refresher.complete();
         }, () => {
             this.estado = EstadoLista.Falha;

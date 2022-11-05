@@ -5,7 +5,8 @@
   <ion-title>Eventos</ion-title>
 </ion-toolbar>
 <ion-toolbar color = "primary">
-  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  <ion-searchbar placeholder="Buscar"  [(ngModel)]="filtroBusca" (ionInput)="buscaInput($event)"
+  (ionClear)="buscaInput($event)" (ionCancel)="buscaInput($event)"></ion-searchbar>
 </ion-toolbar>
 
 <ion-content class= "ion-padding" >

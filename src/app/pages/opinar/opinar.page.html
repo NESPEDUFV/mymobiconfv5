@@ -43,13 +43,11 @@
 
       <ion-toolbar class="d-flex">
           <ion-textarea elastic  placeholder="Digite aqui sua opinião..." [(ngModel)]="texto"
-              [ngModelOptions]="{standalone: true}"></ion-textarea>
+              [ngModelOptions]="{standalone: true}">
+      </ion-textarea>
+      <ion-icon name="send-outline"></ion-icon>
 
-          <ion-buttons icon-right>
-              <ion-button color="primary" type="submit" slots = "icon-only" [disabled]="texto?.trim().length == 0">
-                <ion-icon name="send-outline"></ion-icon>
-              </ion-button>
-          </ion-buttons>
+
       </ion-toolbar>
   </form>
 </ion-footer>
@@ -58,11 +56,11 @@
   <div class="fechar" (click)="mostrarTextoHashtags=false">X</div>
   <h3>Hashtags disponíveis</h3>
 
-  <div class="listaHashtags">
+  <!-- <div class="listaHashtags">
       <ion-list *ngFor="let h of hashtags">
           <a (click)="addTexto(h.hashtag);">{{h.hashtag}}</a> - {{h.nome}}
       </ion-list>
-  </div>
+  </div> -->
 </ion-card>
 
 <ion-card *ngIf="ganhou" class="ganhouConquista">

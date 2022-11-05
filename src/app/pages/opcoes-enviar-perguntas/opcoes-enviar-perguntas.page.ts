@@ -83,7 +83,11 @@ export class OpcoesEnviarPerguntasPage implements OnInit {
  */
 acessarRanking(ativ?: AtividadeInterface) {
     this.voltando = true;
+    // console.log('listapordia', this.listaPorDia);
+    // console.log('listaFiltrada: ', this.listaFiltrada);
+    // console.log('ativ tem? ', ativ);
     if(ativ){
+
       let navigationExtras: NavigationExtras = {
         state: {
           ativEscolhida: ativ

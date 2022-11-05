@@ -76,7 +76,7 @@ export class EnviarPerguntaPage implements OnInit {
             }, 1000);
         });
       } else {
-
+          console.log('agr tem callback')
           // call functions on network offline, such as firebase.goOffline()
 
       }
@@ -84,6 +84,15 @@ export class EnviarPerguntaPage implements OnInit {
   })
 
   }
+
+      /**
+     * Ao entrar na página, chama `atualizarLista` e vai até o fim da página
+     */
+       ionViewWillEnter() {
+        //this.atividade = this.navParams.get('ativ');
+        this.atualizarLista();
+        this.scrollToBottom();
+    }
 
   /**
      * Atualiza a lista, marcando o horário e se já foi enviada

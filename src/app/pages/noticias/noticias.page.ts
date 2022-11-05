@@ -65,8 +65,7 @@ export class NoticiasPage implements OnInit {
       this.estado = EstadoLista.Carregando;
       this.noticias.buscar(this.evento.getID(), () => {
           this.lista = this.noticias.getLista();
-          this.estado = EstadoLista.Sucesso;
-          this.checkForScrollbar()
+          this.estado = EstadoLista.Sucesso;;
           if (refresher) refresher.complete();
       }, () => {
           this.estado = EstadoLista.Falha;
@@ -89,12 +88,6 @@ export class NoticiasPage implements OnInit {
   }
 
 
-  scrollToBottom(){
-      this.hasScrollbar = false;
-      //let dimensions = this.content.getContentDimensions();
-      this.content.scrollToBottom(1500);
-  }
-
   detectBottom(){
       //let dimensions = this.content.getContentDimensions();
       console.log("innerHeight "+ window.innerHeight)
@@ -110,13 +103,15 @@ export class NoticiasPage implements OnInit {
       }
   }
 
-  async checkForScrollbar() {
-      /*
-      const scrollElement =  await this.content.getScrollElement();
-      if(this.hasScrollbar == false){ return false}
-      return scrollElement.scrollHeight > scrollElement.clientHeight
-*/
+  getContent() {
+    console.log('oi');
+    return document.querySelector('ion-content');
   }
+
+  scrollToBottom(){
+    this.hasScrollbar = false;
+    this.getContent().scrollToBottom(1500);
+    }
 
 
 }

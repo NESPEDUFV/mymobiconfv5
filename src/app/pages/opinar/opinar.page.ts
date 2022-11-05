@@ -71,8 +71,8 @@ export class OpinarPage implements OnInit {
         private rede: ConnectivityProvider,
         private config: ConfigService,
         private alertCtrl: AlertController,
-        //private gameConfig: any, //gamification
-        //private gameParticipante: any, //gamification
+ //       private gameConfig: any, //gamification
+   //     private gameParticipante: any, //gamification
         private router: Router,
     ) {
         // //gamification

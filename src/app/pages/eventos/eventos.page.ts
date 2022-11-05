@@ -85,7 +85,7 @@ export class EventosPage implements OnInit {
   /**
      * Faz a filtragem da lista a partir do input de busca
      */
-   buscaInput() {
+   buscaInput(event?:any) {
     this.listaFiltrada = this.listaEventos;
     if (this.estadoLista == EstadoLista.Sucesso && this.filtroBusca && this.filtroBusca.trim() != '') {
         this.listaFiltrada = this.listaFiltrada.filter((ev) => {

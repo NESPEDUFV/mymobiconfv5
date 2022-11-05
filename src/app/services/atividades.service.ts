@@ -69,10 +69,19 @@ export class AtividadesService {
    * @param falhaCb Callback para ser execitada quando temrmina de carregar e não há dados
    */
   carregar(sucessoCb?: () => void, falhaCb?: () => void) {
+    console.log("não tem storage get: ", this.storage.get('atividades'));
+    console.log("sucesso: ", sucessoCb);
+    console.log("falha: ", falhaCb);
       this.storage.get('atividades').then((val) => {
           if (val && JSON.parse(val)) {
-              this.atividades = this.criarArvore(val);
-              if (sucessoCb) sucessoCb();
+            console.log('val: ', val);
+            this.atividades = this.criarArvore(val);
+
+            if (sucessoCb) {
+              console.log("passou storage, sucessoCb: ", sucessoCb);
+              sucessoCb();
+            }
+
           } else
               if (falhaCb) falhaCb();
       })
@@ -102,10 +111,16 @@ export class AtividadesService {
    * @param falhaCb Callback executada após falha no carregamento das atividades
    */
   disponivel(sucessoCb: () => void, falhaCb?: () => void) {
-      if (this.existeDados())
-          sucessoCb();
-      else
-          this.carregar(sucessoCb, falhaCb);
+    console.log("inicio disponiel");
+      if (this.existeDados()){
+        console.log("exite dados");
+        sucessoCb();
+      }
+      else{
+        console.log("não existe dados");
+        this.carregar(sucessoCb, falhaCb);
+      }
+      console.log("fim disponiel");
   }
 
   /**
@@ -115,7 +130,9 @@ export class AtividadesService {
    * @param falhaCb Callback chamada quando as outras alternativas falham
    */
   buscar(eventoID: string, sucessoCb?: () => void, falhaCb?: () => void) {
+    console.log("BUSCAAAAAAAAAAAAAR");
       this.servidor.atividades.buscar(eventoID).subscribe((data: any) => {
+        console.log("buscando data: ", data);
           this.atividades = this.formatarLista((data && data.atividades) ? data.atividades : []);
           this.salvar();
           if (sucessoCb) sucessoCb();

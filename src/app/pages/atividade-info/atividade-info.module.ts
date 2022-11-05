@@ -1,3 +1,4 @@
+import { SharedModule } from './../../components/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { AtividadeInfoPage } from './atividade-info.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AtividadeInfoPageRoutingModule
+    AtividadeInfoPageRoutingModule,
+    SharedModule
   ],
   declarations: [AtividadeInfoPage]
 })

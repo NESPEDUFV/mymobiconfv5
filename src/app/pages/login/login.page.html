@@ -1,5 +1,5 @@
 <ion-toolbar color = "primary">
-  <ion-buttons slot="start">
+  <ion-buttons slots="start">
     <ion-back-button></ion-back-button>
   </ion-buttons>
   <ion-title>Login</ion-title>
@@ -13,8 +13,10 @@
         </ion-item>
         <br>
         <ion-button color="primary" expand="block" [disabled]="!loginForm.valid" type="submit" expand="block" (click)="loginEmail(loginForm.value.email)">Entrar</ion-button>
-        <ion-button  color="primary" expand="block"  (click)="loginFB()">Entrar com Facebook</ion-button>
-        <br>
+        <ion-button expand="block" (click)="GoogleLogin()" color="danger" *ngIf="!isGoogleLogin">
+          <ion-icon slot="start" name="logo-google"></ion-icon>
+          LogIn with Google
+        </ion-button>
         <ion-button expand="block" fill="clear" (click)="irParaSignup()" >Ou crie uma conta</ion-button>
       </form>
     </ion-card>

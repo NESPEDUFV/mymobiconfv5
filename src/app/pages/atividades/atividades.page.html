@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-segment #alternar color="light" [(ngModel)]="abaSelecionada" (ionChange)="mudouAba()">
+      <ion-segment-button [value]="aba.Agenda">
+          <ion-label>Agenda</ion-label>
+      </ion-segment-button>
+      <ion-segment-button [value]="aba.Programacao">
+         <ion-label>Programação</ion-label>
+      </ion-segment-button>
+  </ion-segment>
+  </ion-toolbar>
+
+  <ion-toolbar color="primary" no-border-top>
+    <ion-searchbar  [(ngModel)]="filtroBusca" (ionInput)="filtrarLista($event.target)" placeholder="Buscar por nome ou local..."></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-toolbar #botoes color="primary">
+    <ion-buttons (click)="slidesDias.slidePrev();" slot="start">
+        <ion-button icon-only  [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isBeginning()">
+          <ion-icon name="caret-back-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>{{diaSelecionado}}</ion-title>
+    <ion-buttons (click)="slidesDias.slideNext()" slot="end">
+        <ion-button icon-only  [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isEnd()">
+          <ion-icon name="caret-forward-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content bg>
+    <ion-slides #lista class="dias" (ionSlideDidChange)="mudouDia()">
+        <ion-slide *ngIf="estado == estadoLista.Sucesso && listaPorDia.length <= 0">
+            <ion-card>
+                <ion-card-content>
+                    Nenhuma atividade encontrada. {{estadoLista.Sucesso}} - {{listaPorDia.length}}
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+
+        <ion-slide *ngIf="estado != estadoLista.Sucesso">
+            <ion-card class="ion-padding">
+                <ion-item *ngIf="estado == estadoLista.Carregando">
+                    <ion-spinner ></ion-spinner>
+                    <p>Carregando atividades...</p>
+                </ion-item>
+                <ion-card-content class="ion-text-center" *ngIf="estado == estadoLista.Falha">
+                  <ion-icon name="warning-outline"></ion-icon>
+                </ion-card-content>
+                <ion-card-content *ngIf="estado == estadoLista.Falha">
+                    <h2>Não foi possível carregar as atividades.</h2>
+                    <p>Verifique sua conexão e tente novamente mais tarde.</p>
+                    <br>
+                    <ion-button expand="full" fill= "clear" (click)="carregar()">Tentar novamente</ion-button>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+
+        <ion-slide *ngFor="let dia of listaFiltrada">
+          <ion-content scrollX="true">
+                <ion-card>
+                    <ion-list>
+                        <ion-item class="w-100" *ngFor="let ativ of dia.ativ" lines="none" [attr.marcador]="(ativ.estaNaAgenda)?'agenda':'prog'" (click)="acessarAtividade(ativ)">
+                            <ion-avatar slot="start" class="ion-text-center">
+                                <h1>{{ativ.horaInicio | datas: {tipo: 'hora'} }}</h1>
+                                {{ativ.horaInicio | datas: {tipo: 'minuto'} }}
+                            </ion-avatar>
+                            <div class="atividade">
+                              <h2 class="nomeAtiv" class="ion-text-wrap">{{ativ.titulo}}</h2>
+                              <p class="local mt-0" *ngIf="isOnline != 1">
+                                <ion-icon name="location"></ion-icon> &nbsp;{{ativ.local}}
+                              </p>
+                              <p class="local mt-0" *ngIf="isOnline == 1">
+                                <ion-icon name="phone-portrait"></ion-icon> &nbsp;{{ativ.link_principal}}
+                              </p>
+                            </div>
+
+                        </ion-item>
+                    </ion-list>
+
+                    <ion-card-content [hidden]="dia.ativ.length > 0">
+                        {{(abaSelecionada == aba.Agenda)? "Nenhuma atividade agendada encontrada neste dia. Vá na aba Programação para agendar atividades!"
+                        : "Nenhuma atividade encontrada."}}
+                    </ion-card-content>
+                </ion-card>
+            </ion-content>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+
+
+
+
+<app-tutorial *ngIf="ativarTut" [steps]="passos" (check)="viuTutorial($event)"></app-tutorial>

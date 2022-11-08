@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>
+          Suas atividades agora
+      </ion-title>
+      <ion-buttons start>
+          <button ion-button (click)="dismiss()">
+              <span ion-text showWhen="ios">Voltar</span>
+              <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+      <button ion-item *ngFor="let notif of lista" (click)="acessar(notif)">
+          <h2>{{notif.titulo}}</h2>
+          <p>Horário: {{ notif.horaInicio | datas:{tipo: 'horario'} }} - {{ notif.horaFim | datas:{tipo: 'horario'} }}</p>
+      </button>
+  </ion-list>
+</ion-content>

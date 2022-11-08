@@ -1,0 +1,25 @@
+//$cinza: #858585;
+
+page-enviar-pergunta {
+  .direita{
+      text-align:right;
+  }
+  .centro{
+      text-align:center;
+      color: black !important;
+  }
+
+
+  .enviar{
+      border-radius: 8px !important;
+      ion-card-content {
+          padding-left: 10px !important;
+          padding-right: 10px !important;
+          padding-top: 8px !important;
+          padding-bottom: 0px !important;
+          white-space: pre-wrap;
+      }
+  }
+
+
+}

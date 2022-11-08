@@ -1,0 +1,99 @@
+$cinza: #858585;
+
+app-opinar {
+    ion-row.timestamp {
+        ion-col {
+            &.time {
+                text-align: right;
+                p {
+                    font-size: 10pt;
+                    color: $cinza;
+                }
+            }
+            &.icon {
+                text-align: center;
+                color: $cinza;
+            }
+        }
+    }
+
+    ion-card {
+        border-radius: 8px !important;
+        ion-card-content {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 8px !important;
+            padding-bottom: 0px !important;
+            white-space: pre-wrap;
+        }
+    }
+
+    //gamification
+    .mostrarHashtags{
+        position: absolute;
+        left: 70%;
+    }
+
+    .listarHashtags{
+        padding: 5%;
+        position: absolute;
+        top: 8%;
+        left: 5%;
+        width: 85%;
+        height: 70%;
+        scroll-behavior: smooth;
+        overflow-y:scroll; //rolar caso nao caiba
+    }
+
+    .listaHashtags{
+        padding-top: 5%;
+        padding-bottom: 5%;
+        font-size: 120%;
+        max-height: 80em;;
+    }
+
+    .fechar{
+        scroll-behavior: unset;
+        overflow-y:hidden; //rolar caso nao caiba
+        text-align: right;
+       font-size: 120%;
+    }
+
+    .ganhouConquista{
+        padding: 5%;
+        position: absolute;
+        top: 20%;
+        left: 5%;
+        width: 85%;
+        height: 45%;
+        font-size: 120%;
+
+        border: solid;
+
+
+    }
+
+
+
+    @keyframes animacaoConquistar {
+        0% { opacity: .75; width: 27%;}
+        25% { opacity: 0.85; width: 26%;}
+        50% { opacity: 0.75; width: 25.5%;}
+        75% { opacity: 0.85; width: 26%;}
+        100% { opacity: .75; width: 27%;}
+    }
+
+    .imgConquista{
+        width: 25%;
+        position:relative;
+        top:40%;
+        left:50%;
+        margin-top:-50px;
+        margin-left:-50px;
+        //height: 30%;
+
+        animation: fa-blink .85s linear infinite;
+
+    }
+
+}

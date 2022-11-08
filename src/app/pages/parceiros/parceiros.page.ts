@@ -1,8 +1,8 @@
 import { ParceirosService, ParceiroInterface } from './../../services/parceiros.service';
-import { EstadoLista } from './../../enums/estado-lista.enum';
-import { EventoService } from './../../services/evento.service';
+import { EstadoLista } from 'src/app/enums/estado-lista.enum';
+import { EventoService } from 'src/app/services/evento.service';
 import { Component, OnInit } from '@angular/core';
-//import {ParceirosProvider, ParceiroInterface }
+
 
 @Component({
   selector: 'app-parceiros',
@@ -28,12 +28,14 @@ export class ParceirosPage implements OnInit {
        'assets/img/medalha-bronze.png'
    ];
 
-   /**
-    * @param parceiros
-    * @param evento Usado para adquirir o ID do evento
-    */
+  /**
+     * @param parceiros
+     * @param evento Usado para adquirir o ID do evento
+     */
+  constructor(private parceiros: ParceirosService, private evento: EventoService) { }
 
-  constructor( private parceiros: ParceirosService, private evento: EventoService ) { }
+  ngOnInit() {
+  }
 
    /**
      * Ao entrar na página, chama o método `carregar`
@@ -43,21 +45,20 @@ export class ParceirosPage implements OnInit {
   }
 
   /**
-   * Carrega a lista de parceiros, chamada também ao puxar o refresher
-   * @param refresher Refresher da página
-   */
-  carregar(refresher?) {
-      this.estado = EstadoLista.Carregando;
-      this.parceiros.buscar(this.evento.getID(), () => {
-          this.listaParceiros = this.parceiros.listarPorPrioridade();
-          this.estado = EstadoLista.Sucesso;
-          if (refresher) refresher.complete();
-      }, () => {
-          this.estado = EstadoLista.Falha;
-          if (refresher) refresher.complete();
-      });
-  }
-  ngOnInit() {
-  }
+     * Carrega a lista de parceiros, chamada também ao puxar o refresher
+     * @param refresher Refresher da página
+     */
+    carregar(refresher?) {
+        this.estado = EstadoLista.Carregando;
+        this.parceiros.buscar(this.evento.getID(), () => {
+            this.listaParceiros = this.parceiros.listarPorPrioridade();
+            this.estado = EstadoLista.Sucesso;
+            if (refresher) refresher.complete();
+        }, () => {
+            this.estado = EstadoLista.Falha;
+            if (refresher) refresher.complete();
+        });
+    }
+
 
 }

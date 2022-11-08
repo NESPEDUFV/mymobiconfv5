@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Envio de perguntas</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar #botoes color="primary">
+    <ion-buttons (click)="slidesDias.slidePrev();" slot="start">
+        <ion-button icon-only  [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isBeginning()">
+          <ion-icon name="caret-back-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title>{{diaSelecionado}}</ion-title>
+    <ion-buttons (click)="slidesDias.slideNext()" slot="end">
+        <ion-button icon-only  [hidden]="estado != estadoLista.Sucesso" [disabled]="slidesDias && slidesDias.isEnd()">
+          <ion-icon name="caret-forward-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list>
+        <ion-item (click)="acessarRanking()">
+            <ion-avatar slot="end" class="seta">
+              <ion-icon name="caret-forward-outline"></ion-icon>
+            </ion-avatar>
+            <h2 class="nomeAtiv" text-wrap>Dúvidas do evento</h2>
+        </ion-item>
+    </ion-list>
+</ion-card>
+<ion-slides  class="dias" (ionSlideDidChange)="mudouDia()">
+  <ion-slide *ngIf="estado == estadoLista.Sucesso && listaPorDia.length <= 0">
+      <ion-card>
+          <ion-card-content>
+              Nenhuma atividade encontrada.
+          </ion-card-content>
+      </ion-card>
+  </ion-slide>
+
+  <ion-slide *ngIf="estado != estadoLista.Sucesso">
+      <ion-card padding>
+          <ion-item *ngIf="estado == estadoLista.Carregando">
+              <ion-spinner item-start></ion-spinner>
+              <p>Carregando atividades...</p>
+          </ion-item>
+          <ion-card-content text-center *ngIf="estado == estadoLista.Falha">
+              <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
+          </ion-card-content>
+          <ion-card-content *ngIf="estado == estadoLista.Falha">
+              <h2>Não foi possível carregar as atividades.</h2>
+              <p>Verifique sua conexão e tente novamente mais tarde.</p>
+              <br>
+              <button ion-button full clear (click)="carregar()">Tentar novamente</button>
+          </ion-card-content>
+      </ion-card>
+  </ion-slide>
+
+  <ion-slide *ngFor="let dia of listaFiltrada">
+          <ion-card>
+              <ion-list>
+                  <ion-item lines="none" *ngFor="let ativ of dia.ativ" (click)="acessarRanking(ativ)">
+
+                      <ion-avatar slot="end" class="seta">
+                        <ion-icon name="caret-forward-outline"></ion-icon>
+                      </ion-avatar>
+                      <h2 class="nomeAtiv" text-wrap>{{ativ.titulo}}</h2>
+                  </ion-item>
+              </ion-list>
+
+
+          </ion-card>
+  </ion-slide>
+</ion-slides>
+
+</ion-content>

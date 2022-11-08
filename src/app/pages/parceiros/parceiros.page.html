@@ -1,45 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Parceiros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content bg>
 
-    <ion-refresher (ionRefresh)="carregar($event)">
-        <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+  <ion-refresher slot="fixed" (ionRefresh)="carregar($event)">
+    <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
 
-    <ng-container *ngIf="estado == enumEstado.Sucesso">
-        <ion-card *ngIf="listaParceiros.length == 0">
-            <ion-card-content text-center>
-                <p>Não há nenhum parceiro deste evento.</p>
-            </ion-card-content>
-        </ion-card>
+<ng-container *ngIf="estado == enumEstado.Sucesso">
+  <ion-card *ngIf="listaParceiros.length == 0">
+      <ion-card-content class="ion-text-center">
+          <p>Não há nenhum parceiro deste evento.</p>
+      </ion-card-content>
+  </ion-card>
 
-        <div class="patrocinador" [attr.tamanho]="tamanhoCard[p.prioridade]" *ngFor="let p of listaParceiros">
-            <ion-card>
-                <div *ngIf="p.urlImg && p.urlImg != ''" class="p-img" [attr.tamanho]="tamanhoCard[p.prioridade]">
-                    <div [style.backgroundImage]="'url(' + p.urlImg + ')'"></div>
-                </div>
-                <ion-item text-center>
-                    <ion-avatar item-right class="medalha">
-                        <img [src]="imgMedalha[p.prioridade]">
-                    </ion-avatar>
-                    <h2>{{p.nome}}</h2>
-                    <a *ngIf="p.url" [href]="p.url">{{p.url}}</a>
-                </ion-item>
-            </ion-card>
-        </div>
-    </ng-container>
+  <div class="patrocinador" [attr.tamanho]="tamanhoCard[p.prioridade]" *ngFor="let p of listaParceiros">
+      <ion-card>
+          <div *ngIf="p.urlImg && p.urlImg != ''" class="p-img" [attr.tamanho]="tamanhoCard[p.prioridade]">
+              <div [style.backgroundImage]="'url(' + p.urlImg + ')'"></div>
+          </div>
+          <!-- <ion-item class='d-flex ion-text-center ion-justify-content-center'>
+             <div class="d-flex flex-column">
+              <h2 >{{p.nome}}</h2>
+              <a *ngIf="p.url" [href]="p.url">{{p.url}}</a>
+             </div>
 
-    <ion-card padding *ngIf="estado != enumEstado.Sucesso">
-        <ion-item *ngIf="estado == enumEstado.Carregando">
-            <ion-spinner item-start></ion-spinner>
-            <p>Carregando parceiros...</p>
-        </ion-item>
-        <ion-card-content text-center *ngIf="estado == enumEstado.Falha">
-            <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
-        </ion-card-content>
-        <ion-card-content *ngIf="estado == enumEstado.Falha">
-            <h2>Não foi possível carregar os parceiros.</h2>
-            <p>Verifique sua conexão e tente novamente mais tarde.</p>
-            <p>Você pode puxar a página para baixo para tentar recarregar a lista dos parceiros.</p>
-        </ion-card-content>
-    </ion-card>
+              <ion-avatar class="text" slot="end" class="medalha">
+                  <img [src]="imgMedalha[p.prioridade]">
+              </ion-avatar>
+
+          </ion-item> -->
+
+          <ion-item class="d-flex ion-no-margin ion-no-padding">
+            <ion-grid>
+              <ion-row class="ion-justify-content-center p-0">
+                  <ion-col class="ion-text-center p-0">
+                    <h2  >{{p.nome}}</h2>
+                  </ion-col>
+              </ion-row>
+              <ion-row class="ion-justify-content-center p-0">
+                <ion-col class="ion-text-center p-0">
+                  <a *ngIf="p.url" [href]="p.url">{{p.url}}</a>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-avatar slot="end" class="medalha">
+              <img [src]="imgMedalha[p.prioridade]">
+          </ion-avatar>
+
+          </ion-item>
+
+      </ion-card>
+  </div>
+</ng-container>
+
+<ion-card padding *ngIf="estado != enumEstado.Sucesso">
+  <ion-item *ngIf="estado == enumEstado.Carregando">
+      <ion-spinner item-start></ion-spinner>
+      <p>Carregando parceiros...</p>
+  </ion-item>
+  <ion-card-content text-center *ngIf="estado == enumEstado.Falha">
+      <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
+  </ion-card-content>
+  <ion-card-content *ngIf="estado == enumEstado.Falha">
+      <h2>Não foi possível carregar os parceiros.</h2>
+      <p>Verifique sua conexão e tente novamente mais tarde.</p>
+      <p>Você pode puxar a página para baixo para tentar recarregar a lista dos parceiros.</p>
+  </ion-card-content>
+</ion-card>
 
 </ion-content>

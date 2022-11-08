@@ -1,3 +1,47 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- <ion-menu side="start" contentId="content" class="h-100">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title class="menu-title">Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="true">
+          <ion-item routerLink="/eventos" routerDirection="forward">
+            <ion-label>Eventos</ion-label>
+          </ion-item>
+          <ion-item routerLink="/config" routerDirection="forward">
+            <ion-label>Configurações</ion-label>
+          </ion-item>
+          <ion-item routerLink="/sobre" routerDirection="forward">
+            <ion-label>Sobre</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu> -->
+
+  <!-- Menu lateral -->
+
+<ion-menu  side="start" contentId="content">
+  <ion-toolbar color="primary">
+    <ion-title class="menu-title">Menu</ion-title>
+  </ion-toolbar>
+  <ion-list>
+    <ion-menu-toggle auto-hide="true">
+      <div *ngFor="let p of paginas" >
+        <ion-item (click)="menuAcessar(p.caminho)">
+          <ion-thumbnail class="imgIcon" slot="start">
+            <img src="assets/img/{{p.icone}}.png">
+          </ion-thumbnail>
+        {{p.nome}}
+        </ion-item>
+      </div>
+    </ion-menu-toggle>
+
+  </ion-list>
+
+</ion-menu>
+  <ion-router-outlet id="content"></ion-router-outlet>
 </ion-app>

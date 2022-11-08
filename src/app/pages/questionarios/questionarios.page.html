@@ -1,0 +1,50 @@
+<!-- Questionários -->
+
+<ion-header>
+
+  <ion-toolbar color="primary">
+      <ion-title>Questionários</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar color="primary">
+      <ion-searchbar placeholder="Buscar" [(ngModel)]="filtroBusca" (ionInput)="filtrarLista()" (ionClear)="filtrarLista()"></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding bg>
+
+  <ion-refresher (ionRefresh)="carregar($event)">
+      <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card padding *ngIf="estado != estadoLista.Sucesso">
+      <ion-item *ngIf="estado == estadoLista.Carregando">
+          <ion-spinner item-start></ion-spinner>
+          <p>Carregando questionários...</p>
+      </ion-item>
+      <ion-card-content text-center *ngIf="estado == estadoLista.Falha">
+          <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
+      </ion-card-content>
+      <ion-card-content *ngIf="estado == estadoLista.Falha">
+          <h2>Não foi possível carregar os questionários.</h2>
+          <p>Verifique sua conexão e tente novamente mais tarde.</p>
+          <p>Você pode puxar a página para baixo para tentar recarregar os questionários.</p>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-list *ngIf="estado == estadoLista.Sucesso">
+
+      <button ion-item *ngFor="let q of listaFiltrada" (click)="acessarQuest(q)" [attr.marcador]="marcadores[q.ID]">
+          <h2>{{q.titulo}}</h2>
+          <p>{{(q.ativID) ? q.ativTitulo : "Questionário Geral"}}</p>
+      </button>
+
+      <ion-item text-center *ngIf="listaFiltrada.length == 0">
+          <p>Nenhum questionário encontrado.</p>
+      </ion-item>
+
+  </ion-list>
+
+</ion-content>

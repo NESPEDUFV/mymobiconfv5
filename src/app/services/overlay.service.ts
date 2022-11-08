@@ -51,19 +51,24 @@ export class OverlayService {
      // this.platform.backButton.subscribeWithPriority(2,() => alert.dismiss());
     }
 
-    /*
-    createAlert(message:string, button:string): { present: () => void } {
-      let alert = this.alert.create(opts);
-      let back: Function;
-      alert.onDidDismiss(() => { this.amt.next(0); back(); });
-      return {
-          present: () => {
-              back = this.platform.registerBackButtonAction(() => alert.dismiss(), 2);
-              this.amt.next(-0.5);
-              alert.present();
-          }
-      };
-      */
+
+    async presentAlertConfirm(header:string, message: string, buttons:string, callback:any) {
+      const alert = await this.alert.create({
+
+        header: header,
+        message: message,
+        buttons: [
+          {
+            text:buttons,
+            handler: () => {
+              callback
+            },
+          },
+        ],
+      });
+
+      await alert.present();
+    }
 
 
   /**

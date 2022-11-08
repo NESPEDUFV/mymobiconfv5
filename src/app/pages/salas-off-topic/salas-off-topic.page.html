@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Salas off-topic</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content bg auto-hide>
+
+  <ion-refresher (ionRefresh)="carregar($event)"  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<ng-container *ngIf="estado == enumEstado.Sucesso">
+  <ion-card text-wrap *ngFor="let sala of lista">
+      <ion-card-content>
+       <h2>{{sala.nome}}</h2>
+          <p><b>Descrição:</b> {{sala.descricao}}</p>
+          <p><b>Link:</b> <a [href]="sala.link">{{sala.link}}</a></p>
+      </ion-card-content>
+  </ion-card>
+
+
+  <ion-card *ngIf="lista.length == 0">
+      <ion-card-content text-center>
+          <p>Nenhuma sala off-topic encontrada.</p>
+      </ion-card-content>
+  </ion-card>
+</ng-container>
+
+<ion-card padding *ngIf="estado != enumEstado.Sucesso">
+  <ion-item *ngIf="estado == enumEstado.Carregando">
+      <ion-spinner item-start></ion-spinner>
+      <p>Carregando salas off-topic...</p>
+  </ion-item>
+  <ion-card-content text-center *ngIf="estado == enumEstado.Falha">
+      <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
+  </ion-card-content>
+  <ion-card-content *ngIf="estado == enumEstado.Falha">
+      <h2 class="centralizado">Não foi possível carregar as salas off-topic.</h2>
+      <p class="justificado">Verifique sua conexão e tente novamente mais tarde.</p>
+      <p class="justificado">Você pode puxar a página para baixo para tentar recarregar a lista das salas off-topic.</p>
+  </ion-card-content>
+</ion-card>
+
+
+
+</ion-content>

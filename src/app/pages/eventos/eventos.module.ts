@@ -1,3 +1,4 @@
+import { PipesModule } from './../../pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -5,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { EventosPageRoutingModule } from './eventos-routing.module';
-import { DatasPipe } from 'src/app/pipes/datas.pipe';
+
 import { EventosPage } from './eventos.page';
 
 @NgModule({
@@ -13,8 +14,9 @@ import { EventosPage } from './eventos.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    EventosPageRoutingModule
+    EventosPageRoutingModule,
+    PipesModule
   ],
-  declarations: [EventosPage, DatasPipe]
+  declarations: [EventosPage]
 })
 export class EventosPageModule {}

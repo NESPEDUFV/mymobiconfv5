@@ -1,0 +1,92 @@
+$cor-frio: #40E0D0;
+$cor-quente: #FF4500;
+$cor-baixo: #3A5649;
+$cor-alto: #E000FF;
+$cor-inativo: #AAAAAA;
+$cor-otimo: #FFBB00;
+
+$cores-range: (
+    term: (
+        esq: $cor-frio,
+        dir: $cor-quente
+    ),
+    som: (
+        esq: $cor-baixo,
+        dir: $cor-alto
+    ),
+);
+
+@function aux-vals($i,$lado) {
+    @if $lado == 'esq' {
+        @return ($i - 1) * 25%;
+    } @else {
+        @return (5 - $i) * 25%;
+    }
+}
+
+@function aux-knob-color($i,$cores) {
+    @if $i < 3 {
+        @return map-get($cores,esq);
+    } @else if $i > 3 {
+        @return map-get($cores,dir);
+    } @else {
+        @return $cor-otimo;
+    }
+}
+
+ion-list{
+  p{
+    margin-left: 12px !important;
+  }
+}
+
+ion-icon {
+  &#conf-termico {
+      color: crimson;
+  }
+
+  &#conf-sonoro {
+      color: darkcyan;
+  }
+
+  &#av-estrela {
+      color: $cor-otimo;
+  }
+}
+
+@each $tipo,$cores in $cores-range {
+
+  @for $i from 1 through 5 {
+
+      ion-range.av-conf[val=#{"v"+$i}].#{$tipo} {
+
+          ion-icon.esq {
+              color: if($i < 3, map-get($cores,esq), $cor-inativo);
+          }
+
+          ion-icon.dir {
+              color: if($i > 3, map-get($cores,dir), $cor-inativo);
+          }
+
+          div.range-slider {
+
+              div.range-bar.range-bar-active {
+                  left: if($i < 3,aux-vals($i,'esq'),50%) !important;
+                  right: if($i > 3,aux-vals($i,'dir'),50%) !important;
+                  background-color: map-get($cores,if($i<3,esq,dir));
+              }
+
+              div.range-knob-handle div.range-knob {
+                  background-color: aux-knob-color($i,$cores);
+                  border-color: aux-knob-color($i,$cores);
+              }
+          }
+
+      }
+  }
+
+}
+
+p#avisoHora {
+  color: darkred;
+}

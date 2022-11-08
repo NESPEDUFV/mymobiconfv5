@@ -1,0 +1,36 @@
+<ion-toolbar color = "primary">
+  <ion-menu-button auto-hide="false" slot="start"></ion-menu-button>
+  <ion-title class="title">myMobiConf</ion-title>
+  <ion-buttons slot="end">
+    <ion-button><ion-icon name="information-circle"></ion-icon></ion-button>
+    <ion-button> <ion-icon name="notifications"></ion-icon></ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+<ion-content>
+  <h5 id="data">{{data | date:'dd/MM/yyyy'}}</h5>
+  <ion-card #game>
+    <ion-item>
+
+
+
+    </ion-item>
+</ion-card>
+  <ion-card>
+    <a class="botao-quadrado" *ngFor="let b of botoes">
+        <div id="container">
+            <ion-button class="button" #principais fill="clear" expand="block" (click)="acessarPagina(b.pagina)">
+                <div id="out">
+                    <div id="in">
+                        <img src="assets/img/{{b.id}}.png">
+                        <br>
+                        <p>{{b.label}}</p>
+                    </div>
+                </div>
+            </ion-button>
+        </div>
+    </a>
+
+</ion-card>
+</ion-content>

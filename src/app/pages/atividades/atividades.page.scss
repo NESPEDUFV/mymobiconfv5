@@ -1,0 +1,64 @@
+$marcador: (
+    agenda: #488AFF,
+    prog: #DDDDDD,
+);
+
+
+
+@function aux-marcador() {
+    @return map-remove($marcador);
+}
+
+.segment.segment-ios {
+  padding: 0px !important;
+}
+
+p.local {
+  margin-top: 0.7em;
+  color: #383a3e;
+}
+ion-icon{
+  color: #383a3e;
+}
+
+h2.nomeAtiv {
+  line-height: 1.3;
+}
+
+@each $marcador, $cor in aux-marcador() {
+  button[marcador=#{$marcador}] ion-label {
+      border-left: 2px solid $cor;
+      padding-left: 10px;
+  }
+}
+
+  ion-slide div.slide-zoom {
+      height: 100%;
+
+      ion-scroll {
+          height: 100%;
+      }
+  }
+
+  .atividades{
+    display: block;
+  }
+
+
+.dias {
+  height: 100% !important;
+
+  ion-slide {
+      height: 100%;
+  }
+}
+
+ion-avatar{
+  h1{
+    margin: 0;
+    font-size: 22px;
+  }
+  h3{
+    margin: 0;
+  }
+}

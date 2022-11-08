@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ranking de perguntas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content auto-hide>
+
+  <ion-refresher slot="fixed" (ionRefresh)="carregar($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card text-wrap padding class="centro">
+    <h2>
+        <b *ngIf="atividade">{{(atividade)?atividade.titulo:"-"}}</b>
+        <b *ngIf="!atividade">Dúvidas do evento</b>
+    </h2>
+    <p>Atualize esta página periodicamente para ver os votos dos demais participantes</p>
+    <div>
+        <ion-button *ngIf="atividade"  shape = "round" (click)="acessarEnviar(atividade)">Adicionar pergunta</ion-button>
+        <ion-button *ngIf="!atividade"  shape = "round" (click)="acessarEnviar()">Adicionar pergunta</ion-button>
+    </div>
+</ion-card>
+
+<ng-container *ngIf="estado == enumEstado.Sucesso">
+  <ion-card text-wrap *ngFor="let pergunta of lista">
+      <ion-item detail="false" lines="none" class="ion-margin-top" >
+        {{pergunta.pergunta}}
+      </ion-item>
+
+      <ion-item  detail="false" class="esquerda" lines="none">
+          <b>{{pergunta.nome}}</b>
+      </ion-item>
+
+      <ion-row class="ion-no-margin">
+          <ion-col class="esquerda">
+              <div *ngIf="pergunta.id_participante == id_user">
+                  <p style="font-size:10px"><i>Você não pode curtir suas próprias perguntas</i></p>
+              </div>
+          </ion-col>
+
+          <ion-col class="direita">
+              <div>
+                  <ion-button  icon-start fill = "clear" small (click)="enviarVoto(pergunta)" [disabled]="pergunta.id_participante == id_user" class="direita {{pergunta.votou == 1 ? 'votou' : ''}} {{pergunta.votou == 0 ? 'naoVotou' : ''}}">
+                      <ion-icon name="thumbs-up"></ion-icon>
+                      <div>{{pergunta.qtd_votos}} Likes</div>
+                  </ion-button>
+              </div>
+          </ion-col>
+      </ion-row>
+  </ion-card>
+
+  <ion-card *ngIf="lista.length == 0">
+    <ion-card-content text-center>
+        <p>Nenhuma pergunta encontrada.</p>
+    </ion-card-content>
+</ion-card>
+</ng-container>
+
+<ion-card padding *ngIf="estado != enumEstado.Sucesso">
+<ion-item *ngIf="estado == enumEstado.Carregando">
+    <ion-spinner item-start></ion-spinner>
+    <p>Carregando perguntas...</p>
+</ion-item>
+<ion-card-content text-center *ngIf="estado == enumEstado.Falha">
+    <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
+</ion-card-content>
+<ion-card-content *ngIf="estado == enumEstado.Falha">
+    <h2 style="text-align:center">Não foi possível carregar as perguntas.</h2>
+    <p style="text-align:justify">Verifique sua conexão e tente novamente mais tarde.</p>
+    <p style="text-align:justify">Você pode puxar a página para baixo para tentar recarregar a lista das perguntas.</p>
+</ion-card-content>
+</ion-card>
+
+</ion-content>

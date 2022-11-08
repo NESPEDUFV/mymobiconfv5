@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Notícias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content  [scrollEvents]="true"  bg auto-hide>
+
+  <ion-refresher (ionRefresh)="carregar($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card padding *ngIf="estado != enumEstado.Sucesso">
+    <ion-item *ngIf="estado == enumEstado.Carregando">
+        <ion-spinner item-start></ion-spinner>
+        <p>Carregando notícias...</p>
+    </ion-item>
+    <ion-card-content text-center *ngIf="estado == enumEstado.Falha">
+        <ion-icon name="warning" style="font-size:7vh;"></ion-icon>
+    </ion-card-content>
+    <ion-card-content *ngIf="estado == enumEstado.Falha">
+        <h2>Não foi possível carregar as notícias.</h2>
+        <p>Verifique sua conexão e tente novamente mais tarde.</p>
+        <p>Você pode puxar a página para baixo para tentar recarregar as notícias.</p>
+    </ion-card-content>
+</ion-card>
+
+<ng-container *ngIf="estado == enumEstado.Sucesso">
+  <ion-card text-wrap *ngFor="let noticia of lista">
+      <button ion-item (click)="acessarNoticia(noticia)" detail-none>
+          <h2>{{noticia.titulo}}</h2>
+          <p>{{noticia.hora |  date: 'dd/MM/yyyy' }}</p>
+          <ion-avatar item-right class="seta">
+              <ion-icon name="arrow-dropright"></ion-icon>
+          </ion-avatar>
+      </button>
+      <ion-card-content>
+          <p class="corpo-noticia">{{noticia.corpo}}</p>
+      </ion-card-content>
+  </ion-card>
+
+
+  <ion-card *ngIf="lista.length == 0">
+      <ion-card-content text-center>
+          <p>Nenhuma notícia encontrada.</p>
+      </ion-card-content>
+  </ion-card>
+</ng-container>
+
+<!-- <ion-fab #fabAgenda right bottom [hidden] = "!checkForScrollbar()" >
+  <button ion-fab color="primary" (click)="scrollToBottom()">
+      <ion-icon name="arrow-down"></ion-icon>
+  </button>
+</ion-fab> -->
+
+</ion-content>

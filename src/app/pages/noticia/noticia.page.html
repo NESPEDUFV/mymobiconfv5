@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{noticia.titulo}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content bg>
+<ion-card>
+  <ion-card-content>
+    <ion-card-title>
+        {{noticia.titulo}}
+    </ion-card-title>
+    <p *ngIf="noticia.hora" class="hora">
+        <ion-icon name="time"></ion-icon> &nbsp;
+        {{noticia.hora | datas:{tipo:'completa'} }}, {{noticia.hora | datas:{tipo:'horario'} }}
+    </p>
+    <br>
+    <p>{{noticia.corpo}}</p>
+  </ion-card-content>
+</ion-card>
+
+</ion-content>

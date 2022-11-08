@@ -34,12 +34,6 @@ export class EventosPage implements OnInit {
     * @param evento
     */
 
-/*
-    parametro = {
-      eventoEscolhido:'teste' ,
-      desinscrever: false
-    }
-    */
 
   constructor(
 
@@ -91,7 +85,7 @@ export class EventosPage implements OnInit {
   /**
      * Faz a filtragem da lista a partir do input de busca
      */
-   buscaInput() {
+   buscaInput(event?:any) {
     this.listaFiltrada = this.listaEventos;
     if (this.estadoLista == EstadoLista.Sucesso && this.filtroBusca && this.filtroBusca.trim() != '') {
         this.listaFiltrada = this.listaFiltrada.filter((ev) => {
@@ -109,12 +103,11 @@ export class EventosPage implements OnInit {
      */
  acessarEvento(evento: EventoInterface) {
  // console.log("Gamification "+evento.gamificacao)
- // this.parametro.eventoEscolhido = evento;
- // this.parametro.desinscrever = this.evento.existeDados() && evento.ID == this.evento.getID();
-
+  console.log("acessar evento\n");
   let navigationExtras: NavigationExtras = {
   state: {
-     eventoEscolhido: evento,
+    eventoEscolhido: evento,
+    desinscrever: this.evento.existeDados() && evento.ID == this.evento.getID()
    }
   }
 

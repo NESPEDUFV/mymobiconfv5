@@ -1,0 +1,45 @@
+<!-- Página de Questionário -->
+
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>Questionário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content bg auto-hide>
+  <ion-card>
+      <ion-card-content>
+          <ion-card-title>{{(questionario) ? questionario.titulo : "-"}}</ion-card-title>
+          <h2 *ngIf="questionario && questionario.ativID">
+              <ion-icon name="calendar"></ion-icon> Atividade:
+              <br><strong>{{questionario.ativTitulo}}</strong>
+          </h2>
+          <h2 *ngIf="questionario && !questionario.ativID">
+              <strong>Questionário Geral</strong>
+          </h2>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let p of perguntas">
+      <ion-card-header text-wrap>
+          {{p.pergunta}}
+      </ion-card-header>
+      <ion-list margin radio-group [(ngModel)]="respostas[p.ID]">
+          <ion-item *ngFor="let r of p.respostas" text-wrap>
+              <ion-label>{{r.resposta}}</ion-label>
+              <ion-radio [value]="r.ID" (click)="responder(p.ID)"></ion-radio>
+          </ion-item>
+      </ion-list>
+  </ion-card>
+
+  <ion-fab #fabEnvio right bottom>
+      <button ion-fab color="primary" [disabled]="!tudoRespondido" (click)="enviarRespostas()">
+          <ion-icon name="send"></ion-icon>
+      </button>
+  </ion-fab>
+
+  <button ion-button class="button-u-card" (click)="enviarRespostas()" [disabled]="!tudoRespondido">
+      <ion-icon name="send"></ion-icon>&nbsp;&nbsp;Enviar
+  </button>
+
+</ion-content>

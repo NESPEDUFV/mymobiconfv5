@@ -1,0 +1,151 @@
+<!-- Informações da Atividade -->
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>{{(atividade)?atividade.titulo:"-"}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content bg auto-hide>
+  <ion-card>
+      <ion-card-content>
+          <ion-card-title>{{(atividade)?atividade.titulo:"-"}}</ion-card-title>
+          <p *ngIf="atividade && atividade.tema && atividade.tema.trim() != ''">
+              <strong>Tema:</strong> {{atividade.tema}}
+          </p>
+          <ion-list>
+              <!-- Data -->
+              <ion-item class="ion-text-wrap">
+                  <ion-icon name="today" item-start></ion-icon>
+                  <p>{{dia}}</p>
+              </ion-item>
+              <!-- Horário -->
+              <ion-item class="ion-text-wrap">
+                  <ion-icon name="time-outline" item-start></ion-icon>
+                  <p>De
+                      <strong>{{horaFormatada.inicio}}</strong> às
+                      <strong>{{horaFormatada.fim}}</strong>
+                  </p>
+              </ion-item>
+              <!-- Local -->
+              <ion-item class="ion-text-wrap" *ngIf="isOnline != 1">
+                  <ion-icon name="location" item-start></ion-icon>
+                  <p>Local:</p>
+                  <p>{{(atividade)?atividade.local:"-"}}</p>
+              </ion-item>
+              <!-- Link -->
+              <ion-item class="ion-text-wrap" *ngIf="isOnline == 1">
+                  <ion-icon name="phone-portrait" item-start></ion-icon>
+                  <p>Link:</p>
+                  <p><a [href]="atividade.link_principal">{{(atividade)?atividade.link_principal:"-"}}</a></p>
+              </ion-item>
+              <!-- Organizador -->
+              <ion-item class="ion-text-wrap" *ngIf="atividade && atividade.responsavel && atividade.responsavel.trim() != ''">
+                  <ion-icon name="person" item-start></ion-icon>
+                  <p>Organizador:</p>
+                  <p>{{atividade.responsavel}}</p>
+              </ion-item>
+          </ion-list>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="atividade && atividade.descricao && atividade.descricao.trim() != ''">
+      <ion-card-header>
+          <strong>Descrição</strong>
+      </ion-card-header>
+      <ion-card-content>
+          <p class="ion-margin-vertical ion-text-justify">{{atividade.descricao}}</p>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="isOnline != 1">
+      <ion-item lines="none">
+          <ion-icon name="thermometer-outline" id="conf-termico" ></ion-icon>
+          <h2>Avalie o conforto térmico</h2>
+      </ion-item>
+      <ion-item lines="none">
+          <ion-range class="av-conf term" [(ngModel)]="avConfTermico" (ionChange)="mudouAvConf(tipoNota.Term)"
+              (ionBlur)="mudouAvConf(tipoNota.Term)" [attr.val]="'v'+avConfTermico" snaps  min="1" max="5"
+              [disabled]="!estaNaHora"
+            >
+              <ion-icon class="esq" slot="start" name="snow"></ion-icon>
+              <ion-icon class="dir" slot="end" name="sunny"></ion-icon>
+          </ion-range>
+      </ion-item>
+      <ion-card-content class="ion-text-center">
+          <p>"{{msgConfTermico[avConfTermico - 1]}}"</p>
+          <p id="avisoHora" [hidden]="estaNaHora">Esta opção fica disponível apenas durante o horário da atividade.</p>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="isOnline != 1">
+      <ion-item lines="none">
+          <ion-icon name="megaphone" id="conf-sonoro" ></ion-icon>
+          <h2>Avalie o conforto sonoro</h2>
+      </ion-item>
+      <ion-item lines="none">
+          <ion-range class="av-conf som" [(ngModel)]="avConfSonoro" (ionChange)="mudouAvConf(tipoNota.Som)" (ionBlur)="mudouAvConf(tipoNota.Som)"
+              [attr.val]="'v'+avConfSonoro"  min="1" max="5" snaps [disabled]="!estaNaHora">
+              <ion-icon class="esq" slot="start" name="volume-low"></ion-icon>
+              <ion-icon class="dir" slot="end" name="volume-medium"></ion-icon>
+          </ion-range>
+      </ion-item>
+      <ion-card-content class="ion-text-center">
+          <p>"{{msgConfSonoro[avConfSonoro - 1]}}"</p>
+          <p id="avisoHora" [hidden]="estaNaHora">Esta opção fica disponível apenas durante o horário da atividade.</p>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="isOnline == 1">
+      <ion-item lines="none">
+          <ion-icon name="camera" id="conf-sonoro" ></ion-icon>
+          <h2>Avalie a qualidade do vídeo</h2>
+      </ion-item>
+      <ion-item lines="none">
+          <ion-range class="av-conf som" [(ngModel)]="avConfTermico" (ionChange)="mudouAvConf(tipoNota.Term)"
+              (ionBlur)="mudouAvConf(tipoNota.Term)" [attr.val]="'v'+avConfTermico" debounce="100" min="1" max="5"
+              snaps="true" [disabled]="!estaNaHora">
+              <ion-icon class="esq" slot="start" name="camera-reverse"></ion-icon>
+              <ion-icon class="dir" slot="end" name="camera"></ion-icon>
+          </ion-range>
+      </ion-item>
+      <ion-card-content class="ion-text-center">
+          <p>"{{msgQualVideo[avConfTermico - 1]}}"</p>
+          <p id="avisoHora" [hidden]="estaNaHora">Esta opção fica disponível apenas durante o horário da atividade.</p>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="isOnline == 1">
+      <ion-item lines="none">
+          <ion-icon name="megaphone" id="conf-sonoro" ></ion-icon>
+          <h2>Avalie a qualidade do áudio</h2>
+      </ion-item>
+      <ion-item lines="none">
+          <ion-range class="av-conf som" [(ngModel)]="avConfSonoro" (ionChange)="mudouAvConf(tipoNota.Som)" (ionBlur)="mudouAvConf(tipoNota.Som)"
+              [attr.val]="'v'+avConfSonoro" debounce="100" min="1" max="5" snaps="true" [disabled]="!estaNaHora">
+              <ion-icon class="esq" slot="start" name="volume-low"></ion-icon>
+              <ion-icon class="dir" slot="end" name="volume-medium"></ion-icon>
+          </ion-range>
+      </ion-item>
+      <ion-card-content class="ion-text-center">
+          <p>"{{msgQualAudio[avConfSonoro - 1]}}"</p>
+          <p id="avisoHora" [hidden]="estaNaHora">Esta opção fica disponível apenas durante o horário da atividade.</p>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+      <ion-item lines="none">
+          <ion-icon name="star-half" id="av-estrela" ></ion-icon>
+          <h2>Avalie esta atividade</h2>
+      </ion-item>
+      <avaliacao [ativar]="comecou" [nota]="avAtividade" (notaChange)="mudouAvAtiv($event)"></avaliacao>
+      <ion-card-content text-center [hidden]="comecou">
+          <p id="avisoHora">Esta opção estará disponível após o início da atividade.</p>
+      </ion-card-content>
+  </ion-card>
+
+
+  <ion-button *ngIf="atividade" class="button-u-card" [color]="(estaNaAgenda)?'danger':'primary'"  (click)="adicionarAgenda()" expand="block">{{(estaNaAgenda)?"Remover da agenda":"Adicionar à agenda"}}</ion-button>
+
+
+
+</ion-content>

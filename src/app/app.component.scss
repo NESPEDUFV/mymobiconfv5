@@ -91,3 +91,9 @@ ion-refresher ion-refresher-content div div {
 .has-refresher  .scroll-content {
   border-top: 0 !important;
 }
+
+ion-list {
+  position: absolute;
+  top: 8%;
+  width: 100%;
+}

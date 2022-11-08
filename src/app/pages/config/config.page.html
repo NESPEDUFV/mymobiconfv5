@@ -16,9 +16,9 @@
           <ion-label>Conflito de atividades</ion-label>
           <ion-toggle [(ngModel)]="conflito" (ionChange)="mudarConfig(cfg.PermitirConflito,conflito)"></ion-toggle>
       </ion-item>
-      <button ion-item (click)="ativarTutoriais()">Reativar tutoriais</button>
+      <ion-item lines="none" (click)="ativarTutoriais()">Reativar tutoriais</ion-item>
   </ion-list>
 
-  <button ion-button block icon-left (click)="logout()">
-      <ion-icon name="log-out"></ion-icon> Sair</button>
+  <ion-button  expand="block" (click)="logout()">
+      <ion-icon slot="start" name="log-out"></ion-icon> Sair</ion-button>
 </ion-content>

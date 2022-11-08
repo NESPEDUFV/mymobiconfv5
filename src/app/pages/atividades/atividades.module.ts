@@ -19,7 +19,8 @@ import { AtividadesPage } from './atividades.page';
     IonicModule,
     AtividadesPageRoutingModule,
     SharedModule,
-    PipesModule
+    PipesModule,
+
   ],
   declarations: [AtividadesPage]
 })

@@ -83,9 +83,6 @@ export class OpcoesEnviarPerguntasPage implements OnInit {
  */
 acessarRanking(ativ?: AtividadeInterface) {
     this.voltando = true;
-    // console.log('listapordia', this.listaPorDia);
-    // console.log('listaFiltrada: ', this.listaFiltrada);
-    // console.log('ativ tem? ', ativ);
     if(ativ){
 
       let navigationExtras: NavigationExtras = {
@@ -109,30 +106,30 @@ carregar() {
     let aoCarregar = () => {
         this.abaSelecionada = Aba.Programacao;
         this.mudouAba();
-        //this.mudouDia();
+        this.mudouDia();
         this.estado = EstadoLista.Sucesso;
-        /*
         setTimeout(() => {
-            this.slidesDias.slideTo(this.indexDiaSlides(), 500);
+          this.slidesDias.slideTo(this.indexDiaSlides(), 500);
 
-        }, 200);
-        */
-    }
 
-    this.atividades.disponivel(aoCarregar, () => {
-        this.atividades.buscar(this.evento.getID(), aoCarregar, () => {
-            this.listaPorDia = [];
-            this.listaFiltrada = [];
-            this.estado = EstadoLista.Falha;
-        });
-    });
+
+      }, 200);
+  }
+
+  this.atividades.disponivel(aoCarregar, () => {
+      this.atividades.buscar(this.evento.getID(), aoCarregar, () => {
+          this.listaPorDia = [];
+          this.listaFiltrada = [];
+          this.estado = EstadoLista.Falha;
+      });
+  });
 }
 
-/**
- * Procura pelo dia mais próximo do dia corrente e retorna o índice dos slides correspondente a esse dia
- * @returns Índice dos slides mais próximo do dia corrente
- */
-indexDiaSlides(): number {
+  /**
+   * Procura pelo dia mais próximo do dia corrente e retorna o índice dos slides correspondente a esse dia
+   * @returns Índice dos slides mais próximo do dia corrente
+   */
+   indexDiaSlides(): number {
     let hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     let index = 0;
@@ -143,14 +140,13 @@ indexDiaSlides(): number {
         else
             break;
 
-    console.log("slide dias", this.slidesDias);
-
-    /*
-    if (index ==  this.slidesDias.length())
+    let size;
+    this.slidesDias.length().then(number =>{
+      size = number
+    });
+    if (index == size)
         index--;
 
-*/
-    this.hoje = DatasUtil.compacta(hoje, true);;
     return index;
 }
 
@@ -162,28 +158,43 @@ mudouAba() {
     this.copiarLista();
 }
 
-/**
- * Quando o usuário muda o dia, atualiza o título do dia selecionado
+    /**
+   * Quando o usuário muda o dia, atualiza o título do dia selecionado
+   */
+     mudouDia() {
+      console.log('dia selecionado: ', this.diaSelecionado);
+      let iDia;
+      let Lenght;
+      this.slidesDias.length().then(
+        (lenght) => {
+          Lenght = lenght;
+        }
+      );
+      this.slidesDias.getActiveIndex().then(
+        (index) => {
+          iDia = index;
+          if (iDia < 0)
+            iDia = 0;
+          else if (iDia >= Lenght)
+              iDia = Lenght - 1;
+          if (this.listaPorDia.length > 0)
+              this.diaSelecionado = DatasUtil.compacta(this.listaPorDia[iDia].data, true);
+          else
+              this.diaSelecionado = "-";
+        }
+      );
 
-mudouDia() {
-    let iDia = this.slidesDias.getActiveIndex();
-    if (iDia < 0)
-        iDia = 0;
-    else if (iDia >= this.slidesDias.length())
-        iDia = this.slidesDias.length() - 1;
-    if (this.listaPorDia.length > 0)
-        this.diaSelecionado = DatasUtil.compacta(this.listaPorDia[iDia].data, true);
-    else
-        this.diaSelecionado = "-";
-}
+  }
 
-/**
- * Copia a lista original para a `listaFiltrada`
- */
-copiarLista() {
+  /**
+   * Copia a lista original para a `listaFiltrada`
+   */
+   copiarLista() {
     this.listaFiltrada = [];
-    for (let dia of this.listaPorDia)
-        this.listaFiltrada.push({ data: dia.data, ativ: dia.ativ });
+    for (let dia of this.listaPorDia){
+      this.listaFiltrada.push({ data: dia.data, ativ: dia.ativ });
+    }
+
 }
 
 

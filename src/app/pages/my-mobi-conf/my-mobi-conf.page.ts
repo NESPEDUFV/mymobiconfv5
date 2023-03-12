@@ -69,7 +69,8 @@ export class MyMobiConfPage implements OnInit {
           { id: "opinar", label: "Opinar", pagina: 'opinar'  },
           { id: "parceiros", label: "Parceiros", pagina: 'parceiros'  },
           { id: "noticias", label: "Notícias", pagina:'noticias'},
-          { id: "social", label: "Social", pagina: 'social'}
+          { id: "social", label: "Social", pagina: 'social'},
+          {id: "album", label:"Album de figurinhas",pagina:'album'}
       ];
 
    /** @ignore */

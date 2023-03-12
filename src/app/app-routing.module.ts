@@ -116,7 +116,19 @@ const routes: Routes = [
   {
     path: 'grupo',
     loadChildren: () => import('./pages/game-pages/grupo/grupo.module').then( m => m.GrupoPageModule)
+  },  {
+    path: 'album',
+    loadChildren: () => import('./pages/album/album.module').then( m => m.AlbumPageModule)
   },
+  {
+    path: 'fotos',
+    loadChildren: () => import('./pages/fotos/fotos.module').then( m => m.FotosPageModule)
+  },
+  {
+    path: 'album-evento',
+    loadChildren: () => import('./pages/album-evento/album-evento.module').then( m => m.AlbumEventoPageModule)
+  },
+
 
 
 ];

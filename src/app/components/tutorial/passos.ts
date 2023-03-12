@@ -37,5 +37,9 @@ export const PassosMsgs: string[][] = [
   ], [
       "Aqui você escolhe qual filtro do ranking deseja aplicar - o ranking pode ser de usuários, atividades ou grupos.",
       "Estas opções também filtram o ranking - Observação: alterar o primeiro filtro, presente na linha acima, também altera as opções deste quadro."
+  ], [
+    "Bem vindo ao nosso album de figurinhas, aqui você pode adicionar fotos do evento que está participando",
+    "Aqui você pode acessar a camera e tirar fotos durante a duração do evento e a adicionar",
+    "Aqui você pode  visualizar os albuns do evento, Ah lembrando que o album geral só fica disponivel ao final do evento, te aguardamos!!"
   ]
 ];

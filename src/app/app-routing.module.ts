@@ -101,6 +101,24 @@ const routes: Routes = [
     path: 'atividade-info',
     loadChildren: () => import('./pages/atividade-info/atividade-info.module').then( m => m.AtividadeInfoPageModule)
   },
+  {
+    path: 'perfil-game',
+    loadChildren: () => import('./pages/game-pages/perfil-game/perfil-game.module').then( m => m.PerfilGamePageModule)
+  },
+  {
+    path: 'ranking-page',
+    loadChildren: () => import('./pages/game-pages/ranking-page/ranking-page.module').then( m => m.RankingPagePageModule)
+  },
+  {
+    path: 'atividade-game',
+    loadChildren: () => import('./pages/game-pages/atividade-game/atividade-game.module').then( m => m.AtividadeGamePageModule)
+  },
+  {
+    path: 'grupo',
+    loadChildren: () => import('./pages/game-pages/grupo/grupo.module').then( m => m.GrupoPageModule)
+  },
+
+
 ];
 
 @NgModule({

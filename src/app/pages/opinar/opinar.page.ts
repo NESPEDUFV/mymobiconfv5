@@ -151,13 +151,9 @@ export class OpinarPage implements OnInit {
    * Ao entrar na página, chama `atualizarLista` e vai até o fim da página
    */
   ionViewWillEnter() {
-    console.log('will enter', this.passos);
       this.atualizarLista();
       this.scrollToBottom();
-      console.log('config',!this.config.tutorialFoiVisto(PassosTutorial.Opinioes) );
-      console.log('passos opnioes', PassosTutorial.Opinioes);
       if (!this.config.tutorialFoiVisto(PassosTutorial.Opinioes)) {
-        console.log('oooooooooooooiiiiiiii');
           this.passos[0].el = this.tutCampo;
           if(this.participaGame){
               this.passos[1].el = this.tutAnonimo;
@@ -165,7 +161,7 @@ export class OpinarPage implements OnInit {
           }
           this.ativarTut = true;
       }
-      console.log('will enter', this.passos);
+
   }
 
   mostraTextoHashtags() {

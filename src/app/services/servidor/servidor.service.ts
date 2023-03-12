@@ -12,6 +12,10 @@ import { ServNoticias } from './noticias.service';
 import { ServAtividades } from './atividades.service';
 import { ServQuestionarios } from './questionario.service';
 import { ServOpnioes } from './serv-opnioes.service';
+import { ServConfiguracoesGame } from '../game/servidor/configuracao.service';
+import { ServParticipanteGame } from '../game/servidor/participante.service';
+import { ServGrupoGame } from '../game/servidor/grupo.service';
+import { ServRankingGame } from '../game/servidor/ranking.service';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +58,11 @@ export class ServidorService {
   readonly questionarios: ServQuestionarios;
 
 
+  //gamefication samuel
+  readonly game_participante: ServParticipanteGame;
+  readonly game_configuracao: ServConfiguracoesGame;
+  readonly game_grupo: ServGrupoGame;
+  readonly game_ranking: ServRankingGame;
 
 
   constructor(http: HttpClient) {
@@ -68,6 +77,15 @@ export class ServidorService {
     this.noticias  = new ServNoticias(http, this.url);
     this.perguntas = new ServPerguntas(http, this.url);
     this.votos = new ServVotos(http, this.url);
+
+
+		//gamefication samuel
+    this.game_participante = new ServParticipanteGame(http, this.url, this.key);
+    this.game_grupo = new ServGrupoGame(http, this.url, this.key);
+    this.game_grupo = new ServGrupoGame(http, this.url, this.key);
+    this.game_ranking = new ServRankingGame(http, this.url, this.key);
+    // this.game_atividade = new ServAtividadeGame(http, this.url, this.key);
+    this.game_configuracao = new ServConfiguracoesGame(http, this.url, this.key);
 
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import { from, Observable } from 'rxjs';
 
 /**
  * Gerencia os pedidos de carregar e de salvar do armazenamento local,
@@ -38,6 +39,13 @@ export class ArmazenamentoService {
     get(chave: string) {
         return this.storage.get(chave);
     }
+
+    public setObservable(chave: string, valor: any): Observable<void> {
+      return from(new Promise<void>((resolve) => {
+          this._storage.set(chave, valor);
+          resolve();
+      }));
+  }
 
     /**
      * Deleta o valor associado a uma chave

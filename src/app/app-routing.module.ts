@@ -128,6 +128,10 @@ const routes: Routes = [
     path: 'album-evento',
     loadChildren: () => import('./pages/album-evento/album-evento.module').then( m => m.AlbumEventoPageModule)
   },
+  {
+    path: 'minhas-fotos',
+    loadChildren: () => import('./pages/minhas-fotos/minhas-fotos.module').then( m => m.MinhasFotosPageModule)
+  },
 
 
 

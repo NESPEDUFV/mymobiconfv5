@@ -1,3 +1,4 @@
+import { MinhasFotosPage } from './../minhas-fotos/minhas-fotos.page';
 import { AlbumEventoPage } from './../album-evento/album-evento.page';
 import { Router } from '@angular/router';
 import { FotosPage } from './../fotos/fotos.page';
@@ -12,7 +13,8 @@ export class AlbumPage implements OnInit {
 
   botoes: { id: string, label: string, pagina: any }[] = [
     { id: "camera", label: "Particpe do álbum", pagina: FotosPage },
-    { id: "visualizar-album", label: "Visualizar Álbum", pagina: AlbumEventoPage }
+    { id: "visualizar-album", label: "Visualizar Álbum", pagina: AlbumEventoPage },
+    { id: "minhas-fotos", label: "Minhas figurinhas", pagina: MinhasFotosPage}
   ];
   constructor(private router: Router) { }
 

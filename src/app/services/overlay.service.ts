@@ -52,6 +52,7 @@ export class OverlayService {
     }
 
 
+
     async presentAlertConfirm(header:string, message: string, buttons:string, callback:any) {
       const alert = await this.alert.create({
 
@@ -67,6 +68,20 @@ export class OverlayService {
         ],
       });
 
+      await alert.present();
+    }
+
+    async presentAlertWithMultipleHandlers(header: string, subheader: string, buttons: Array<{text: string, handler?: () => void}>) {
+      const alert = await this.alert.create({
+        header,
+        subHeader: subheader,
+        buttons: buttons.map(button => {
+          return {
+            text: button.text,
+            handler: button.handler ? button.handler : () => {}
+          };
+        })
+      });
       await alert.present();
     }
 

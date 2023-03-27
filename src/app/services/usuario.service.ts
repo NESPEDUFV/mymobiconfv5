@@ -28,7 +28,10 @@ export class UsuarioService {
   constructor(private servidor: ServidorService, private storage: ArmazenamentoService) { }
   getID(): string { return this.dados.ID; }
   getNome(): string { return this.dados.nome; }
-  getFotoURL(): string { return this.fotoURL; }
+  getFotoURL(): string {
+    console.log('foto', this.fotoURL);
+     return this.fotoURL;
+  }
 
    /**
      * Salva os dados do usuário no armazenamento local
@@ -81,6 +84,7 @@ export class UsuarioService {
      * @returns Se há um URL de foto
      */
     existeFotoURL(): boolean {
+      console.log('existe? ', this.fotoURL != "" && this.fotoURL != null)
         return this.fotoURL != "" && this.fotoURL != null;
     }
 

@@ -12,11 +12,28 @@
   <h5 id="data">{{data | date:'dd/MM/yyyy'}}</h5>
   <ion-card #game>
     <ion-item>
+      <ion-avatar>
+          <img class="avatar-img" [src]="(usuario.existeFotoURL()) ? usuario.getFotoURL() : 'assets/img/icon-user-default.png'">
+      </ion-avatar>
+        <div class="container-data-perfil">
+          <h2 class="mb-0">{{(usuario.existeDados())?usuario.getNome():"-"}}</h2>
+          <p class="m-0">Evento:</p>
+          <div class="nome-evento"> {{(evento.existeDados())?evento.getNome():"-"}}</div>
+        </div>
 
 
 
-    </ion-item>
-</ion-card>
+<!--Gamification-->
+      <div *ngIf="existeGamification">
+          <img (click)="mostraBotaoJogo()" src="assets/img/game/botoes/game.png" class="botaoGame {{participaGame ? '':'botaoGameDestaque'}}" />
+          <img (click)="irParaPerfil()" *ngIf="botaoPerfil" src="assets/img/game/botoes/btn_perfil.png" class="botaoPerfil"/>
+          <img (click)="irParaRanking()" *ngIf="botaoPerfil" src="assets/img/game/botoes/ranking.png" class="botaoCenario"/>
+      </div>
+      <!--/Gamification-->
+
+
+  </ion-item>
+  </ion-card>
   <ion-card>
     <a class="botao-quadrado" *ngFor="let b of botoes">
         <div id="container">

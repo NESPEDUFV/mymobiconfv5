@@ -1,0 +1,653 @@
+  <!-- Título e barra de navegação -->
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+      <ion-title>Ranking</ion-title>
+  </ion-toolbar>
+
+
+<ion-content bg class="bg">
+
+  <ion-refresher slot="fixed" (ionRefresh)="carregar($event)">
+      <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card padding *ngIf="escondeuRanking != 1 || status == 1">
+      <div *ngIf="status == 1">
+          <p style="text-align:center"><b>A participação na gamificação foi encerrada</b></p>
+          <br>
+      </div>
+
+      <div #tutTabela1 class="menu">
+          <button (click)="mudaOpcao(1)" class="botaoMenu {{opcao == 1 ? 'botaoSelecionado' : ''}}">USUÁRIOS</button>
+          <b class="barra">|</b>
+          <button (click)="mudaOpcao(2)" class="botaoMenu {{opcao == 2 ? 'botaoSelecionado' : ''}}">ATIVIDADES</button>
+          <b class="barra">|</b>
+          <button (click)="mudaOpcao(3)" class="botaoMenu {{opcao == 3 ? 'botaoSelecionado' : ''}}">GRUPOS</button>
+      </div>
+
+      <div #tutTabela2 *ngIf="opcao == 1" class="subMenu">
+          <button (click)="mudaSubOpcao(1)" class="botaoSubMenu centralizarDoisBotoes {{subOpcao == 1 ? 'botaoSelecionado' : ''}}">Pontos</button>
+          <b class="barraSubMenu" style="text-align:center">|</b>
+          <!-- <button (click)="mudaSubOpcao(2)"
+              class="botaoSubMenu {{subOpcao == 2 ? 'botaoSelecionado' : ''}}">Avaliação</button> <b
+              class="barraSubMenu">|</b>-->
+          <button (click)="mudaSubOpcao(3)" class="botaoSubMenu centralizarDoisBotoes {{subOpcao == 3 ? 'botaoSelecionado' : ''}}">Opiniões</button>
+      </div>
+
+      <div #tutTabela2 *ngIf="opcao == 2" class="subMenu">
+          <button (click)="mudaSubOpcao(1)"
+              class="botaoSubMenu centralizarDoisBotoes {{subOpcao == 1 ? 'botaoSelecionado' : ''}}">Avaliação</button>
+          <b class="barraSubMenu">|</b>
+          <button (click)="mudaSubOpcao(2)"
+              class="botaoSubMenu centralizarDoisBotoes {{subOpcao == 2 ? 'botaoSelecionado' : ''}}">Comentários</button>
+      </div>
+
+      <div #tutTabela2 *ngIf="opcao == 3" class="subMenu">
+          <button (click)="mudaSubOpcao(1)"
+              class="botaoSubMenu centralizarTresBotoes {{subOpcao == 1 ? 'botaoSelecionado' : ''}}">Pontos</button>
+          <b class="barraSubMenu">|</b>
+          <button (click)="mudaSubOpcao(2)"
+              class="botaoSubMenu centralizarTresBotoes {{subOpcao == 2 ? 'botaoSelecionado' : ''}}">Membros</button>
+          <b class="barraSubMenu">|</b>
+          <!--<button (click)="mudaSubOpcao(3)"
+              class="botaoSubMenu {{subOpcao == 3 ? 'botaoSelecionado' : ''}}">Avaliação</button><b
+              class="barraSubMenu">|</b>-->
+          <button (click)="mudaSubOpcao(4)"
+              class="botaoSubMenu centralizarTresBotoes {{subOpcao == 4 ? 'botaoSelecionado' : ''}}">Comentários</button>
+      </div>
+
+      <div *ngIf="dadosCarregados">
+
+          <!--Pontos Usuário-->
+          <div *ngIf="opcao == 1 && subOpcao == 1">
+              <ion-grid>
+                  <ion-row>
+                      <ion-col size="2">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+                      <ion-col size="1">
+
+                      </ion-col>
+
+                      <ion-col size="3">
+                          <div>
+                              <h2><b>Nome</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="3">
+                          <h2><b>Nível</b></h2>
+                      </ion-col>
+
+                      <ion-col size="3">
+                          <h2><b>Pontos</b></h2>
+                      </ion-col>
+
+                  </ion-row>
+              </ion-grid>
+
+              <ion-list *ngFor="let user of listaUsuarios">
+                  <ion-grid>
+                      <ion-row class="ion-align-items-start">
+                          <ion-col size="1">
+                              <div *ngIf="(user.posicao) >= 4">
+                                  {{user.posicao}}
+                              </div>
+
+                              <div *ngIf="(user.posicao) < 4">
+                                  <strong>{{user.posicao}}</strong>
+                              </div>
+
+                          </ion-col>
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/perfil/perfil{{user.img}}.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+
+                              </div>
+                          </ion-col>
+
+                          <ion-col size="5">
+
+                              <h2 class="nome"><a (click)="irParaPerfil(user.id)"><b>{{user.nome}}</b></a></h2>
+
+                          </ion-col>
+
+                          <ion-col size="3">
+                              Nível {{user.nivel}}
+                          </ion-col>
+
+                          <ion-col size="2">
+                              {{user.pontos}}
+                          </ion-col>
+
+                      </ion-row>
+                </ion-grid>
+
+              </ion-list>
+          </div>
+
+          <!--Avaliação Usuário-->
+          <div *ngIf="opcao == 1 && subOpcao == 2">
+              <ion-item>
+                  <ion-row>
+                      <ion-col size="1">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+                      <ion-col size="1">
+
+                      </ion-col>
+
+                      <ion-col size="4">
+                          <div>
+                              <h2><b>Nome</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="6">
+                          <h2><b>Saldo de Avaliações</b></h2>
+                      </ion-col>
+                  </ion-row>
+              </ion-item>
+
+              <ion-list *ngFor="let user of listaUsuarios">
+                  <ion-item>
+                      <ion-row>
+                          <ion-col size="1">
+                              <div *ngIf="(user.posicao) >= 4">
+                                  {{user.posicao}}
+                              </div>
+
+                              <div *ngIf="(user.posicao) < 4">
+                                  <strong>{{user.posicao}}</strong>
+                              </div>
+                          </ion-col>
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/perfil/perfil{{user.img}}.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+                              </div>
+                          </ion-col>
+
+                          <ion-col size="7">
+                              <h2 class="nome"><a (click)="irParaPerfil(user.id)"><b>{{user.nome}}</b></a></h2>
+                          </ion-col>
+
+                          <ion-col size="1">
+                              {{user.positivas}}
+                          </ion-col>
+
+                          <ion-col size="1">
+                              <img src="assets/img/game/botoes/curtir.png" style="width: 100%; height: 80%; " />
+                          </ion-col>
+
+                      </ion-row>
+                  </ion-item>
+
+              </ion-list>
+          </div>
+
+          <!--Opiniões Usuário-->
+          <div *ngIf="opcao == 1 && subOpcao == 3">
+              <ion-item>
+                  <ion-row>
+                      <ion-col size="1">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+                      <ion-col size="1">
+
+                      </ion-col>
+
+                      <ion-col size="5">
+                          <div>
+                              <h2><b>Nome</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="5">
+                          <h2><b>Opiniões Dadas</b></h2>
+                      </ion-col>
+                  </ion-row>
+              </ion-item>
+
+              <ion-list *ngFor="let user of listaUsuarios">
+                  <ion-item>
+                      <ion-row>
+                          <ion-col size="1">
+                              <div *ngIf="(user.posicao) >= 4">
+                                  {{user.posicao}}
+                              </div>
+
+                              <div *ngIf="(user.posicao) < 4">
+                                  <strong>{{user.posicao}}</strong>
+                              </div>
+                          </ion-col>
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/perfil/perfil{{user.img}}.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+                              </div>
+                          </ion-col>
+
+                          <ion-col size="7">
+                              <h2 class="nome"><a (click)="irParaPerfil(user.id)"><b>{{user.nome}}</b></a></h2>
+                          </ion-col>
+
+                          <ion-col size="1">
+                              {{user.opiniao}}
+                          </ion-col>
+
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/conquistas_trofeus/opiniao.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+                              </div>
+                          </ion-col>
+
+
+
+                      </ion-row>
+                  </ion-item>
+
+              </ion-list>
+          </div>
+
+          <!--Avaliação Atividade-->
+          <div *ngIf="opcao == 2 && subOpcao == 1">
+              <ion-item>
+                  <ion-row>
+                      <ion-col size="2">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+
+
+                      <ion-col size="7">
+                          <div>
+                              <h2><b>Atividade</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="3">
+                          <h2><b>Nota</b></h2>
+                      </ion-col>
+
+
+
+                  </ion-row>
+              </ion-item>
+
+              <ion-list *ngFor="let ativ of listaAtividades">
+                  <ion-item>
+                      <ion-row>
+                          <ion-col size="2">
+                              <div *ngIf="(ativ.posicao) >= 4">
+                                  {{ativ.posicao}}
+                              </div>
+
+                              <div *ngIf="(ativ.posicao) < 4">
+                                  <strong>{{ativ.posicao}}</strong>
+                              </div>
+
+                          </ion-col>
+
+
+                          <ion-col size="7">
+
+                              <h2 class="nome"><a (click)="irParaAtividade(ativ.id)"><b>{{ativ.nome}}</b></a></h2>
+
+                          </ion-col>
+
+                          <ion-col size="1">
+                              {{ativ.avaliacao}}
+                          </ion-col>
+
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/conquistas_trofeus/avaliacao.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;margin-left:5px;" />
+                              </div>
+                          </ion-col>
+
+
+
+                      </ion-row>
+                  </ion-item>
+
+              </ion-list>
+          </div>
+
+          <!--Avaliação Atividade-->
+          <div *ngIf="opcao == 2 && subOpcao == 2">
+              <ion-item>
+                  <ion-row>
+                      <ion-col size="2">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+
+
+                      <ion-col size="5">
+                          <div>
+                              <h2><b>Atividade</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="3">
+                          <h2><b>Comentários</b></h2>
+                      </ion-col>
+
+
+
+                  </ion-row>
+              </ion-item>
+
+              <ion-list *ngFor="let ativ of listaAtividades">
+                  <ion-item>
+                      <ion-row>
+                          <ion-col size="2">
+                              <div *ngIf="(ativ.posicao) >= 4">
+                                  {{ativ.posicao}}
+                              </div>
+
+                              <div *ngIf="(ativ.posicao) < 4">
+                                  <strong>{{ativ.posicao}}</strong>
+                              </div>
+
+                          </ion-col>
+
+
+                          <ion-col size="7">
+
+                              <h2 class="nome"><a (click)="irParaAtividade(ativ.id)"><b>{{ativ.nome}}</b></a></h2>
+
+                          </ion-col>
+
+                          <ion-col size="1">
+                              {{ativ.comentarios}}
+                          </ion-col>
+
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/conquistas_trofeus/opiniao.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+                              </div>
+                          </ion-col>
+
+
+
+                      </ion-row>
+                  </ion-item>
+
+              </ion-list>
+          </div>
+
+
+          <!--Pontos Grupo-->
+          <div *ngIf="opcao == 3 && subOpcao == 1">
+              <ion-item>
+                  <ion-row>
+                      <ion-col size="1">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+                      <ion-col size="1">
+
+                      </ion-col>
+
+                      <ion-col size="7">
+                          <div>
+                              <h2><b>Nome</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="2">
+                          <h2><b>Pontos</b></h2>
+                      </ion-col>
+
+                  </ion-row>
+              </ion-item>
+
+              <ion-list *ngFor="let grupo of listaGrupos">
+                  <ion-item>
+                      <ion-row>
+                          <ion-col size="1">
+                              <div *ngIf="(grupo.posicao) >= 4">
+                                  {{grupo.posicao}}
+                              </div>
+
+                              <div *ngIf="(grupo.posicao) < 4">
+                                  <strong>{{grupo.posicao}}</strong>
+                              </div>
+
+                          </ion-col>
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/grupo/grupo{{grupo.img}}.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+
+                              </div>
+                          </ion-col>
+
+                          <ion-col size="7">
+                              <h2 class="nome"><a (click)="irParaGrupo(grupo.id)"><b>{{grupo.nome}}</b></a></h2>
+                          </ion-col>
+
+                          <ion-col size="2">
+                              {{grupo.pontos}}
+                          </ion-col>
+
+                      </ion-row>
+                  </ion-item>
+
+              </ion-list>
+          </div>
+
+          <!--Membros Grupo-->
+          <div *ngIf="opcao == 3 && subOpcao == 2">
+              <ion-item>
+                  <ion-row>
+                      <ion-col size="1">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+                      <ion-col size="1">
+
+                      </ion-col>
+
+                      <ion-col size="5">
+                          <div>
+                              <h2><b>Nome</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="2">
+                          <h2><b>Qtd Membros</b></h2>
+                      </ion-col>
+
+                  </ion-row>
+              </ion-item>
+
+              <ion-list *ngFor="let grupo of listaGrupos">
+                  <ion-item>
+                      <ion-row>
+                          <ion-col size="1">
+                              <div *ngIf="(grupo.posicao) >= 4">
+                                  {{grupo.posicao}}
+                              </div>
+
+                              <div *ngIf="(grupo.posicao) < 4">
+                                  <strong>{{grupo.posicao}}</strong>
+                              </div>
+
+                          </ion-col>
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/grupo/grupo{{grupo.img}}.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+
+                              </div>
+                          </ion-col>
+
+                          <ion-col size="7">
+                              <h2 class="nome"><a (click)="irParaGrupo(grupo.id)"><b>{{grupo.nome}}</b></a></h2>
+                          </ion-col>
+
+                          <ion-col size="2">
+                              {{grupo.membros}}
+                          </ion-col>
+
+                      </ion-row>
+                  </ion-item>
+
+              </ion-list>
+          </div>
+
+          <!--Avaliação Grupos-->
+          <div *ngIf="opcao == 3 && subOpcao == 3">
+              <ion-item>
+                  <ion-row>
+                      <ion-col size="1">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+                      <ion-col size="1">
+
+                      </ion-col>
+
+                      <ion-col size="4">
+                          <div>
+                              <h2><b>Nome</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="6">
+                          <h2><b>Saldo de Avaliações</b></h2>
+                      </ion-col>
+                  </ion-row>
+              </ion-item>
+
+              <ion-list *ngFor="let grupo of listaGrupos">
+                  <ion-item>
+                      <ion-row>
+                          <ion-col size="1">
+                              <div *ngIf="(grupo.posicao) >= 4">
+                                  {{grupo.posicao}}
+                              </div>
+
+                              <div *ngIf="(grupo.posicao) < 4">
+                                  <strong>{{grupo.posicao}}</strong>
+                              </div>
+                          </ion-col>
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/grupo/grupo{{grupo.img}}.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+                              </div>
+                          </ion-col>
+
+                          <ion-col size="7">
+                              <h2 class="nome"><a (click)="irParaGrupo(grupo.id)"><b>{{grupo.nome}}</b></a></h2>
+                          </ion-col>
+
+                          <ion-col size="1">
+                              {{grupo.positivas}}
+                          </ion-col>
+
+                          <ion-col size="1">
+                              <img src="assets/img/game/botoes/curtir.png" style="width: 100%; height: 80%; " />
+                          </ion-col>
+
+                      </ion-row>
+                  </ion-item>
+
+              </ion-list>
+          </div>
+
+          <!--Comentários Grupo-->
+          <div *ngIf="opcao == 3 && subOpcao == 4">
+              <ion-item>
+                  <ion-row>
+                      <ion-col size="2">
+                          <h2><b>No.</b></h2>
+                      </ion-col>
+
+
+                      <ion-col size="5">
+                          <div>
+                              <h2><b>Nome</b></h2>
+                          </div>
+                      </ion-col>
+
+                      <ion-col size="3">
+                          <h2><b>Comentários</b></h2>
+                      </ion-col>
+
+
+
+                  </ion-row>
+              </ion-item>
+
+              <ion-list *ngFor="let grupo of listaGrupos">
+                  <ion-item>
+                      <ion-row>
+                          <ion-col size="1">
+                              <div *ngIf="(grupo.posicao) >= 4">
+                                  {{grupo.posicao}}
+                              </div>
+
+                              <div *ngIf="(grupo.posicao) < 4">
+                                  <strong>{{grupo.posicao}}</strong>
+                              </div>
+
+                          </ion-col>
+
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/grupo/grupo{{grupo.img}}.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+                              </div>
+                          </ion-col>
+
+                          <ion-col size="7">
+                              <h2 class="nome"><a (click)="irParaGrupo(grupo.id)"><b>{{grupo.nome}}</b></a></h2>
+                          </ion-col>
+
+                          <ion-col size="1">
+                              {{grupo.comentarios}}
+                          </ion-col>
+
+                          <ion-col size="1">
+                              <div>
+                                  <img src="assets/img/game/conquistas_trofeus/opiniao.png"
+                                      style="width: 100%; height: 100%; border-radius: 50%;" />
+                              </div>
+                          </ion-col>
+                      </ion-row>
+                  </ion-item>
+
+              </ion-list>
+          </div>
+
+
+
+          <!--<div style="text-align: center">
+          <button>1</button> <button>2</button> <button>3</button> <button>4</button>
+      </div>-->
+
+      </div>
+
+
+      <ion-item *ngIf="!dadosCarregados">
+          <ion-spinner item-start></ion-spinner>
+          <p>Carregando dados...</p>
+      </ion-item>
+
+  </ion-card>
+
+  <ion-card padding *ngIf="escondeuRanking == 1 && status == 0">
+      <img src="assets/img/ranking-escondido.png">
+  </ion-card>
+
+</ion-content>
+
+
+
+<app-tutorial *ngIf="ativarTut" [steps]="passos" (check)="viuTutorial($event)"></app-tutorial>

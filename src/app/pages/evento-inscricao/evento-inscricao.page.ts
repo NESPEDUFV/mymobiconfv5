@@ -29,6 +29,8 @@ export class EventoInscricaoPage implements OnInit {
   desinscrever: boolean;
   /** Verifica a se o evento possui gamificação */
   gamificacao: number = 0;
+   /** Verifica a se o evento possui album de figurinhas */
+   album_figurinhas: number = 0;
 
 
 
@@ -61,7 +63,7 @@ export class EventoInscricaoPage implements OnInit {
     this.route.queryParams.subscribe(params => {
 
       if(this.router.getCurrentNavigation().extras.state){
-        console.log("has extras");
+
         this.eventoEscolhido = this.router.getCurrentNavigation().extras.state.eventoEscolhido;
         this.desinscrever = this.router.getCurrentNavigation().extras.state.desinscrever;
 
@@ -84,25 +86,23 @@ export class EventoInscricaoPage implements OnInit {
   this.data.inicio = DatasUtil.completa(this.eventoEscolhido.dataInicio);
   this.data.fim = DatasUtil.completa(this.eventoEscolhido.dataFim);
   this.gamificacao = this.eventoEscolhido.gamificacao;
-  console.log("Has gamification: "+ this.eventoEscolhido.gamificacao)
+  this.album_figurinhas = this.eventoEscolhido.album_figurinhas;
+
 }
 
    /**
      * Se inscreve/desinscreve num/de um evento
      */
     inscrever() {
-      console.log("click");
       this.atividades.apagar();
       this.noticias.apagar();
       this.notif.apagar();
       this.parceiros.apagar();
       if (this.desinscrever){
-        console.log("if evento inscrição");
         this.evento.inscrever(null);
       }
 
       else{
-        console.log("else evento inscrição");
         this.evento.inscrever(this.eventoEscolhido, this.usuario.getID(),this.firebase.getIdDispositivo());
 
       }

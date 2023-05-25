@@ -36,6 +36,7 @@ import 'firebase/auth';
      * @param email E-mail do usuário
      */
    email(email: string) {
+    console.log('url: ',this.url + "/App/loginApp.php")
     return this.http.post(this.url + "/App/loginApp.php", { email: email });
 }
 

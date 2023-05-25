@@ -23,7 +23,7 @@ import { ServRankingGame } from '../game/servidor/ranking.service';
 export class ServidorService {
   /** URL do servidor */
   //private url: string = "http://200.131.220.164/scapeteste/versaoteste_php/mymobiconfapp-php/";
-  private url: string = "http://200.131.220.164/scapeteste/master_php/mymobiconfapp-php/";
+  //private url: string = "http://200.131.220.164/scapeteste/master_php/mymobiconfapp-php/";
 
   //private url: string = "http://200.131.220.164/scapeteste/versaoteste_php/mymobiconfapp-php/";
   //private url: string = "http://200.131.220.164/scapeteste/secom2020PHP/mymobiconfapp-php/";
@@ -32,7 +32,7 @@ export class ServidorService {
   //"http://200.131.220.164/scapeteste/mymobiconfphp/"
   //"http://200.131.220.164/scapeteste/mymobiconfweb"
   //"http://192.168.0.4";
-  //"http://127.0.0.1";//
+  private url  = "http://localhost:8002"
   /** @ignore */
   private key: string = "scape20132015appKey#releaseVersionApril2016";
 

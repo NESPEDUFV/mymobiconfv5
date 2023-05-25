@@ -27,6 +27,8 @@ export interface EventoInterface {
     telefone: string
     /** Se o evento possui ou não um módulo de gamificação */
     gamificacao: number
+    /** Se o evento possui ou não um módulo de album de figurinhas */
+    album_figurinhas: number
     /** Se o evento é ou não online */
     is_online: number
     /** Se o evento for online, mostra o link que os participantes devem usar para acessá-lo */
@@ -222,6 +224,7 @@ export class EventoService {
             telefone: "",
             gamificacao: evento.gamificacao,
             is_online: evento.is_online,
+            album_figurinhas: evento.album_figurinhas,
             link_principal: evento.link_principal
         };
     }

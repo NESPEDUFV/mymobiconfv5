@@ -47,6 +47,10 @@
                 <ion-icon name="game-controller-sharp"></ion-icon>
                   <p>Este evento possui gamificação!</p>
               </ion-item>
+              <ion-item text-wrap *ngIf="album_figurinhas != 0">
+                <ion-icon name="images-sharp"></ion-icon>
+                  <p>Este evento possui um album de figurinhas!</p>
+              </ion-item>
           </ion-list>
           <!-- Informações -->
           <p class = 'margin-vertical text-justify'>{{eventoEscolhido.descricao}}</p>

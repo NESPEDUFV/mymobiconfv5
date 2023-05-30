@@ -25,6 +25,7 @@ import { ArmazenamentoService } from './services/armazenamento.service';
 //import firebase from 'firebase/app';
 import { Push } from '@ionic-native/push/ngx';
 import { SharedModule } from './components/shared.module';
+import { FormsModule } from '@angular/forms';
 //import { SwiperModule } from 'swiper/angular';
 //import { SwiperModule } from 'ngx-swiper-wrapper';
 /*
@@ -69,6 +70,7 @@ firebase.initializeApp({
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     SharedModule,
+    FormsModule
 
 
     //SwiperModule

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+import { Plugins, PluginListenerHandle } from '@capacitor/core';
+import { Network } from '@capacitor/network';
 
-const { Network } = Plugins;
+const {  } = Plugins;
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class RedeService {
-  networkStatus: NetworkStatus;
+  networkStatus: typeof Network;
   networkListener: PluginListenerHandle;
 
 constructor() {
@@ -19,12 +20,12 @@ constructor() {
 async ngOnInit() {
   this.networkListener = Network.addListener('networkStatusChange', (status) => {
     console.log("Network status changed", status);
-    this.networkStatus = status;
-    return status;
+    this.networkStatus.getStatus();
+    return this.networkStatus.getStatus();;
 
   });
 
-  this.networkStatus = await Network.getStatus();
+
 }
 
 async getcurrentStatus(){

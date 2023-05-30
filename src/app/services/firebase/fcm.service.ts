@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
-import {
-  Plugins,
-  PushNotification,
-  PushNotificationToken,
-  PushNotificationActionPerformed,
-  Capacitor
-} from '@capacitor/core';
+
 import { Router } from '@angular/router';
 
-const { PushNotifications } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +10,7 @@ export class FcmService {
 
   constructor(private router: Router) { }
 
+  /*
   initPush() {
     if (Capacitor.platform !== 'web') {
       this.registerPush();
@@ -62,4 +56,5 @@ export class FcmService {
       }
     );
   }
+  */
 }

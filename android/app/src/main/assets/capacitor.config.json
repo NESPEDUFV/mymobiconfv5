@@ -1,13 +1,24 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "v4",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "www",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    }
-  },
-  "cordova": {}
+	"appId": "com.ionicframework.scape771593",
+	"appName": "network",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "www",
+	"linuxAndroidStudioPath": "/snap/bin/android-studio",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
+	"cordova": {
+		"preferences": {
+			"ScrollEnabled": "false",
+			"BackupWebStorage": "none",
+			"SplashMaintainAspectRatio": "true",
+			"FadeSplashScreenDuration": "300",
+			"SplashShowOnlyFirstTime": "false",
+			"SplashScreen": "screen",
+			"SplashScreenDelay": "3000"
+		}
+	}
 }

@@ -3,6 +3,7 @@ import { DatasUtil } from './../utils/datas';
 import { ServidorService } from './servidor/servidor.service';
 import { ArmazenamentoService } from './armazenamento.service';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 
@@ -121,6 +122,9 @@ export class AtividadesService {
         this.carregar(sucessoCb, falhaCb);
       }
       console.log("fim disponiel");
+  }
+  getAtividadesEvento(eventoId: string): Observable<any> {
+    return this.servidor.atividades.buscar(eventoId);
   }
 
   /**

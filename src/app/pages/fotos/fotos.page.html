@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>fotos</ion-title>
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-title>Crie uma figurinha!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="atividades">
+  <form >
+    <ion-item>
+      <ion-select aria-label="fruit" placeholder="Selecione uma atividade"  (ionChange)="onSelectChange($event)">
+        <ion-select-option value="default">Sem vinculo a atividade</ion-select-option>
+        <div *ngFor="let atividade of atividades.atividades">
+          <ion-select-option value="atividades">{{atividade.Nome}}</ion-select-option>
+        </div>
+
+      </ion-select>
+    </ion-item>
+  </form>
 
 </ion-content>

@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
   ],
   exports: [
-    DatasPipe
+    DatasPipe,
   ]
 })
 export class PipesModule { }

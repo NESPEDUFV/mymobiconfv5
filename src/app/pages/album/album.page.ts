@@ -12,25 +12,19 @@ import { Component, OnInit } from '@angular/core';
 export class AlbumPage implements OnInit {
 
   botoes: { id: string, label: string, pagina: any }[] = [
-    { id: "camera", label: "Particpe do álbum", pagina: FotosPage },
-    { id: "visualizar-album", label: "Visualizar Álbum", pagina: AlbumEventoPage },
-    { id: "minhas-fotos", label: "Minhas figurinhas", pagina: MinhasFotosPage}
+    { id: "camera", label: "Particpe do álbum", pagina: 'fotos' },
+    { id: "visualizar-album", label: "Visualizar Álbum", pagina: 'album-evento' },
+    { id: "minhas-fotos", label: "Minhas figurinhas", pagina: 'minhas-fotos'}
   ];
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  acessarPagina(pagina){
+  acessarPagina(pagina: any) {
+      this.router.navigate([pagina]);
 
-
-    if(pagina==FotosPage){
-      this.router.navigate(['fotos'])
-    }else{
-      this.router.navigate(['album-evento']);
-    }
-
-  }
+}
 
 
 }

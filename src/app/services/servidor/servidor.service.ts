@@ -16,6 +16,7 @@ import { ServConfiguracoesGame } from '../game/servidor/configuracao.service';
 import { ServParticipanteGame } from '../game/servidor/participante.service';
 import { ServGrupoGame } from '../game/servidor/grupo.service';
 import { ServRankingGame } from '../game/servidor/ranking.service';
+import { ServAlbum } from './album.service';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,8 @@ export class ServidorService {
 
   readonly questionarios: ServQuestionarios;
 
+  readonly album: ServAlbum;
+
 
   //gamefication samuel
   readonly game_participante: ServParticipanteGame;
@@ -86,6 +89,9 @@ export class ServidorService {
     this.game_ranking = new ServRankingGame(http, this.url, this.key);
     // this.game_atividade = new ServAtividadeGame(http, this.url, this.key);
     this.game_configuracao = new ServConfiguracoesGame(http, this.url, this.key);
+
+    //album de figurinhas
+    this.album = new ServAlbum(http,this.url);
 
   }
 }

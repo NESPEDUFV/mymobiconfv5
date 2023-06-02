@@ -146,9 +146,8 @@ export class MyMobiConfPage implements OnInit {
   this.existeGamification = false;
 
   this.evento.carregar(() => {
-      //--console.log("CARREGAR DADOS EVENTO");
+
       if (this.evento.existeDados()) { //participante está em um evento
-          //--console.log("CARREGOU DADOS EVENTO");
 
           this.carregaConfigGame(() => {
               this.carregarPerfilGame();

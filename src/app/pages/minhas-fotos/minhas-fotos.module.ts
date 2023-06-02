@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { MinhasFotosPageRoutingModule } from './minhas-fotos-routing.module';
 
 import { MinhasFotosPage } from './minhas-fotos.page';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MinhasFotosPageRoutingModule
+    MinhasFotosPageRoutingModule,
+    PipesModule
   ],
   declarations: [MinhasFotosPage]
 })

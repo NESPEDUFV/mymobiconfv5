@@ -22,6 +22,7 @@ import 'firebase/auth';
      */
     signup(nome: string, email: string) {
 
+      console.log('indo: ', this.url +"/App/SignUpApp.php" );
       return this.http.post(this.url + "/App/SignUpApp.php", {
           username: nome,
           email: email,

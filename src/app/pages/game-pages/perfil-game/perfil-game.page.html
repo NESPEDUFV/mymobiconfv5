@@ -1,9 +1,183 @@
+<!-- Perfil -->
+
 <ion-header>
-  <ion-toolbar>
-    <ion-title>PerfilGame</ion-title>
+  <!-- Título e barra de navegação -->
+  <ion-toolbar color="primary">
+      <ion-title>Perfil</ion-title>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content>
+<ion-content bg class="bg">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Abaixe para recarregar "
+          refreshingSpinner="circles" refreshingText="Carregando...">
+      </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-item *ngIf="!carregado">
+      <ion-spinner item-start></ion-spinner>
+      <p>Carregando perfil...</p>
+  </ion-item>
+
+  <ion-card padding *ngIf="carregado">
+
+      <ion-item text-center>
+          <div style="display: flex;">
+              <img src="assets/img/game/perfil/perfil{{imagem}}.png"
+                  style="width: 30%; height: 30%; position: relative; left: 35%; border-radius: 50%;" />
+              <img src="assets/img/game/insignias/nivel{{nivel}}.png"
+                  style="width: 12%; position: absolute; top: 30%; left: 54%;" />
+              <br />
+          </div>
+
+          <h1><strong>{{nome}}</strong></h1>
+
+          <!-- <progress value="{{razaoPontos}}" style="width: 35%; "></progress> {{pontos}}/{{pontosNivel}}-->
+
+          <div class="barra">
+              <div #tutBarra class="barraProgresso">
+                  <div class="valorBarra" [style.width]="(razaoPontos)+'%'"></div>
+              </div><b class="relacaoPontos"> {{pontos}}/{{pontosNivel}}</b>
+          </div>
+          <h2><strong>{{insigniasDesc[nivel-1].nome}}</strong></h2>
+          <!--<div *ngIf = "!perfilUsuario" style="display: flex; position: absolute; top: 70%; left: 75%;">
+              <img src="assets/img/game/botoes/curtir.png" style="width: 100%; height: 12%; "/>
+              <img src="assets/img/game/botoes/curtir.png" style="width: 100%; height: 12%; transform: rotate(180deg);"/><br/>
+              <p style="position: relative; top: 35px; left: -50%;">{{ptsAvaliacao}}</p>
+          </div>-->
+
+          <div *ngIf="perfilUsuario" style="display: flex; position: absolute; top: 70%; left: 80%;">
+              <img #tutEditar src="assets/img/game/botoes/editar.png" style="width: 65%; height: 65%;  "
+                  (click)="irParaEditarPerfil()" />
+          </div>
+
+          <div style="position: absolute; top: 5%; left: 5%;">
+              <img #tutRanking class="botaoGameDestaque" src="assets/img/game/botoes/ranking.png" style="width: 25%;"
+                  (click)="irParaRanking()" />
+          </div>
+
+      </ion-item>
+  </ion-card>
+
+  <ion-card #tutInfo padding *ngIf="carregado">
+      <h2 style="display: flex">
+          <b>Informações Gerais</b>
+          <img src="assets/img/noticias.png" class="ajuda" (click)="ajudaGeral()" />
+      </h2>
+
+
+      <h2><b></b></h2>
+      <!--<p>
+          <strong>E-mail:</strong> {{email}}
+      </p>-->
+
+      <p *ngIf="celular">
+          <strong>Celular:</strong> {{celular}}
+      </p>
+
+      <p>
+          <strong>Grupo:</strong> <a *ngIf="temGrupo" (click)="irParaGrupo()">{{grupo}}</a>
+
+          <a *ngIf="!temGrupo && perfilUsuario" (click)="irParaCriarGrupo()">Criar um grupo</a>
+
+          <a *ngIf="!temGrupo && !perfilUsuario">Nenhum grupo</a>
+
+      </p>
+
+      <p *ngIf="sobre">
+          <strong>Sobre:</strong> <br />
+          <ion-card-content [innerHTML]="sobre"></ion-card-content>
+      </p>
+  </ion-card>
+
+  <ion-card padding *ngIf="carregado">
+      <h2 style="display: flex">
+          <b>Conquistas</b>
+          <img src="assets/img/noticias.png" class="ajuda" (click)="ajudaConquistas()" />
+      </h2>
+      <br />
+      <p #tutConquista1 style="display: flex;">
+          <img class="conquista {{conquistaOpiniao ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/opiniao.png" (click)="infoConquista(1)" />
+          <sup>{{qtdOpiniao}}</sup>
+          <img class="conquista {{conquistaQuestionario ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/questionario.png" (click)="infoConquista(2)" />
+          <sup>{{qtdQuestionario}}</sup>
+          <img class="conquista {{conquistaTemperatura ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/temperatura.png" (click)="infoConquista(3)" *ngIf="isOnline !=1"/>
+          <img class="conquista {{conquistaTemperatura ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/webcam.jpeg" (click)="infoConquista(7)" *ngIf="isOnline ==1"/>
+          <sup>{{qtdTemperatura}}</sup>
+          <img class="conquista {{conquistaSonoro ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/sonoro.png" (click)="infoConquista(4)" *ngIf="isOnline !=1"/>
+          <img class="conquista {{conquistaSonoro ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/sonoro.png" (click)="infoConquista(8)" *ngIf="isOnline ==1"/>
+          <sup>{{qtdSonoro}}</sup>
+          <img class="conquista {{conquistaAvaliacao ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/avaliacao.png" (click)="infoConquista(5)" />
+          <sup>{{qtdAvaliacao}}</sup>
+          <img class="conquista {{conquistaCompleto ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/completo.png" (click)="infoConquista(6)" />
+          <sup>{{qtdCompleto}}</sup>
+      </p><br />
+
+      <h2 style="display: flex">
+          <b>Troféus</b>
+          <img src="assets/img/noticias.png" class="ajuda" (click)="ajudaMedalhaTrofeu()" />
+      </h2>
+
+      <br />
+      <p #tutConquista2 style="display: flex;">
+          <!--<img class="medalha {{medalha ? 'ganha' : 'naoGanha'}}" src="assets/img/medalha-diamante.png"
+              (click)="infoMedalha()" /> -->
+          <!--<img class="medalha {{medalha[0] ? 'ganha' : 'naoGanha'}}" src="assets/img/medalha-ouro.png" (click) = "infoMedalha(1)"/>
+          <img class="medalha {{medalha[1] ? 'ganha' : 'naoGanha'}}" src="assets/img/medalha-prata.png" (click) = "infoMedalha(2)"/>
+          <img class="medalha {{medalha[2] ? 'ganha' : 'naoGanha'}}" src="assets/img/medalha-bronze.png" (click) = "infoMedalha(3)"/>-->
+          <img class="trofeu {{trofeu[0] ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/trofeu1.png" (click)="infoTrofeu(1)" />
+          <img class="trofeu {{trofeu[1] ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/trofeu2.png" (click)="infoTrofeu(2)" />
+          <img class="trofeu {{trofeu[2] ? 'ganha' : 'naoGanha'}}"
+              src="assets/img/game/conquistas_trofeus/trofeu3.png" (click)="infoTrofeu(3)" />
+      </p><br />
+
+      <h2 style="display: flex">
+          <b>Insígnias</b>
+          <img src="assets/img/noticias.png" class="ajuda" (click)="ajudaInsignia()" />
+      </h2>
+
+      <br />
+      <p #tutConquista3 style="display: flex;">
+          <img class="insignia {{nivel>0 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel1.png"
+              (click)="infoInsignia(1)" />
+          <img class="insignia {{nivel>1 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel2.png"
+              (click)="infoInsignia(2)" />
+          <img class="insignia {{nivel>2 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel3.png"
+              (click)="infoInsignia(3)" />
+          <img class="insignia {{nivel>3 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel4.png"
+              (click)="infoInsignia(4)" />
+          <img class="insignia {{nivel>4 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel5.png"
+              (click)="infoInsignia(5)" />
+          <img class="insignia {{nivel>5 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel6.png"
+              (click)="infoInsignia(6)" />
+          <img class="insignia {{nivel>6 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel7.png"
+              (click)="infoInsignia(7)" />
+      </p>
+      <p style="display: flex;">
+          <img class="insignia {{nivel>7 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel8.png"
+              (click)="infoInsignia(8)" />
+          <img class="insignia {{nivel>8 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel9.png"
+              (click)="infoInsignia(9)" />
+          <img class="insignia {{nivel>9 ? 'ganha' : 'naoGanha'}}" src="assets/img/game/insignias/nivel10.png"
+              (click)="infoInsignia(10)" />
+      </p><br />
+
+  </ion-card>
 
 </ion-content>
+
+<app-tutorial *ngIf="ativarTut" [steps]="passos" (check)="viuTutorial($event)"></app-tutorial>
+

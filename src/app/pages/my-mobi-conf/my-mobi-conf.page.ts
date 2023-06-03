@@ -269,7 +269,7 @@ tutorial(){
 alertaBotao(){
  this.overlay.presentAlertWithMultipleHandlers(
     "Deseja inscrever-se no game do evento?",
-    "<html>Participe para uma melhor experiência, tanto com o evento, quanto com o App!<br><br> <b>Venha se divertir, enquanto sua opinião é ouvida!</b></html>",
+    "Participe para uma melhor experiência, tanto com o evento, quanto com o App!Venha se divertir, enquanto sua opinião é ouvida!",
     [
     {
     text: 'Sim',
@@ -442,19 +442,19 @@ carregarPerfilGame(novo?:boolean) {
 
           this.participaGame = true;
           this.existeGamification = true;
-          if(novo){
+
 
               this.mostraAlerta("Bem vindo!",
-              "<html><b>IMPORTANTE!!!</b><br>"+
-              "Clique nos ícones de ajuda 'i', em cada página, para mais informações.<br><br>"+
-              "Ganhe <b>pontos e conquistas</b> avaliando as atividades e opinando.<br>"+
-              "Veja o <b>ranking</b> dos melhores colocados.<br>"+
-              "Veja as <b>avaliações</b> e <b>comentários</b> das atividades.<br>"+
-              "Utilize <b>hashtags</b> ao dar opiniões para que seja visível aos outros participantes.<br>"+
-              "Crie ou participe de um <b>grupo</b> para interagir com seus amigos."+
-              "</html>");
+              "IMPORTANTE!!!\n"+
+              "Clique nos ícones de ajuda 'i', em cada página, para mais informações.\n\n"+
+              "Ganhe pontos e conquistas avaliando as atividades e opinando.\n"+
+              "Veja o ranking dos melhores colocados.\n"+
+              "Veja as avaliações e comentários das atividades.\n"+
+              "Utilize hashtags ao dar opiniões para que seja visível aos outros participantes.\n"+
+              "Crie ou participe de um grupo para interagir com seus amigos."
+              );
               this.irParaPerfil();
-          }
+
 
       } else {
 

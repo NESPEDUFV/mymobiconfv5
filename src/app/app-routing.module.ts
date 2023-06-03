@@ -114,9 +114,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/game-pages/atividade-game/atividade-game.module').then( m => m.AtividadeGamePageModule)
   },
   {
-    path: 'grupo',
+    path: 'grupo/',
     loadChildren: () => import('./pages/game-pages/grupo/grupo.module').then( m => m.GrupoPageModule)
-  },  {
+  },
+  {
     path: 'album',
     loadChildren: () => import('./pages/album/album.module').then( m => m.AlbumPageModule)
   },
@@ -132,6 +133,15 @@ const routes: Routes = [
     path: 'minhas-fotos',
     loadChildren: () => import('./pages/minhas-fotos/minhas-fotos.module').then( m => m.MinhasFotosPageModule)
   },
+  {
+    path: 'edita-perfil',
+    loadChildren: () => import('./pages/game-pages/edita-perfil/edita-perfil.module').then( m => m.EditaPerfilPageModule)
+  },
+  {
+    path: 'cria-grupo',
+    loadChildren: () => import('./pages/game-pages/cria-grupo/cria-grupo.module').then( m => m.CriaGrupoPageModule)
+  },
+
 
 
 

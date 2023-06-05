@@ -44,7 +44,7 @@ export class MinhasFotosPage implements OnInit {
     this.albumService.getImagesByUsrId(this.userId, this.album.idAlbum as string).subscribe((images: any[]) => {
 
       this.images = images;
-
+      console.log('image1: ', images)
     });
   }
 

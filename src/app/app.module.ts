@@ -1,3 +1,4 @@
+import { Instagram } from '@awesome-cordova-plugins/instagram/ngx';
 
 import { TutorialComponent } from './components/tutorial/tutorial.component';
 
@@ -88,7 +89,7 @@ firebase.initializeApp({
     OverlayService,
     ServidorService,
     Push,
-
+    Instagram
 
   ],
   bootstrap: [AppComponent],

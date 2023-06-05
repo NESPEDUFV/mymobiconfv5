@@ -1,6 +1,6 @@
 import { UsuarioService } from './../../services/usuario.service';
 import { Component, OnInit, PipeTransform } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AlbumService } from 'src/app/services/album.service';
 import { EventoService } from 'src/app/services/evento.service';
 
@@ -24,32 +24,36 @@ export class MinhasFotosPage implements OnInit {
   userId:string='';
   eventoId: string = '';
   album;
-  constructor(private albumService: AlbumService, private userService: UsuarioService, private eventoService: EventoService) { }
+  constructor(private albumService: AlbumService, private userService: UsuarioService,
+    private sanitizer: DomSanitizer, private eventoService: EventoService) { }
 
   async ngOnInit() {
-
-     await this.getAlbum();
-
-
-
+    await this.getAlbum();
   }
 
    async getAlbum(){
 
     this.userId = this.userService.getID();
     this.eventoId = this.eventoService.getID();
-    this.albumService.getAlbumID(this.eventoId).subscribe((album)=>{
-    console.log('album: ',album);
-    this.album = album;
+    this.album = this.albumService.getAlbum();
     this.getImages();
-   })
+
   }
 
   getImages(){
     this.albumService.getImagesByUsrId(this.userId, this.album.idAlbum as string).subscribe((images: any[]) => {
-      console.log('images dentro subscribe: ', images)
+
       this.images = images;
+
     });
+  }
+
+  sanitizeImage(imageData: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(imageData);
+  }
+
+  sanitizeImageUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   startUpload(file:LocalFile){

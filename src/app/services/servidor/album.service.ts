@@ -27,9 +27,17 @@ export class ServAlbum {
     return res;
    }
 
-   postImage(image: Figurinha){
-    var res =  this.http.post(this.url + '/App/album/postImage.php',image);
-    console.log('res', res);
-    return res;
-   }
+
+   postImage(image: Figurinha) {
+
+    return this.http.post(this.url  + '/App/album/postImage.php', {
+        ID_IMAGEM: image.ID_IMAGEM,
+        FOTO: image.FOTO,
+        ID_PARTICIPANTE: image.ID_PARTICIPANTE,
+        ID_ATIVIDADE_REFERENTE: image.ID_ATIVIDADE_REFERENTE,
+        DATETIME:image.DATETIME,
+        PONTOS: image.PONTOS,
+        ID_ALBUM: image.ID_ALBUM
+      });
+}
 }

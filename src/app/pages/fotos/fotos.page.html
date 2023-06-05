@@ -7,10 +7,10 @@
 <ion-content *ngIf="atividades">
 
     <ion-item>
-      <ion-select aria-label="fruit" placeholder="Selecione uma atividade"  >
-        <ion-select-option value="default">Sem vinculo a atividade</ion-select-option>
+      <ion-select [(ngModel)]="selectedAtividade" placeholder="Selecione uma atividade"  >
+        <ion-select-option [value]=0>Sem vinculo a atividade</ion-select-option>
         <div *ngFor="let atividade of atividades.atividades">
-          <ion-select-option value="atividades">{{atividade.Nome}}</ion-select-option>
+          <ion-select-option [value]="atividade.ID">{{atividade.Nome}}</ion-select-option>
         </div>
 
       </ion-select>
@@ -24,8 +24,8 @@
       <div *ngIf="selectedImage.webPath" class="ion-margin">
         <ion-img  [src]="selectedImage?.webPath"></ion-img>
 
-        <ion-button class="ion-margin" > <ion-icon class="ion-margin" name="arrow-redo"></ion-icon>Compartilhar com a organização </ion-button>
-        <ion-button expand="block"> <ion-icon class="ion-margin" name="logo-instagram"></ion-icon> Postar no Instagram</ion-button>
+        <ion-button expand="block" (click)="shareOeganization()"> <ion-icon class="ion-margin" name="arrow-redo"></ion-icon>Compartilhar com a organização </ion-button>
+        <ion-button expand="block" > <ion-icon class="ion-margin" name="logo-instagram"></ion-icon> Postar no Instagram</ion-button>
       </div>
 
 

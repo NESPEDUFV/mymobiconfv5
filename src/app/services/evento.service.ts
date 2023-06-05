@@ -137,12 +137,13 @@ export class EventoService {
                 this.dados.email = data.informacao_evento[0].EMAIL;
                 this.dados.telefone = data.informacao_evento[0].TELEFONE;
                 this.dados.gamificacao = data.informacao_evento[0].gamificacao;
+                this.dados.album_figurinhas = data.informacao_evento[0].album_figurinhas
             } else {
                 this.dados.site = "";
                 this.dados.email = "";
                 this.dados.telefone = "";
                 this.dados.gamificacao = 0;
-
+                this.dados.album_figurinhas;
             }
             this.salvar(this.dados);
             if (cb) cb();

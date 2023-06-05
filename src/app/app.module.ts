@@ -1,3 +1,4 @@
+
 import { TutorialComponent } from './components/tutorial/tutorial.component';
 
 import { NgModule } from '@angular/core';
@@ -21,11 +22,15 @@ import { ServidorService } from './services/servidor/servidor.service';
 import { OverlayService } from './services/overlay.service';
 import { ArmazenamentoService } from './services/armazenamento.service';
 
+
 //Firebase para login com facebook
 //import firebase from 'firebase/app';
 import { Push } from '@ionic-native/push/ngx';
 import { SharedModule } from './components/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
 //import { SwiperModule } from 'swiper/angular';
 //import { SwiperModule } from 'ngx-swiper-wrapper';
 /*
@@ -72,7 +77,7 @@ firebase.initializeApp({
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    //SwiperModule
+
 
   ],
   providers: [
@@ -82,7 +87,9 @@ firebase.initializeApp({
     UsuarioService,
     OverlayService,
     ServidorService,
-    Push
+    Push,
+
+
   ],
   bootstrap: [AppComponent],
 })

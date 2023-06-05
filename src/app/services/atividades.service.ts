@@ -134,9 +134,9 @@ export class AtividadesService {
    * @param falhaCb Callback chamada quando as outras alternativas falham
    */
   buscar(eventoID: string, sucessoCb?: () => void, falhaCb?: () => void) {
-    console.log("BUSCAAAAAAAAAAAAAR");
+
       this.servidor.atividades.buscar(eventoID).subscribe((data: any) => {
-        console.log("buscando data: ", data);
+
           this.atividades = this.formatarLista((data && data.atividades) ? data.atividades : []);
           this.salvar();
           if (sucessoCb) sucessoCb();

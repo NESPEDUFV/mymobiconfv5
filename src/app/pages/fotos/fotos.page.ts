@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { tap } from 'rxjs/operators';
 import {  AtividadesService } from 'src/app/services/atividades.service';
 import { EventoService } from 'src/app/services/evento.service';
@@ -14,7 +13,6 @@ import { AlbumService } from 'src/app/services/album.service';
 })
 export class FotosPage implements OnInit {
   atividades: any;
-  photoForm: FormGroup;
   selectedImage: any = {};
   idAtividade:number;
   selectedAtividade: number;

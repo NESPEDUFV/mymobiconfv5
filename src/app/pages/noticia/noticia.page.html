@@ -12,7 +12,7 @@
     </ion-card-title>
     <p *ngIf="noticia.hora" class="hora">
         <ion-icon name="time"></ion-icon> &nbsp;
-        {{noticia.hora | datas:{tipo:'completa'} }}, {{noticia.hora | datas:{tipo:'horario'} }}
+        {{noticia.hora | date }}
     </p>
     <br>
     <p>{{noticia.corpo}}</p>

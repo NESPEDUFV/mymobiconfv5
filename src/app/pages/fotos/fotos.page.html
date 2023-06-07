@@ -21,12 +21,20 @@
         <ion-icon name="camera"></ion-icon>
       </ion-button>
 
-      <div *ngIf="selectedImage.webPath" class="ion-margin">
-        <ion-img  [src]="selectedImage?.webPath"></ion-img>
+      <div [ngStyle]="{ display: showSticker ? 'block' : 'none' }" class="ion-margin">
+
+        <!-- <img id="img" [src]="selectedImage?.webPath"/> -->
+        <canvas  width="400" height="400"></canvas>
+        <!-- <div id="canvas-container"></div> -->
 
         <ion-button expand="block" (click)="shareOeganization()"> <ion-icon class="ion-margin" name="arrow-redo"></ion-icon>Compartilhar com a organização </ion-button>
         <ion-button expand="block" > <ion-icon class="ion-margin" name="logo-instagram"></ion-icon> Postar no Instagram</ion-button>
       </div>
+
+
+
+
+
 
 
 

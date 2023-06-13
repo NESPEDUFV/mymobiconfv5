@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { ConfigPage } from './pages/config/config.page';
 import { EventosPage } from './pages/eventos/eventos.page';
 import { SobrePage } from './pages/sobre/sobre.page';
+import { Platform } from '@ionic/angular';
+import { Location } from '@angular/common';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { OverlayService } from './services/overlay.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +27,35 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-  ) {}
+    private platform: Platform,
+    private location: Location,
+    private statusBar: StatusBar,
+    private overlay: OverlayService
+  ) {
+
+
+
+}
+
+initializyApp(){
+  this.platform.backButton.subscribeWithPriority(10, () => {
+    console.log('back')
+   this.location.back();
+ });
+ const color = '#104BAD';
+  let cache = { [0]: color, [-0.5]: '#082657', [-0.7]: '#051734' }
+ this.platform.ready().then(() => {
+  this.statusBar.backgroundColorByHexString(color);
+  this.overlay.get().subscribe((val: number) => {
+    this.statusBar.backgroundColorByHexString('#00A0E4');
+ });
+ }
+ )
+}
+
+
+
+
 
       /**
      * Chamada quando se clica em algum botão do menu, exibindo a página correspondente
@@ -37,6 +69,7 @@ export class AppComponent {
                 this.pushCheck = false;
             }, 120);
         }
-    }
 
+
+}
 }

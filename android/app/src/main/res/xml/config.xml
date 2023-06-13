@@ -10,6 +10,10 @@
     <param name="android-package" value="com.vladstirbu.cordova.CDVInstagramPlugin"/>
   </feature>
 
+  <feature name="CordovaPluginsCleartext">
+    <param name="android-package" value="cordova.plugins.cleartext"/>
+  </feature>
+
   <feature name="StatusBar">
     <param name="android-package" value="org.apache.cordova.statusbar.StatusBar"/>
     <param name="onload" value="true"/>

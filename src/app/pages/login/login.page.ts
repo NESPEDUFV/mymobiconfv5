@@ -71,7 +71,7 @@ export class LoginPage implements OnInit {
   * Ao sair da página, desfaz o registro de ação do botão de voltar
   */
    ionViewWillLeave() {
-    this.botaoBack();
+    //this.botaoBack();
   }
 
   /**

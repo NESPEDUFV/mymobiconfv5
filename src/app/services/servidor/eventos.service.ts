@@ -36,7 +36,6 @@ buscarInfo(eventoID: string) {
  * @param usuarioID ID do usuário
  */
 atualizarParticipante(eventoID: string, usuarioID: string, dispositivoID: string) {
-    console.log(dispositivoID);
     return this.http.post(this.url + "/App/atualizaParticipante.php", {
         ID_EVENTO: eventoID,
         ID_PARTICIPANTE: usuarioID,

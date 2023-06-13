@@ -66,7 +66,6 @@ export class FirebaseService {
     });
 
      pushObject.on('registration').subscribe((registration: any) => {
-         console.log('Device registered', registration)
          this.idDispositivo = registration.registrationId;
         });
 

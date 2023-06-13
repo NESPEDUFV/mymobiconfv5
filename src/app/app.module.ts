@@ -23,12 +23,14 @@ import { ServidorService } from './services/servidor/servidor.service';
 import { OverlayService } from './services/overlay.service';
 import { ArmazenamentoService } from './services/armazenamento.service';
 
-
 //Firebase para login com facebook
 //import firebase from 'firebase/app';
 import { Push } from '@ionic-native/push/ngx';
 import { SharedModule } from './components/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 
 
 
@@ -69,7 +71,7 @@ firebase.initializeApp({
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({_forceStatusbarPadding: true}),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
@@ -78,7 +80,7 @@ firebase.initializeApp({
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-
+    NoopAnimationsModule,
 
   ],
   providers: [
@@ -89,7 +91,8 @@ firebase.initializeApp({
     OverlayService,
     ServidorService,
     Push,
-    Instagram
+    Instagram,
+    StatusBar
 
   ],
   bootstrap: [AppComponent],

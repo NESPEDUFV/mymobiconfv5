@@ -29,7 +29,6 @@ export class UsuarioService {
   getID(): string { return this.dados.ID; }
   getNome(): string { return this.dados.nome; }
   getFotoURL(): string {
-    console.log('foto', this.fotoURL);
      return this.fotoURL;
   }
 
@@ -37,7 +36,6 @@ export class UsuarioService {
      * Salva os dados do usuário no armazenamento local
      */
     salvar() {
-      console.log("salvar usuario");
       this.storage.set('usuario', JSON.stringify(this.dados));
       this.storage.set('fotoURL', JSON.stringify(this.fotoURL));
   }

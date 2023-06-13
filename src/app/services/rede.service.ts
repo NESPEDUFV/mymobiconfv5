@@ -19,7 +19,6 @@ constructor() {
 
 async ngOnInit() {
   this.networkListener = Network.addListener('networkStatusChange', (status) => {
-    console.log("Network status changed", status);
     this.networkStatus.getStatus();
     return this.networkStatus.getStatus();;
 
@@ -29,8 +28,6 @@ async ngOnInit() {
 }
 
 async getcurrentStatus(){
- console.log("Chamou aqui\n");
- console.log("status dentro de rede ", this.networkStatus);
  return this.networkStatus;
 }
 

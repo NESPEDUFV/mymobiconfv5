@@ -110,8 +110,6 @@ export class OverlayService {
    * essa função é um substituto para ela.
   */
   async dismissAllLoaders() {
-
-    console.log("dismissAllLoaders");
     this.amt.next(0);
     let topLoader = await this.loading.getTop();
     while (topLoader) {

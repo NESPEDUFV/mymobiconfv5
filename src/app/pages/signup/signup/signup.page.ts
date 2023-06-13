@@ -52,7 +52,6 @@ export class SignupPage implements OnInit {
      this.overlay.dismissAllLoaders();
 
       this.usuario.signup(this.signupForm.value.nome, this.signupForm.value.email, () => {
-        console.log("Entrou aqui\n");
         this.overlay.dismissAllLoaders();
           this.overlay.createAlert(
               "Cadastro completo",

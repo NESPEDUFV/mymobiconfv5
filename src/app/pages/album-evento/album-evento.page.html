@@ -1,9 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>albumEvento</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Album do evento</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<ion-card>
+  <h3 class="ion-padding"  *ngIf="album.publicado == 0 " color="white" >O album ainda não foi publicado, volte mais tarde para conferir os registros!</h3>
+
+
+</ion-card>
+
+<ion-card *ngIf="images.length > 0 && album.publicado == 1">
+  <h3 class="ion-padding" color="white"> Confira agora o album do evento!!</h3>
+</ion-card>
+
+<ion-card *ngIf="images.length > 0 && album.publicadoInterediario == 1">
+  <h3 class="ion-padding" color="white"> Confira agora o album parcial do evento!!</h3>
+</ion-card>
+
+
+
+<div *ngIf="images.length > 0 && (album.publicado == 1 || album.publicadoIntermediario == 1)" class="album-container ion-margin">
+  <ion-row>
+    <ion-col size="6" *ngFor="let image of images; let i = index">
+      <ion-img [src]="image.foto"></ion-img>
+    </ion-col>
+  </ion-row>
+</div>
 
 </ion-content>

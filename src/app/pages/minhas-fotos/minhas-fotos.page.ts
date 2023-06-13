@@ -40,6 +40,12 @@ export class MinhasFotosPage implements OnInit {
 
   }
 
+  transform(imageSrc){
+    const imageSanitized =  this.sanitizer.bypassSecurityTrustResourceUrl(imageSrc);
+
+    return imageSanitized;
+}
+
   getImages(){
     this.albumService.getImagesByUsrId(this.userId, this.album.idAlbum as string).subscribe((images: any[]) => {
 

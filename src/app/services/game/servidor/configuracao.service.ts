@@ -15,7 +15,6 @@ export class ServConfiguracoesGame {
 
 
   carregarConfiguracoes(eventoID: any) {
-    console.log("bateu aqui",eventoID);
     return this.http.post(this.url + "/App/game/configuracoes.php", {
         key: this.key,
         idEvento: eventoID

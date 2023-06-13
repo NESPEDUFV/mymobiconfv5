@@ -21,8 +21,6 @@ import 'firebase/auth';
      * @param email E-mail do usuário
      */
     signup(nome: string, email: string) {
-
-      console.log('indo: ', this.url +"/App/SignUpApp.php" );
       return this.http.post(this.url + "/App/SignUpApp.php", {
           username: nome,
           email: email,
@@ -50,8 +48,6 @@ import 'firebase/auth';
 
 
   facebookLogin(sucesso: (resposta: firebase.auth.UserCredential) => void, falha: () => void) {
-    console.log("Chegou servLogin\n");
-    console.log(firebase);
     let provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithRedirect(provider).then(() => {
         firebase.auth().getRedirectResult().then((result) => {

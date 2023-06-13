@@ -141,7 +141,7 @@ export class TutorialComponent implements OnInit {
       //console.log('steps', this.steps);
       if (this.i == -1 || this.i == this.steps.length) {
           this.overlay.set(0);
-          this.botaoBack();
+          //this.botaoBack();
       }
       let left, top, wd, ht;
       if (0 <= this.i && this.i < this.steps.length) {

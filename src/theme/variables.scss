@@ -9,6 +9,7 @@ $colors: (
   dark:       #222
 );
 $badge-font-size: 1.0rem;
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -78,6 +79,8 @@ $badge-font-size: 1.0rem;
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  --ion-safe-area-bottom: 22px;
 }
 
 @media (prefers-color-scheme: dark) {

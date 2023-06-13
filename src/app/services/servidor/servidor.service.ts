@@ -33,7 +33,7 @@ export class ServidorService {
   //"http://200.131.220.164/scapeteste/mymobiconfphp/"
   //"http://200.131.220.164/scapeteste/mymobiconfweb"
   //"http://192.168.0.4";
-  private url  = "http://localhost:8002"
+  private url  = "http://192.168.1.2:8002"
   /** @ignore */
   private key: string = "scape20132015appKey#releaseVersionApril2016";
 

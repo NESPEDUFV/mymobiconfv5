@@ -41,13 +41,19 @@ ion-content{
   --background:  url('./assets/img/bg.jpeg') no-repeat center center / cover;
 }
 
+ion-page{
+  height: 10% !important;
+}
 
+ion-toolbar:first-of-type{
+  margin-top: 30px;
+}
 .item ion-thumbnail.imgIcon {
   min-width: 3rem;
-  min-height: 3rem;
+
   img {
       max-width: 3rem;
-      max-height: 3rem;
+
   }
 }
 @import url(http://fonts.googleapis.com/css?family=Oxygen);
@@ -97,11 +103,11 @@ $card-wp-margin: 8px;
 .card-img {
   padding: 10px;
   width: 100%;
-  height: 35vh;
-  max-height: 450px;
+
+
   div {
       width: 100%;
-      height: 100%;
+
       background-size: contain;
       background-repeat: no-repeat;
       background-position-x: 50%;

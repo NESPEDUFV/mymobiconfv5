@@ -119,18 +119,19 @@ export class PerfilGamePage implements OnInit {
     private gameConfig: ConfiguracoesService,
     private evento: EventoService
   ) {
-    if (this.route.snapshot.paramMap.get('primeira') != undefined) {
-      this.naoFecharAoSair = Boolean(this.route.snapshot.paramMap.get('primeira'));
-      if (this.gameParticipante.existeDados()) {
-        this.gameParticipante.atualizarDados(() => {
-          this.mostrarDados(Number(this.route.snapshot.paramMap.get('idUser')));
-        }, () => {
-          this.mostrarDados(Number(this.route.snapshot.paramMap.get('idUser')));
-        });
+    console.log('SNAPSHOT:', this.route.snapshot.paramMap.get('primeira'))
+    const idUser =  this.usuario.getID();
+    const idEvento = this.evento.getID();
+
+
+      if(this.gameParticipante.existeDados()){
+          this.gameParticipante.atualizarDados(()=>{
+              this.mostrarDados(idUser);
+          },()=>{
+              this.mostrarDados(idUser);
+          });
       }
-    } else {
-      this.mostrarDados(Number(this.route.snapshot.paramMap.get('idUser')));
-    }
+
 
   }
 
@@ -140,12 +141,12 @@ export class PerfilGamePage implements OnInit {
   }
 
 
-  mostrarDados(idMostrar: number, okCb?: () => void) {
+  mostrarDados(idMostrar, okCb?: () => void) {
     this.gameParticipante.carregar(() => { //carrega dados
-      //--console.log("Dados carregados\n ID:" + idMostrar);
+      //console.log("Dados carregados\n ID:" + idMostrar);
 
       if (idMostrar == undefined || idMostrar == this.gameParticipante.getID()) {
-
+        console.log('dentro if')
         this.carregaPerfilLogado(() => {
           if (okCb) okCb();
         });
@@ -165,6 +166,8 @@ export class PerfilGamePage implements OnInit {
         //this.carregaPerfilLogado();
       } else {
         this.idUsuarioMostrar = idMostrar;
+        console.log('id eventos são diferentes?', this.gameParticipante.getIDEvento());
+        console.log('id eventos são diferentes?',this.evento.getID());
         this.gameParticipante.visualizarParticipante(idMostrar, this.gameParticipante.getIDEvento(), (val: any) => {
           this.mostrarPerfilPesquisado(val, () => {
             if (okCb) okCb();

@@ -9,7 +9,7 @@ import { EventoService, EventoInterface } from 'src/app/services/evento.service'
 import { DatasUtil } from './../../utils/datas';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras} from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 
@@ -58,7 +58,8 @@ export class EventoInscricaoPage implements OnInit {
     private firebase: FirebaseService,
     private router: Router,
     private route: ActivatedRoute,
-    private storage: Storage
+    private storage: Storage,
+    private platform: Platform
   ) {
     this.route.queryParams.subscribe(params => {
 
@@ -78,15 +79,13 @@ export class EventoInscricaoPage implements OnInit {
      */
 
  ionViewWillEnter() {
-
-
-
   //this.eventoEscolhido = this.navParams.get('eventoEscolhido');
   //this.desinscrever = this.navParams.get('desinscrever');
   this.data.inicio = DatasUtil.completa(this.eventoEscolhido.dataInicio);
   this.data.fim = DatasUtil.completa(this.eventoEscolhido.dataFim);
   this.gamificacao = this.eventoEscolhido.gamificacao;
   this.album_figurinhas = this.eventoEscolhido.album_figurinhas;
+  console.log('evento escolhido: ', this.eventoEscolhido);
 
 }
 

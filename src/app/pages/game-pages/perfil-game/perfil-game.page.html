@@ -1,7 +1,4 @@
-<!-- Perfil -->
-
 <ion-header>
-  <!-- Título e barra de navegação -->
   <ion-toolbar color="primary">
       <ion-title>Perfil</ion-title>
   </ion-toolbar>
@@ -22,7 +19,7 @@
       <p>Carregando perfil...</p>
   </ion-item>
 
-  <ion-card padding *ngIf="carregado">
+  <ion-card class="ion-padding" *ngIf="carregado">
 
       <ion-item text-center>
           <div style="display: flex;">
@@ -62,7 +59,7 @@
       </ion-item>
   </ion-card>
 
-  <ion-card #tutInfo padding *ngIf="carregado">
+  <ion-card #tutInfo class="ion-padding" *ngIf="carregado">
       <h2 style="display: flex">
           <b>Informações Gerais</b>
           <img src="assets/img/noticias.png" class="ajuda" (click)="ajudaGeral()" />
@@ -93,7 +90,7 @@
       </p>
   </ion-card>
 
-  <ion-card padding *ngIf="carregado">
+  <ion-card class="ion-padding" *ngIf="carregado">
       <h2 style="display: flex">
           <b>Conquistas</b>
           <img src="assets/img/noticias.png" class="ajuda" (click)="ajudaConquistas()" />
@@ -131,11 +128,7 @@
 
       <br />
       <p #tutConquista2 style="display: flex;">
-          <!--<img class="medalha {{medalha ? 'ganha' : 'naoGanha'}}" src="assets/img/medalha-diamante.png"
-              (click)="infoMedalha()" /> -->
-          <!--<img class="medalha {{medalha[0] ? 'ganha' : 'naoGanha'}}" src="assets/img/medalha-ouro.png" (click) = "infoMedalha(1)"/>
-          <img class="medalha {{medalha[1] ? 'ganha' : 'naoGanha'}}" src="assets/img/medalha-prata.png" (click) = "infoMedalha(2)"/>
-          <img class="medalha {{medalha[2] ? 'ganha' : 'naoGanha'}}" src="assets/img/medalha-bronze.png" (click) = "infoMedalha(3)"/>-->
+
           <img class="trofeu {{trofeu[0] ? 'ganha' : 'naoGanha'}}"
               src="assets/img/game/conquistas_trofeus/trofeu1.png" (click)="infoTrofeu(1)" />
           <img class="trofeu {{trofeu[1] ? 'ganha' : 'naoGanha'}}"

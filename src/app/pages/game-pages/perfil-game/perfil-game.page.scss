@@ -1,0 +1,131 @@
+$cinza: #858585;
+
+page-perfil {
+    ion-row.timestamp {
+        ion-col {
+            &.time {
+                text-align: right;
+                p {
+                    font-size: 10pt;
+                    color: $cinza;
+                }
+            }
+            &.icon {
+                text-align: center;
+                color: $cinza;
+            }
+        }
+    }
+
+    ion-card {
+        border-radius: 8px !important;
+        ion-card-content {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 8px !important;
+            padding-bottom: 0px !important;
+        }
+    }
+
+    ion-card-content{
+        white-space: pre-wrap;
+    }
+
+    a{
+        color: black;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .ganha{
+        opacity: 1;
+    }
+
+    .naoGanha{
+        opacity: .4;
+    }
+
+    .conquista{
+        width:12%;
+        height: 12%;
+    }
+
+    .qtdConquista{
+        position: relative;
+        top:-50px;
+        left: 40px;
+    }
+
+    .medalha{
+        width:12%;
+        height: 12%;
+    }
+
+    .trofeu {
+        width:12%;
+        height: 12%;
+    }
+
+    .insignia{
+        width:13%;
+        height: 13%;
+    }
+
+    @keyframes animacao {
+        0% { width: 30%; }
+        25% { width: 29%; }
+        50% { width: 28%; }
+        75% { width: 29%; }
+        100% { width: 30%; }
+    }
+
+    .botaoGameDestaque{
+        animation: animacao 1s linear infinite;
+    }
+
+    .barra{
+        display: flex;
+        flex-direction: row;
+         justify-content: center;
+         align-items: center;
+    }
+
+    .barraProgresso{
+        width: 28%;
+        height: 1.2em;
+        border: solid;
+        border-width: 2px;
+        border-radius: 5px;
+        border-color: rgb(5, 76, 128);
+
+    }
+
+    .valorBarra{
+        //display: contents;
+        //width: 100%;
+        height: 100%;
+        position: relative;
+        //top:1%;
+        //left: 1%;
+        background-color: #8AB4F8;
+        border-radius: 3px;
+        //border: solid;
+        //border-width: 1px;
+    }
+
+    .relacaoPontos{
+        font-size: 90%;
+    }
+
+    h1{
+        white-space: normal; //quebra de linha quando enche
+    }
+
+    .ajuda{
+        position: relative;
+        left: 3%;
+        width: 7%;
+        height: 7%;
+    }
+
+}

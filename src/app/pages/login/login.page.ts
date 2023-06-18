@@ -49,12 +49,6 @@ export class LoginPage implements OnInit {
       email: ['', Validators.email]
      });
 
-    this.platform.backButton.subscribeWithPriority(5, () => {
-      navigator['app'].exitApp();
-    });
-
-
-
 }
 
  ngOnInit() {
@@ -71,7 +65,7 @@ export class LoginPage implements OnInit {
   * Ao sair da página, desfaz o registro de ação do botão de voltar
   */
    ionViewWillLeave() {
-    //this.botaoBack();
+    this.botaoBack();
   }
 
   /**

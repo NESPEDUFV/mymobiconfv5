@@ -49,7 +49,8 @@ import { AlbumService } from 'src/app/services/album.service';
 export class MyMobiConfPage implements OnInit {
   public botaoPerfil: boolean = false;
   public participaGame: boolean = false;
-  public existeGamification = false;
+  public existeGamification = true;
+  public albumFigurinhasHabilitado = 0;
   @ViewChild(IonMenu) menu: IonMenu;
 
   /** Data corrent */
@@ -105,7 +106,7 @@ export class MyMobiConfPage implements OnInit {
   // private statusBar: StatusBar,
   // private fcmService: FcmService
   {
-    console.log(this.evento.buscarInfo());
+    console.log('aaaaaaaaaaaa',this.evento.buscarInfo());
   }
 
   ngOnInit() {
@@ -118,6 +119,8 @@ export class MyMobiConfPage implements OnInit {
    * Ao entrar na página, determina a data atual, liga o menu lateral, e carrega primeiramente o usuário. Caso não esteja logado, redireciona para a página de login. Ao verificar que o usuário existe, carrega os dados do evento e das configurações, preparando para mostrar as notificações que vão aparecer e o tutorial da página
    */
   ionViewWillEnter() {
+    this.albumFigurinhasHabilitado = this.evento.getAlbum();
+    console.log('albumFigurinahs: ', this.albumFigurinhasHabilitado)
     this.gameConfig.carregarConfiguracoes(
       () => {},
       () => {}
@@ -130,6 +133,7 @@ export class MyMobiConfPage implements OnInit {
     this.usuario.disponivel(() => {
       if (this.usuario.existeDados()) {
         this.evento.disponivel(() => {
+
           this.ready = true;
           if (this.evento.existeDados())
             this.atividades.disponivel(() => {
@@ -162,8 +166,6 @@ export class MyMobiConfPage implements OnInit {
     this.evento.carregar(() => {
       if (this.evento.existeDados()) {
         //participante está em um evento
-
-        this.albumservice.salvar(this.evento.getID());
         this.carregaConfigGame(() => {
           this.carregarPerfilGame();
         });
@@ -232,17 +234,7 @@ export class MyMobiConfPage implements OnInit {
     }
   }
 
-  /**Teste de notificao
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-     // this.splashScreen.hide();
 
-      // Trigger the push setup
-      this.fcmService.initPush();
-    });
-  }
-  */
 
   mostraBotaoJogo() {
     if (!this.evento.existeDados()) {
@@ -266,6 +258,7 @@ export class MyMobiConfPage implements OnInit {
           this.botaoPerfil = true; //mostra submenu
         } else {
           //evento carregado não é o mesmo inscrito no momento
+          console.log('mostrar botão game')
           this.gameParticipante.existePerfil(
             this.usuario.getID(),
             this.evento.getID(),
@@ -282,6 +275,7 @@ export class MyMobiConfPage implements OnInit {
         }
       } else {
         //perfil não carregado
+        console.log('não participa e perfil não carregado')
         this.gameParticipante.existePerfil(
           this.usuario.getID(),
           this.evento.getID(),
@@ -333,19 +327,24 @@ export class MyMobiConfPage implements OnInit {
 
   criaPerfil(novo?: boolean) {
     if (this.usuario.getID() != null && this.evento.getID() != null) {
+      const usuarioId = this.usuario.getID();
+      const eventoId = this.evento.getID();
+      console.log('usuario e evento', usuarioId, eventoId)
+      debugger;
       this.gameParticipante.cadastrarParticipante(
-        this.usuario.getID(),
-        this.evento.getID(),
+        usuarioId,
+        eventoId,
+
         () => {
           if (novo) {
+
             this.carregarPerfilGame(novo);
           } else {
+
             this.carregarPerfilGame();
           }
         },
-        (mensagem) => {
-          this.mostraAlerta('Erro ao cadastrar participante', mensagem);
-        }
+        () => {}
       );
     }
   }
@@ -355,13 +354,7 @@ export class MyMobiConfPage implements OnInit {
   }
 
   irParaPerfil() {
-    this.router.navigate(['/perfil-game'], {
-      queryParams: {
-        idUser: this.usuario.getID(),
-        evento: this.evento,
-        primeira: true,
-      },
-    });
+    this.router.navigate(['/perfil-game']);
   }
 
   irParaRanking() {
@@ -450,9 +443,9 @@ export class MyMobiConfPage implements OnInit {
       ) {
         this.existeGamification = true;
         if (okCb) okCb();
-        //--console.log("JA EXISTE CONFIGS");
+        console.log("JA EXISTE CONFIGS");
       } else {
-        //--console.log("NAO EXISTE CONFIGS AINDA");
+        console.log("NAO EXISTE CONFIGS AINDA");
         this.gameConfig.carregarConfiguracoes(
           () => {
             //--console.log("CARREGA CONFIGS");
@@ -485,6 +478,7 @@ export class MyMobiConfPage implements OnInit {
         this.participaGame = true;
         this.existeGamification = true;
 
+       if(novo){
         this.mostraAlerta(
           'Bem vindo!',
           'IMPORTANTE!!!\n' +
@@ -496,6 +490,7 @@ export class MyMobiConfPage implements OnInit {
             'Crie ou participe de um grupo para interagir com seus amigos.'
         );
         this.irParaPerfil();
+       }
       } else {
         this.gameParticipante.existePerfil(
           this.usuario.getID(),
@@ -515,6 +510,7 @@ export class MyMobiConfPage implements OnInit {
             this.gameGrupo.apagar();
 
             this.participaGame = false;
+            console.log("NAO");
           }
         );
       }

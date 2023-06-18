@@ -71,7 +71,7 @@ export class AlbumService {
       header: 'Sua foto foi compartilhada com a organização',
       message: 'Quando o album for publicado você pode conferir esse e outros registros! ',
       position: 'top',
-      duration: 2000,
+      duration: 4000,
       color: 'success'
     });
     toast.present();
@@ -81,7 +81,7 @@ export class AlbumService {
     console.log('toastError')
     const toast = await this.toastController.create({
       message: 'Ocorreu um erro no nosso servidor, tente novamente! ',
-      duration: 2000,
+      duration: 4000,
     });
     toast.present();
   }

@@ -6,6 +6,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 import { AlbumService, UserPhoto } from 'src/app/services/album.service';
 import { Instagram } from '@awesome-cordova-plugins/instagram/ngx';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-fotos',
@@ -24,6 +25,7 @@ export class FotosPage implements OnInit {
     public eventoService: EventoService,
     private albumService: AlbumService,
     public instagram: Instagram,
+    public toastController: ToastController
 
   ) {}
 
@@ -71,13 +73,28 @@ export class FotosPage implements OnInit {
         : CameraResultType.Uri, //mudar para base643 quando for salvar no banco
     });
     this.selectedImage = image;
-    console.log('select dataurl: ', this.selectedImage.web)
+
     this.copyImageToCanvas()
 
 
       this.selectedImage.webPath = image.dataUrl;
 
+      this.toastLembrete();
+
   }
+
+
+  async toastLembrete() {
+    console.log('toastError')
+    const toast = await this.toastController.create({
+      message: 'Compartilhe a figurinha  com a organização e/ou no Instagram para receber pontos',
+      duration: 4000,
+      color: 'warning',
+      position: 'top'
+    });
+    toast.present();
+  }
+
 
 
   copyImageToCanvas() {

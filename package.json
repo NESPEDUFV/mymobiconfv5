@@ -28,6 +28,7 @@
     "@awesome-cordova-plugins/core": "^6.3.0",
     "@awesome-cordova-plugins/instagram": "^6.3.0",
     "@capacitor/android": "^4.0.0",
+    "@capacitor/app": "^4.1.1",
     "@capacitor/camera": "4.0",
     "@capacitor/core": "^4.0.0",
     "@capacitor/filesystem": "4.0",

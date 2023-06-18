@@ -82,7 +82,6 @@ export class UsuarioService {
      * @returns Se há um URL de foto
      */
     existeFotoURL(): boolean {
-      console.log('existe? ', this.fotoURL != "" && this.fotoURL != null)
         return this.fotoURL != "" && this.fotoURL != null;
     }
 

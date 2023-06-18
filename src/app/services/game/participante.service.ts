@@ -273,6 +273,7 @@ atualizarDados(okCb?: () => void, erroCb?: () => void){
 }
 
 cadastrarParticipante(idParticipante: any, idEvento: any, okCb: () => void, erroCb: (mensagem:string) => void) {
+  console.log('cadastrar');
     this.servidor.game_participante.criarPerfil(idParticipante, idEvento).subscribe((val: any) => {
         if (val['success'] == 1 || val['success'] == 2) {
             val.usuario.diamante = val.usuario.diamante;
@@ -282,8 +283,8 @@ cadastrarParticipante(idParticipante: any, idEvento: any, okCb: () => void, erro
             });
 
         } else {
-            /*this.dados = null;
-            this.salvar();*/
+            this.dados = null;
+            this.salvar();
             erroCb(val['message']);
         }
 

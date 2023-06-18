@@ -24,13 +24,7 @@
       max-height: 3rem;
   }
 }
-ion-page{
-  height: 10% !important;
-}
 
-ion-toolbar:first-of-type{
-  padding-top: var(--ion-safe-area-top, 0) !important;
-}
 
 // Para destacar os campos de entrada de texto
 $fundoDestaque: rgb(245,245,245);

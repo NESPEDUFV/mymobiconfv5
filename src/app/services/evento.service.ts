@@ -55,6 +55,7 @@ export class EventoService {
     getLogoURL(): string { return this.dados.logoURL; }
     getSite(): string { return this.dados.site; }
     getEmail(): string { return this.dados.email; }
+    getAlbum(): number { return this.dados.album_figurinhas;}
     getTelefone(): string { return this.dados.telefone; }
     getGamificacao(): number{ return this.dados.gamificacao; }
     getIsOnline(): number{ return this.dados.is_online; }

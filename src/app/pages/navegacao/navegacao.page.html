@@ -1,0 +1,30 @@
+<div class="page">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button (click)="goBack()" default-href="#"></ion-back-button>
+      </ion-buttons>
+  
+      <ion-title>
+        Indo para {{title}}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div *ngIf="isMessageVisible" class="messageBanner">
+    <p>{{instructionMessage}}</p>
+    <button (click)="setMessageVisible()" class="dismissButton">Entendi</button>
+  </div>
+
+  <div *ngIf="isFloorMessageVisible" class="messageBanner">
+    <p>Acesse o próximo andar e clique em continuar</p>
+    <button (click)="handleFloorChanges()" class="dismissButton">Continuar</button>
+  </div>
+
+  <div *ngIf="isSuccessMessageVisible" class="successMessageBanner">
+    <p>Você chegou ao seu destino!!</p>
+    <button (click)="goBack()" class="successDismissButton">Legal</button>
+  </div>
+
+  <div #map id="map"></div>
+</div>

@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { ConfigPage } from './pages/config/config.page';
 import { EventosPage } from './pages/eventos/eventos.page';
 import { SobrePage } from './pages/sobre/sobre.page';
+import { StatusBar } from '@capacitor/status-bar';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +25,10 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-  ) {}
+    private platform: Platform
+  ) {
+    this.platform.ready().then(() => StatusBar.setOverlaysWebView({ overlay: false }));    
+  }
 
       /**
      * Chamada quando se clica em algum botão do menu, exibindo a página correspondente

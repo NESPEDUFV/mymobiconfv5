@@ -21,7 +21,6 @@ import { IonMenu, MenuController } from '@ionic/angular';
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { FcmService } from 'src/app/services/firebase/fcm.service';
 import { ConfiguracoesService, GameConfiguracoesInterface } from 'src/app/services/game/configuracoes.service';
 import { PassosMsgs, PassosTutorial } from 'src/app/components/tutorial/passos';
@@ -70,7 +69,8 @@ export class MyMobiConfPage implements OnInit {
           { id: "parceiros", label: "Parceiros", pagina: 'parceiros'  },
           { id: "noticias", label: "Notícias", pagina:'noticias'},
           { id: "social", label: "Social", pagina: 'social'},
-          {id: "album", label:"Album de figurinhas",pagina:'album'}
+          {id: "album", label:"Album de figurinhas",pagina:'album'},
+          {id: "escolher-destino", label:"Localize a sala", pagina:'escolher-destino'}
       ];
 
    /** @ignore */

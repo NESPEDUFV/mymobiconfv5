@@ -1,0 +1,173 @@
+.page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.selectGroupContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  top: 70px;
+  z-index: 98;
+}
+
+.selectFloorContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-left: 20px;
+}
+
+.selectFloorLabel{
+  display: flex;
+  margin: 0;
+  color: grey;
+  font-weight: bold;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.selectFloor{
+  display: flex;
+  justify-content: space-between;
+  background-color: #D7E2FF;
+  color: grey;
+  width: 50px;
+  padding: 5px;
+  border-radius: 6px;
+  align-items: center;
+}
+
+.card {
+  z-index: 100;
+  animation: card-appear 0.5s ease-in-out forwards;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+}
+
+@keyframes card-appear {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.cardTitle {
+  color: dark;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.distance {
+  color: #FFA600;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  position: absolute;
+  top: 2px;
+  right: 55px;
+}
+
+.cardCloseIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.cardImageContainer {
+  height: 120px;
+  width: 50%;
+}
+
+.cardImage {
+  object-fit: fill;
+  height: 100%;
+  width: 100%;
+}
+
+.navigationButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  border-radius: 8px;
+  background-color: rgba(1,1,1, 0.8);
+  border: 1px solid grey;
+  padding: 10px;
+}
+
+.messageBanner {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  justify-content: space-between;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px 20px;
+  margin-top: 20px;
+  width: 96%;
+  align-self: center;
+  border-radius: 12px;
+  align-items: center;
+  z-index: 99;
+}
+
+.dismissButton {
+  display: flex;
+  align-items: center;
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 10px;
+}
+
+.roundedButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 4px;
+  bottom: 40%;
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+  background-color: #F3FFA5 ;
+  border: 1px solid grey;
+  z-index: 99;
+}

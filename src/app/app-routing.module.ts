@@ -116,7 +116,8 @@ const routes: Routes = [
   {
     path: 'grupo',
     loadChildren: () => import('./pages/game-pages/grupo/grupo.module').then( m => m.GrupoPageModule)
-  },  {
+  },
+  {
     path: 'album',
     loadChildren: () => import('./pages/album/album.module').then( m => m.AlbumPageModule)
   },
@@ -128,9 +129,14 @@ const routes: Routes = [
     path: 'album-evento',
     loadChildren: () => import('./pages/album-evento/album-evento.module').then( m => m.AlbumEventoPageModule)
   },
-
-
-
+  {
+    path: 'escolher-destino',
+    loadChildren: () => import('./pages/escolher-destino/escolher-destino.module').then( m => m.EscolherDestinoPageModule)
+  },
+  {
+    path: 'navegacao',
+    loadChildren: () => import('./pages/navegacao/navegacao.module').then( m => m.NavegacaoPageModule)
+  }
 ];
 
 @NgModule({

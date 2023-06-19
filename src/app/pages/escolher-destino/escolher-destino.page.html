@@ -1,0 +1,98 @@
+<div class="page">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button (click)="goBack()" default-href="#"></ion-back-button>
+      </ion-buttons>
+
+      <ion-title>
+        Localize a sala
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="isMessageVisible" class="messageBanner">
+    <p>Para se localizar em um pavilhão você deve estar dentro de algum edifício!</p>
+    <button (click)="setMessageVisible()" class="dismissButton">Fechar</button>
+  </div>
+
+  <div *ngIf="isPermissionMessageVisible" class="messageBanner">
+    <p>Para utilizar essa funcionalidade você precisa conceder permissão ao aplicativo para acessar sua localização!</p>
+    <button (click)="handlePermissionDismissButton()" class="dismissButton">Fechar</button>
+  </div>
+
+  <div *ngIf="isGpsMessageVisible" class="messageBanner">
+    <p>Para utilizar essa funcionalidade você precisa ativar sua localização!</p>
+    <button (click)="handleGpsDismissButton()" class="dismissButton">Fechar</button>
+  </div>
+
+  <div *ngIf="floorCount > 1" class="selectGroupContainer">
+    <div class="selectFloorContainer">
+      <p class="selectFloorLabel">Andar sendo visualizado no mapa</p>
+      <div style="margin-right: 10px;"></div>
+      <ion-select class="selectFloor" [(ngModel)]="selectedFloor" (ionChange)="handleFloorChanges()" placeholder="1">
+        <ion-select-option *ngFor="let option of generateFloorOptions()" [value]="option">
+          {{ option }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+
+    <div style="margin: 2px"></div>
+  
+    <div class="selectFloorContainer">
+      <p class="selectFloorLabel">Usuário está no andar</p>
+      <div style="margin-right: 10px;"></div>
+      <ion-select class="selectFloor" [(ngModel)]="userFloor" (ionChange)="handleUserFloorChanges()" placeholder="1">
+        <ion-select-option *ngFor="let option of generateFloorOptions()" [value]="option">
+          {{ option }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+
+  <div 
+    (click)="reCenter()" 
+    class="roundedButtonContainer"
+  > 
+    <ion-img src="../../../assets/img/localizacao/user.png"></ion-img>
+  </div>
+
+  <ion-card class="card" *ngIf="isCardVisible">
+    <ion-card-header class="cardTitle">
+      {{destination.label}}
+    </ion-card-header>
+    
+    <ion-card-content>
+      <div class="column">
+        <div class="row">
+          <div class="cardImageContainer">
+            <ion-img class="cardImage" src={{destination.image}}></ion-img>
+          </div>
+          <div style="margin: 0px 5px"></div>
+          <div class="cardImageContainer">
+            <p>{{destination.description}}</p>
+          </div>
+        </div>
+        
+        <div 
+          (click)="goToNavigationPage()" 
+          *ngIf="destination != undefined"  
+          class="navigationButton"
+        >
+          <div style="margin: 0px 8px"></div>
+          <ion-icon name="paper-plane-outline" size="large" color="primary"></ion-icon>
+          <div style="margin: 0px 4px"></div>
+          <p>
+            INICIAR
+          </p>
+          <div style="margin: 0px 8px"></div>
+        </div>
+      </div>
+    </ion-card-content>
+
+    <ion-icon (click)="hideCard()" class="cardCloseIcon" name="close" size="large" color="primary"></ion-icon>
+    <p class="distance">{{distance}} metros</p>
+  </ion-card>
+  
+  <div #map id="map"></div>
+</div>

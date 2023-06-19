@@ -8,10 +8,9 @@ import { UsuarioService } from './../../services/usuario.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonContent, AlertController } from '@ionic/angular';
-import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
+import { PluginListenerHandle } from '@capacitor/core';
+import { Network, ConnectionStatus } from '@capacitor/network';
 
-
-const { Network } = Plugins;
 
 
 @Component({

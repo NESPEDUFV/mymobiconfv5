@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Plugins, NetworkStatus, PluginListenerHandle } from '@capacitor/core';
-
-const { Network } = Plugins;
+import { PluginListenerHandle } from '@capacitor/core';
+import { Network, ConnectionStatus } from '@capacitor/network';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class RedeService {
-  networkStatus: NetworkStatus;
+  networkStatus: ConnectionStatus;
   networkListener: PluginListenerHandle;
 
 constructor() {

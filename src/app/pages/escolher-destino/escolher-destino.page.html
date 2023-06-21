@@ -13,17 +13,26 @@
 
   <div *ngIf="isMessageVisible" class="messageBanner">
     <p>Para se localizar em um pavilhão você deve estar dentro de algum edifício!</p>
+    <div class="instructionImageContainer">
+      <ion-img class="instructionImage" src="../../../assets/img/localizacao/error.jpg"></ion-img>
+    </div>
     <button (click)="setMessageVisible()" class="dismissButton">Fechar</button>
   </div>
 
   <div *ngIf="isPermissionMessageVisible" class="messageBanner">
-    <p>Para utilizar essa funcionalidade você precisa conceder permissão ao aplicativo para acessar sua localização!</p>
-    <button (click)="handlePermissionDismissButton()" class="dismissButton">Fechar</button>
+    <p class="instructionTitle">Para utilizar essa funcionalidade você precisa conceder permissão ao aplicativo para acessar sua localização!</p>
+    <div class="instructionImageContainer">
+      <ion-img class="instructionImage" src="../../../assets/img/localizacao/gps_disabled.jpg"></ion-img>
+    </div>
+    <button (click)="handlePermissionDismissButton()" class="dismissButton">Tentar novamente</button>
   </div>
 
   <div *ngIf="isGpsMessageVisible" class="messageBanner">
-    <p>Para utilizar essa funcionalidade você precisa ativar sua localização!</p>
-    <button (click)="handleGpsDismissButton()" class="dismissButton">Fechar</button>
+    <p class="instructionTitle">Para utilizar essa funcionalidade você precisa ativar a localização do seu dispositivo!</p>
+    <div class="instructionImageContainer">
+      <ion-img class="instructionImage" src="../../../assets/img/localizacao/gps_disabled.jpg"></ion-img>
+    </div>
+    <button (click)="handleGpsDismissButton()" class="dismissButton">Tentar novamente</button>
   </div>
 
   <div *ngIf="floorCount > 1" class="selectGroupContainer">

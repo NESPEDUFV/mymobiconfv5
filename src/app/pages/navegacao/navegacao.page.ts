@@ -5,7 +5,7 @@ import { CallbackID, Geolocation, Position } from '@capacitor/geolocation';
 import { AccelListenerEvent, Motion } from '@capacitor/motion';
 import { NavController, Platform } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
-import { GPS_ACCURACY_LIMIT_IN_METERS, LocalizacaoService, Node, STEP_SIZE_IN_METERS, STEP_THRESHOLD } from 'src/app/services/localizacao/localizacao.service';
+import { ACCESS_NODE_INSTRUCTION_IMAGE_PATH, DEFAULT_INSTRUCTION_IMAGE_PATH, FLOOR_TRANSITION_INSTRUCTION_IMAGE_PATH, GPS_ACCURACY_LIMIT_IN_METERS, LocalizacaoService, Node, STEP_SIZE_IN_METERS, STEP_THRESHOLD, SUCCESS_INSTRUCTION_IMAGE_PATH } from 'src/app/services/localizacao/localizacao.service';
 import { ACCESS_NODE_ICON, DEFAULT_LINE_STYLE, DEFAULT_NODE_ICON, NAVIGATION_DESTINATION_IMAGE_PATH, NAVIGATION_MARKER_IMAGE_PATH, MAP_ID } from 'src/app/services/localizacao/mapa.service';
 import {} from 'google-maps';
 
@@ -35,13 +35,15 @@ export class NavegacaoPage {
   isStreamEnabled: boolean = true;
 
   /*Variáveis da página*/
+  isStreamPaused: boolean = false;
   currentPositionMarker: google.maps.Marker;
   currentDirectionInDegrees: number;  
   geolocationStream: CallbackID = null;
   steps: number = 0;
-  floor: number;
+  floor: number = 1;
   currentFloorNodes: Node[];  
   nextFloor: number;
+  distance: number = 0;
   destination: Node;
   sensorsCurrentNode: Node;
   lastValidPosition: Node;
@@ -49,7 +51,9 @@ export class NavegacaoPage {
   isMessageVisible: boolean = false;
   isFloorMessageVisible: boolean = false; 
   isSuccessMessageVisible: boolean = false;   
-  instructionMessage: string;
+  instructionTitle: string;
+  instructionDescription: string = '';
+  currentInstructionImage: string = '';
   title: string = '' ;
   route: Node[];
   currentRouteMarkers: google.maps.Marker[] = [];
@@ -84,6 +88,7 @@ export class NavegacaoPage {
     this.route = this.routeParams.snapshot.queryParams.route;
     const startPosition = this.route[0];
     this.destination = this.route[this.route.length - 1];
+    this.distance = this.localizacao.getPathDistance(this.route);
     this.title = this.destination.label;
     this.sensorsCurrentNode = startPosition;
     this.lastValidPosition = startPosition;
@@ -107,10 +112,11 @@ export class NavegacaoPage {
       center: latLng,
       zoom: 100,
       heading: 0,
+      zoomControl: true,
       disableDefaultUI: true,
       vectorRendering: 'auto',
       mapId: MAP_ID,
-      tilt: 64,
+      tilt: 100,
     };
     this.map = new google.maps.Map(
       this.mapRef.nativeElement, 
@@ -151,7 +157,11 @@ export class NavegacaoPage {
   addRouteMarkers(): void {
     this.currentFloorNodes.forEach((node, index) => {
       if(!this.isFloorMessageVisible && node.isAccessNode && index != 0)
-        this.showInstructionMessage('Vá para o ponto de acesso ao próximo andar (em azul)');
+        this.showInstructionTitle(
+          'Vá para o ponto de acesso ao próximo andar (em azul)!!', 
+          ACCESS_NODE_INSTRUCTION_IMAGE_PATH,
+          'Mantenha o mapa na direção do próximo ponto.'
+        );
 
       const position = new google.maps.LatLng(node.coordinates.lat, node.coordinates.long);
       const icon = this.getIcon(node, index);
@@ -168,7 +178,11 @@ export class NavegacaoPage {
     });
     //Se não tem nenhum ponto de acesso
     if(!this.isMessageVisible)
-      this.showInstructionMessage("Siga adiante deixando o mapa na direção dos pontos da rota!");
+      this.showInstructionTitle(
+        "Siga adiante deixando o mapa na direção dos pontos da rota!", 
+        DEFAULT_INSTRUCTION_IMAGE_PATH, 
+        'Se o celular for equipado com bússola, o app irá rotacionar o mapa automaticamente. Caso contrário você deve movê-lo manualmente para a direção correta.'
+      );
   }
 
   getIcon(node: Node, index: number){
@@ -205,6 +219,7 @@ export class NavegacaoPage {
     this.geolocationStream = await Geolocation.watchPosition(
       options,
       async (pos: Position, posError?: any) => {
+        if(this.isStreamPaused) return;
         const hasError = posError || !pos.coords;
         if(hasError){
           this.toast.showMessage('Você está experimentando problemas na localização', 'danger');
@@ -233,7 +248,7 @@ export class NavegacaoPage {
           return;
         }
 
-        const COUNT_LIMIT = 10;
+        const COUNT_LIMIT = 20;
         this.incorrectPositionCount++;
 
         if(this.incorrectPositionCount > COUNT_LIMIT){
@@ -292,7 +307,7 @@ export class NavegacaoPage {
       this.lastValidPosition.coordinates,
       node.coordinates
     );
-    const LIMIT_IN_METERS = 10;
+    const LIMIT_IN_METERS = 7;
     return distance <= LIMIT_IN_METERS; 
   }
 
@@ -314,6 +329,7 @@ export class NavegacaoPage {
     const latLng = new google.maps.LatLng(nearestNode.coordinates.lat, nearestNode.coordinates.long);
     this.currentPositionMarker.setPosition(latLng);
     this.map.setCenter(latLng);
+    this.distance = this.localizacao.getPathDistance(this.getRemainingPoints(nearestNode));
 
     const userArrived = this.localizacao.isPointsTheSame(nearestNode.coordinates, this.destination.coordinates);
     if(userArrived){
@@ -324,8 +340,21 @@ export class NavegacaoPage {
 
   handleAccessNode(nearestNode: Node): void {
     this.nextFloor = this.getNextFloor(nearestNode);
-    if(this.nextFloor != this.floor && !this.isFloorMessageVisible)
+    if(this.nextFloor != this.floor && !this.isFloorMessageVisible){
+      this.instructionTitle = `Pegue o acesso ao andar ${this.nextFloor}`;
+      this.instructionDescription = `Estamos aguardando você chegar ao ${this.nextFloor} andar. Clique em "Continuar" para prosseguir com a rota.`
+      this.currentInstructionImage = FLOOR_TRANSITION_INSTRUCTION_IMAGE_PATH;
+      this.isStreamPaused = true;
       this.setFloorMessageVisible();
+    }
+  }
+
+  getRemainingPoints(nearestNode: Node): Node[] {
+    const index = this.route.findIndex(node => node.label == nearestNode.label);
+    let remainingPoints: Node[] = [];
+    for(let i = index; i < this.route.length; i++) 
+      remainingPoints.push(this.route[i]);
+    return remainingPoints;
   }
 
   getNextFloor(nearestNode: Node): number {
@@ -364,12 +393,13 @@ export class NavegacaoPage {
 
   handleFinishNavigation(): void {
     this.isStreamEnabled = false;
+    this.currentInstructionImage = SUCCESS_INSTRUCTION_IMAGE_PATH;
     this.setSuccessMessageVisible();
   }
 
   watchOrientation(): void {
     Motion.addListener('orientation', (event: DeviceOrientationEvent) => {
-      if(!this.isStreamEnabled) return;
+      if(!this.isStreamEnabled || this.isStreamPaused) return;
 
       const rotation = event.alpha ? 360 - event.alpha : 0;
       this.currentDirectionInDegrees = rotation;
@@ -379,7 +409,7 @@ export class NavegacaoPage {
 
   watchAcceleration(): void {
     Motion.addListener('accel', (event: AccelListenerEvent) => {
-      if(!this.isStreamEnabled) return;
+      if(!this.isStreamEnabled || this.isStreamPaused) return;
 
       const countedStepOnXAxis = event.acceleration.x < -STEP_THRESHOLD || event.acceleration.x > STEP_THRESHOLD;
       if(!countedStepOnXAxis){
@@ -398,8 +428,10 @@ export class NavegacaoPage {
 
   setSuccessMessageVisible = () => this.isSuccessMessageVisible = !this.isSuccessMessageVisible;
 
-  showInstructionMessage(message: string): void {
-    this.instructionMessage = message;
+  showInstructionTitle(message: string, image: string = DEFAULT_INSTRUCTION_IMAGE_PATH, description: string = ''): void {
+    this.instructionTitle = message;
+    this.currentInstructionImage = image;
+    this.instructionDescription = description;
     this.setMessageVisible();
   }
 
@@ -408,8 +440,14 @@ export class NavegacaoPage {
     this.floor = Number(this.nextFloor);
     this.currentFloorNodes = this.route.filter((node) => node.floor == this.floor);
     this.handleRoute();
+    this.isStreamPaused = false;
   }
 
+  reCenter(): void {
+    const latLng = new google.maps.LatLng(this.lastMarkerPosition.coordinates.lat, this.lastMarkerPosition.coordinates.long);
+    this.map.setCenter(latLng);
+    this.map.setZoom(100);
+  }
 
   async ionViewWillLeave(): Promise<void> {
     this.isStreamEnabled = false;

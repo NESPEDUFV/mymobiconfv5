@@ -152,6 +152,10 @@ export interface Edge {
 }
 
 //Constantes
-export const STEP_THRESHOLD: number = 1.5;
+export const STEP_THRESHOLD: number = 1.3;
 export const STEP_SIZE_IN_METERS: number = 0.2;
 export const GPS_ACCURACY_LIMIT_IN_METERS: number = 7;
+export const FLOOR_TRANSITION_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/change_floor.jpg';
+export const DEFAULT_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/arrow_direction.jpg';
+export const ACCESS_NODE_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/blue_point.png';
+export const SUCCESS_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/success.jpg';

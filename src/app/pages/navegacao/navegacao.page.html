@@ -10,19 +10,43 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="infoGroupContainer">
+    <p class="infoLabel">Você está no andar: {{floor}}</p>
+    <div style="margin: 2px"></div>
+    <p class="infoLabel">Distância até o destino: {{distance}} metros</p>
+  </div>
+
+  <div 
+    (click)="reCenter()" 
+    class="roundedButtonContainer"
+  > 
+    <ion-img src="../../../assets/img/localizacao/user.png"></ion-img>
+  </div>
   
   <div *ngIf="isMessageVisible" class="messageBanner">
-    <p>{{instructionMessage}}</p>
+    <p class="instructionTitle">{{instructionTitle}}</p>
+    <p class="instructionDescription">{{instructionDescription}}</p>
+    <div class="instructionImageContainer">
+      <ion-img class="instructionImage" *ngIf="currentInstructionImage != ''" src={{currentInstructionImage}}></ion-img>
+    </div>
     <button (click)="setMessageVisible()" class="dismissButton">Entendi</button>
   </div>
 
   <div *ngIf="isFloorMessageVisible" class="messageBanner">
-    <p>Acesse o próximo andar e clique em continuar</p>
+    <p class="instructionTitle">{{instructionTitle}}</p>
+    <p class="instructionDescription">{{instructionDescription}}</p>
+    <div class="instructionImageContainer">
+      <ion-img class="instructionImage" *ngIf="currentInstructionImage != ''" src={{currentInstructionImage}}></ion-img>
+    </div>
     <button (click)="handleFloorChanges()" class="dismissButton">Continuar</button>
   </div>
 
-  <div *ngIf="isSuccessMessageVisible" class="successMessageBanner">
-    <p>Você chegou ao seu destino!!</p>
+  <div *ngIf="isSuccessMessageVisible" class="messageBanner">
+    <p class="instructionTitle">Parabéns, você chegou ao seu destino!!</p>
+    <div class="successImageContainer">
+      <ion-img class="instructionImage" *ngIf="currentInstructionImage != ''" src={{currentInstructionImage}}></ion-img>
+    </div>
     <button (click)="goBack()" class="successDismissButton">Legal</button>
   </div>
 

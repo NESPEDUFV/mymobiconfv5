@@ -21,6 +21,7 @@
   flex-wrap: wrap;
   top: 70px;
   z-index: 98;
+  padding: 0px 0px 0px 20px;
 }
 
 .selectFloorContainer{
@@ -29,7 +30,6 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding-left: 20px;
 }
 
 .selectFloorLabel{
@@ -126,35 +126,58 @@
   width: auto;
   border-radius: 8px;
   background-color: rgba(1,1,1, 0.8);
-  border: 1px solid grey;
+  border: 1px solid white;
   padding: 10px;
 }
 
 .messageBanner {
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  justify-content: space-between;
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 10px 20px;
-  margin-top: 20px;
-  width: 96%;
+  width: 70%;
+  position: absolute;
+  top: 25%;
   align-self: center;
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: solid 1px #5B5B5B;
+  padding: 10px 20px;
+  border-radius: 24px;
+  justify-content: center;
   align-items: center;
   z-index: 99;
 }
 
+.instructionTitle {
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  margin: 10px 0px;
+}
+
+.instructionImageContainer {
+  height: 120px;
+  // width: 50%;
+  margin: 0px 0px 20px 0px;
+}
+
+.instructionImage {
+  object-fit: fill;
+  height: 100%;
+  width: 100%;
+}
+
 .dismissButton {
   display: flex;
+  width: 100%;
+  border-radius: 6px;
   align-items: center;
-  background-color: #dc3545;
-  border: none;
+  justify-content: center;
+  background-color: red;
+  border: solid 1px grey;
   color: white;
+  font-weight: bold;
   cursor: pointer;
   font-weight: bold;
-  padding: 10px 10px;
+  padding: 10px;
 }
 
 .roundedButtonContainer {

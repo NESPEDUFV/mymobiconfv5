@@ -412,13 +412,12 @@ export class NavegacaoPage {
       if(!this.isStreamEnabled || this.isStreamPaused) return;
 
       const countedStepOnXAxis = event.acceleration.x < -STEP_THRESHOLD || event.acceleration.x > STEP_THRESHOLD;
-      if(!countedStepOnXAxis){
-        //If's aninhados para tentar otimizar número de comparações para cada evento
-        const countedStepOnYAxis = event.acceleration.y < -STEP_THRESHOLD || event.acceleration.y > STEP_THRESHOLD;
-        if(countedStepOnYAxis) this.steps++;
-        return;
+      const countedStepOnYAxis = event.acceleration.y < -STEP_THRESHOLD || event.acceleration.y > STEP_THRESHOLD;
+      const countedStepOnZAxis = event.acceleration.z < -STEP_THRESHOLD || event.acceleration.z > STEP_THRESHOLD;
+
+      if(countedStepOnXAxis || countedStepOnYAxis || countedStepOnZAxis){
+        this.steps++;
       }  
-      this.steps++;
     });
   }
 

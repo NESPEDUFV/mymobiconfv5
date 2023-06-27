@@ -23,13 +23,15 @@ export class EscolherDestinoPage {
   
   /*Variáveis*/
   devicePosition: Node; 
+  lastDevicePosition: Node; 
   destination: Node;
   destinationMarkers: google.maps.Marker[];
   isMessageVisible: boolean = false; 
   isPermissionMessageVisible: boolean = false;
   isGpsMessageVisible: boolean = false;
   isLeavingFromNavigationScreen: boolean = false; 
-  isCardVisible: boolean = false; 
+  isCardVisible: boolean = false;
+  isStreamEnabled: boolean = true; 
   floorCount: number = 0;
   selectedFloor: number = 1;
   lastSelectedFloor: number = 0;
@@ -63,8 +65,9 @@ export class EscolherDestinoPage {
         Não é possível manter as duas páginas monitorando pois, além
         de desperdiçar dados móveis provoca inúmeros bugs
       */
-      await this.watchPosition();
+      this.isStreamEnabled = true;
       this.isLeavingFromNavigationScreen = false;
+      await this.watchPosition();
       return;
     }
 
@@ -109,7 +112,6 @@ export class EscolherDestinoPage {
   async getUserPosition() : Promise<void> {
     let devicePosition = await this.localizacao.getPositionFromDevice();
 
-    // const nodes = this.getNodesByFloor(this.selectedFloor);
     devicePosition.floor = this.userFloor;
     const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(devicePosition);
     if(!isUserOnBuilding){
@@ -252,9 +254,9 @@ export class EscolherDestinoPage {
       return;
     }
     const options = {
-      maximumAge: 5000,
+      maximumAge: 0,
       enableHighAccuracy: true,
-      timeout: 3000
+      timeout: 2000
     }
     this.geolocationStream = await Geolocation.watchPosition(
       options,
@@ -272,14 +274,14 @@ export class EscolherDestinoPage {
         } as Node
         
 
-        // const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
+        const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
         
-        // if(!isUserOnBuilding){
-        //   this.devicePosition = deviceNode;
-        //   this.handleUserMarker();
-        //   this.handleRoute();
-        //   return;
-        // }
+        if(!isUserOnBuilding){
+          this.devicePosition = deviceNode;
+          this.handleUserMarker();
+          this.handleRoute();
+          return;
+        }
 
         const nodes = this.getNodesByFloor(deviceNode.floor);
         const nearestNode = this.localizacao.getNearestNode(deviceNode, nodes);
@@ -288,6 +290,14 @@ export class EscolherDestinoPage {
         this.handleUserMarker();
       }
     );
+
+    //Obriga uma nova consulta a cada 2 segundos
+    setTimeout(async () => {
+      //Condição de parada
+      if(!this.isStreamEnabled) return;
+
+      await this.restartGeolocationStream()
+    }, 2000);
   }
 
   getAllGraphNodes = () => this.mapGraph.mapNodes((label, attributes) => attributes);
@@ -382,8 +392,7 @@ export class EscolherDestinoPage {
   }
 
   async goToNavigationPage(): Promise<void> {
-    const isRouteEmpty = !Boolean(this.route);
-    if(isRouteEmpty){
+    if(!this.route){
       this.toast.showMessage('Não é possível iniciar a navegação sem um rota traçada. Vá para dentro do edifício e tente novamente', 'danger', 5000);
       return;
     }
@@ -391,6 +400,7 @@ export class EscolherDestinoPage {
     const route = this.route.map(label => this.mapGraph.getNodeAttributes(label));
     await this.clearGeolocationStream();
     this.isLeavingFromNavigationScreen = true;
+    this.isStreamEnabled = false;
     this.navCtrl.navigateForward(
       'navegacao', 
       {
@@ -429,6 +439,7 @@ export class EscolherDestinoPage {
 
   async ionViewWillLeave(): Promise<void> {
     await this.clearGeolocationStream();
+    this.isStreamEnabled = false;
   }
 
   async clearGeolocationStream(): Promise<void> {

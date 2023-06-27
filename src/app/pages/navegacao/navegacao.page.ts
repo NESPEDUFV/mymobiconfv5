@@ -214,7 +214,7 @@ export class NavegacaoPage {
     const options = {
       maximumAge: 0,
       enableHighAccuracy: true,
-      timeout: 3000
+      timeout: 2000
     }
     this.geolocationStream = await Geolocation.watchPosition(
       options,
@@ -257,7 +257,7 @@ export class NavegacaoPage {
       }
     );
 
-    //Obriga uma nova consulta a cada 3 segundos
+    //Obriga uma nova consulta a cada 2 segundos
     setTimeout(async () => {
       //Condição de parada
       if(!this.isStreamEnabled) return;
@@ -267,7 +267,7 @@ export class NavegacaoPage {
         await this.clearGeolocationStream();
       
       this.watchPosition();
-    }, 3000);
+    }, 2000);
   }
 
   handleNewSensorsNode(): Node {
@@ -303,12 +303,15 @@ export class NavegacaoPage {
 
   checkSensorsPosition(node: Node): boolean {
     //Checa se poderemos utilizar a atual posição dos sensores
-    const distance = this.localizacao.getDistanceBetweenPoints(
+    const distanceFromLastValidPosition = this.localizacao.getDistanceBetweenPoints(
       this.lastValidPosition.coordinates,
       node.coordinates
     );
-    const LIMIT_IN_METERS = 7;
-    return distance <= LIMIT_IN_METERS; 
+    const nearestNode = this.localizacao.getNearestNode(node, this.route);
+    const distanceFromAnyNode = this.localizacao.getDistanceBetweenPoints(node.coordinates, nearestNode.coordinates);
+    const LIMIT_LAST_VALID_POSITION = 6;
+    const LIMIT_ANY_NODE = 8;
+    return distanceFromLastValidPosition <= LIMIT_LAST_VALID_POSITION && distanceFromAnyNode <=  LIMIT_ANY_NODE; 
   }
 
   async handleNewPosition(node: Node): Promise<void> {
@@ -415,9 +418,8 @@ export class NavegacaoPage {
       const countedStepOnYAxis = event.acceleration.y < -STEP_THRESHOLD || event.acceleration.y > STEP_THRESHOLD;
       const countedStepOnZAxis = event.acceleration.z < -STEP_THRESHOLD || event.acceleration.z > STEP_THRESHOLD;
 
-      if(countedStepOnXAxis || countedStepOnYAxis || countedStepOnZAxis){
+      if(countedStepOnXAxis || countedStepOnYAxis || countedStepOnZAxis)
         this.steps++;
-      }  
     });
   }
 

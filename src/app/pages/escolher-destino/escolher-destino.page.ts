@@ -96,6 +96,7 @@ export class EscolherDestinoPage {
     const jsonMap: FeatureColletion = await fetch('assets/json/localizacao/len.geojson').then(response => response.json());
     // const jsonMap: FeatureColletion = await fetch('assets/json/localizacao/casa.geojson').then(response => response.json());
     // const jsonMap: FeatureColletion = await fetch('assets/json/localizacao/pve.geojson').then(response => response.json());
+    // const jsonMap: FeatureColletion = await fetch('assets/json/localizacao/pvb.geojson').then(response => response.json());
     this.mapGraph = this.mapa.mountGraph(jsonMap);
   }
 
@@ -322,7 +323,7 @@ export class EscolherDestinoPage {
       const isStartPositionTheSame  = this.localizacao.isPointsTheSame((this.mapGraph.getNodeAttributes(this.route[0])).coordinates, this.devicePosition.coordinates);
       const isDestinationTheSame = this.localizacao.isPointsTheSame((this.mapGraph.getNodeAttributes(this.route[this.route.length - 1])).coordinates, this.destination.coordinates);
       const routeNotChanged = isStartPositionTheSame && isDestinationTheSame;
-      if(routeNotChanged && !isStartAndDestinationPointsFilled) return;
+      if(routeNotChanged || !isStartAndDestinationPointsFilled) return;
     }
     
     const isRouteOnMap = this.routeLine && this.routePoints;

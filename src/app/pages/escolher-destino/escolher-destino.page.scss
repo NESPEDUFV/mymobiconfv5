@@ -13,19 +13,23 @@
   left: 0;
 }
 
+.wrapper {
+  display: inline-flex;
+}
+
 .selectGroupContainer {
-  position: absolute;
-  display: flex;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
   flex-wrap: wrap;
-  top: 100px;
+  top: 20px;
+  left: 20px;
   z-index: 98;
-  padding: 0px 0px 0px 20px;
 }
 
 .selectFloorContainer{
   display: flex;
+  // flex: 1;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;

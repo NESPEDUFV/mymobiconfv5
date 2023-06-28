@@ -35,30 +35,32 @@
     <button (click)="handleGpsDismissButton()" class="dismissButton">Tentar novamente</button>
   </div>
 
-  <div *ngIf="floorCount > 1" class="selectGroupContainer">
-    <div class="selectFloorContainer">
-      <p class="selectFloorLabel">Andar sendo visualizado no mapa</p>
-      <div style="margin-right: 10px;"></div>
-      <ion-select class="selectFloor" [(ngModel)]="selectedFloor" (ionChange)="handleFloorChanges()" placeholder="1">
-        <ion-select-option *ngFor="let option of generateFloorOptions()" [value]="option">
-          {{ option }}
-        </ion-select-option>
-      </ion-select>
-    </div>
-
-    <div style="margin: 2px"></div>
+  <div class="wrapper">
+    <div *ngIf="floorCount > 1" class="selectGroupContainer">
+      <div class="selectFloorContainer">
+        <p class="selectFloorLabel">Andar sendo visualizado no mapa</p>
+        <div style="margin-right: 10px;"></div>
+        <ion-select class="selectFloor" [(ngModel)]="selectedFloor" (ionChange)="handleFloorChanges()" placeholder="1">
+          <ion-select-option *ngFor="let option of generateFloorOptions()" [value]="option">
+            {{ option }}
+          </ion-select-option>
+        </ion-select>
+      </div>
   
-    <div class="selectFloorContainer">
-      <p class="selectFloorLabel">Usuário está no andar</p>
-      <div style="margin-right: 10px;"></div>
-      <ion-select class="selectFloor" [(ngModel)]="userFloor" (ionChange)="handleUserFloorChanges()" placeholder="1">
-        <ion-select-option *ngFor="let option of generateFloorOptions()" [value]="option">
-          {{ option }}
-        </ion-select-option>
-      </ion-select>
+      <div style="margin: 2px"></div>
+    
+      <div class="selectFloorContainer">
+        <p class="selectFloorLabel">Usuário está no andar</p>
+        <div style="margin-right: 10px;"></div>
+        <ion-select class="selectFloor" [(ngModel)]="userFloor" (ionChange)="handleUserFloorChanges()" placeholder="1">
+          <ion-select-option *ngFor="let option of generateFloorOptions()" [value]="option">
+            {{ option }}
+          </ion-select-option>
+        </ion-select>
+      </div>
     </div>
   </div>
-
+  
   <div 
     (click)="reCenter()" 
     class="roundedButtonContainer"

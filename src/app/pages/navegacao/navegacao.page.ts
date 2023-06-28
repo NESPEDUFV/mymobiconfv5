@@ -214,7 +214,7 @@ export class NavegacaoPage {
     const options = {
       maximumAge: 0,
       enableHighAccuracy: true,
-      timeout: 2000
+      timeout: 1000
     }
     this.geolocationStream = await Geolocation.watchPosition(
       options,
@@ -267,7 +267,7 @@ export class NavegacaoPage {
         await this.clearGeolocationStream();
       
       this.watchPosition();
-    }, 2000);
+    }, 1000);
   }
 
   handleNewSensorsNode(): Node {
@@ -309,7 +309,7 @@ export class NavegacaoPage {
     );
     const nearestNode = this.localizacao.getNearestNode(node, this.route);
     const distanceFromAnyNode = this.localizacao.getDistanceBetweenPoints(node.coordinates, nearestNode.coordinates);
-    const LIMIT_LAST_VALID_POSITION = 6;
+    const LIMIT_LAST_VALID_POSITION = 8;
     const LIMIT_ANY_NODE = 8;
     return distanceFromLastValidPosition <= LIMIT_LAST_VALID_POSITION && distanceFromAnyNode <=  LIMIT_ANY_NODE; 
   }

@@ -112,15 +112,13 @@ export class EscolherDestinoPage {
 
   async getUserPosition() : Promise<void> {
     let devicePosition = await this.localizacao.getPositionFromDevice();
-
-    devicePosition.floor = this.userFloor;
     const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(devicePosition);
     if(!isUserOnBuilding){
       this.setMessageVisible();
       this.devicePosition = devicePosition;
       return;
     }
-    this.devicePosition = this.localizacao.getNearestNode(devicePosition, this.getNodesByFloor(devicePosition.floor));
+    this.devicePosition = this.localizacao.getNearestNode(devicePosition, this.getNodesByFloor(this.userFloor));
   }
 
   checkUserIsOnBuilding(position: Node): boolean {
@@ -153,7 +151,6 @@ export class EscolherDestinoPage {
 
     this.removeDestinations();
     const destinations = this.getDestinationNodes();
-    this.lastSelectedFloor = Number(this.selectedFloor);    
     
     let markers: google.maps.Marker[] = [];
     destinations.forEach(node => {
@@ -197,11 +194,13 @@ export class EscolherDestinoPage {
     this.handleUserMarker();
     this.handleRoute();
     this.handleDestinationMarkers();
+    this.lastSelectedFloor = Number(this.selectedFloor);    
   }
 
   async handleUserFloorChanges(): Promise<void> {
-    this.handleUserMarker();
+    await this.getUserPosition();
     this.handleRoute();
+    this.handleUserMarker();
   }
 
   async restartGeolocationStream(): Promise<void> {
@@ -225,7 +224,7 @@ export class EscolherDestinoPage {
   handleUserMarker(): void {
     const latLng = new google.maps.LatLng(this.devicePosition.coordinates.lat, this.devicePosition.coordinates.long);
     const isMarkerSetted = Boolean(this.currentPositionMarker);
-    const isMarkerVisible = this.devicePosition.floor == this.selectedFloor;
+    const isMarkerVisible = this.userFloor == this.selectedFloor;
     if(!isMarkerVisible){
       if(isMarkerSetted)
         this.currentPositionMarker.setMap(null);
@@ -272,8 +271,7 @@ export class EscolherDestinoPage {
             lat: pos.coords.latitude,
             long: pos.coords.longitude
           },
-          isDestination: false,
-          floor: this.userFloor
+          isDestination: false
         } as Node
         
 
@@ -286,7 +284,7 @@ export class EscolherDestinoPage {
           return;
         }
 
-        const nodes = this.getNodesByFloor(deviceNode.floor);
+        const nodes = this.getNodesByFloor(this.userFloor);
         const nearestNode = this.localizacao.getNearestNode(deviceNode, nodes);
         this.devicePosition = nearestNode;
         this.handleRoute();
@@ -319,13 +317,13 @@ export class EscolherDestinoPage {
   handleRoute(): void {
     const isStartAndDestinationPointsFilled = this.devicePosition && this.destination;
     if(!isStartAndDestinationPointsFilled) return;
-    
+
     const isRouteFilled = Boolean(this.route);
     if(isRouteFilled){
       const isStartPositionTheSame  = this.localizacao.isPointsTheSame((this.mapGraph.getNodeAttributes(this.route[0])).coordinates, this.devicePosition.coordinates);
       const isDestinationTheSame = this.localizacao.isPointsTheSame((this.mapGraph.getNodeAttributes(this.route[this.route.length - 1])).coordinates, this.destination.coordinates);
       const routeNotChanged = isStartPositionTheSame && isDestinationTheSame;
-      const floorNotChanged = this.selectedFloor == this.lastSelectedFloor;
+      const floorNotChanged = this.selectedFloor == this.lastSelectedFloor || this.lastSelectedFloor == 0;
       if(routeNotChanged && floorNotChanged) return;
     }
 

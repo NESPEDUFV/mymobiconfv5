@@ -194,12 +194,14 @@ export class EscolherDestinoPage {
   }
 
   async handleFloorChanges(): Promise<void> {
+    this.handleUserMarker();
+    this.handleRoute();
     this.handleDestinationMarkers();
-    await this.restartGeolocationStream();
   }
 
   async handleUserFloorChanges(): Promise<void> {
-    await this.restartGeolocationStream();
+    this.handleUserMarker();
+    this.handleRoute();
   }
 
   async restartGeolocationStream(): Promise<void> {
@@ -323,9 +325,10 @@ export class EscolherDestinoPage {
       const isStartPositionTheSame  = this.localizacao.isPointsTheSame((this.mapGraph.getNodeAttributes(this.route[0])).coordinates, this.devicePosition.coordinates);
       const isDestinationTheSame = this.localizacao.isPointsTheSame((this.mapGraph.getNodeAttributes(this.route[this.route.length - 1])).coordinates, this.destination.coordinates);
       const routeNotChanged = isStartPositionTheSame && isDestinationTheSame;
-      if(routeNotChanged || !isStartAndDestinationPointsFilled) return;
+      const floorNotChanged = this.selectedFloor == this.lastSelectedFloor;
+      if(routeNotChanged && floorNotChanged) return;
     }
-    
+
     const isRouteOnMap = this.routeLine && this.routePoints;
     if(isRouteOnMap)
       this.removeRoute();

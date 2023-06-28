@@ -11,10 +11,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="infoGroupContainer">
-    <p class="infoLabel">Você está no andar: {{floor}}</p>
-    <div style="margin: 2px"></div>
-    <p class="infoLabel">Distância até o destino: {{distance}} metros</p>
+  <div class="wrapper">
+    <div class="infoGroupContainer">
+      <div class="infoRow">
+        <p class="infoLabel">Você está no andar: </p>
+        <p class="infoValue">{{floor}}</p>
+      </div>
+      <div style="margin: 8px"></div>
+      <div class="infoRow">
+        <p class="infoLabel">Distância até o destino: </p>
+        <p class="infoValue">{{distance}} metros</p>
+      </div>
+    </div>
   </div>
 
   <div 

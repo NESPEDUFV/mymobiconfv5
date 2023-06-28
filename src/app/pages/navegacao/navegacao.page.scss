@@ -13,14 +13,23 @@
   left: 0;
 }
 
+.wrapper {
+  display: inline-flex;
+}
+
 .infoGroupContainer {
-  position: absolute;
-  display: flex;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
   flex-wrap: wrap;
-  top: 70px;
+  top: 20px;
+  left: 20px;
   z-index: 98;
+}
+
+.infoRow{
+  display: flex;
+  flex-direction: row;
 }
 
 .infoLabel{
@@ -30,7 +39,15 @@
   font-weight: bold;
   white-space: nowrap;
   font-size: 14px;
-  padding-left: 20px;
+}
+
+.infoValue{
+  display: flex;
+  margin: 0px 0px 0px 4px;
+  color: #428cff;
+  font-weight: bold;
+  white-space: nowrap;
+  font-size: 14px;
 }
 
 .messageBanner {

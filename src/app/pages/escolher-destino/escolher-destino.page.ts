@@ -34,7 +34,7 @@ export class EscolherDestinoPage {
   isStreamEnabled: boolean = true; 
   floorCount: number = 0;
   selectedFloor: number = 1;
-  lastSelectedFloor: number = 0;
+  lastSelectedFloor: number = 1;
   userFloor: number = 1;
   distance: number = 0;
   currentPositionMarker: google.maps.Marker;  
@@ -147,8 +147,6 @@ export class EscolherDestinoPage {
   }
 
   handleDestinationMarkers(): void {
-    if(this.lastSelectedFloor == this.selectedFloor) return;
-
     this.removeDestinations();
     const destinations = this.getDestinationNodes();
     
@@ -191,6 +189,7 @@ export class EscolherDestinoPage {
   }
 
   async handleFloorChanges(): Promise<void> {
+    if(this.lastSelectedFloor == this.selectedFloor) return;
     this.handleUserMarker();
     this.handleRoute();
     this.handleDestinationMarkers();
@@ -275,14 +274,14 @@ export class EscolherDestinoPage {
         } as Node
         
 
-        const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
+        // const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
         
-        if(!isUserOnBuilding){
-          this.devicePosition = deviceNode;
-          this.handleUserMarker();
-          this.handleRoute();
-          return;
-        }
+        // if(!isUserOnBuilding){
+        //   this.devicePosition = deviceNode;
+        //   this.handleUserMarker();
+        //   this.handleRoute();
+        //   return;
+        // }
 
         const nodes = this.getNodesByFloor(this.userFloor);
         const nearestNode = this.localizacao.getNearestNode(deviceNode, nodes);
@@ -323,7 +322,7 @@ export class EscolherDestinoPage {
       const isStartPositionTheSame  = this.localizacao.isPointsTheSame((this.mapGraph.getNodeAttributes(this.route[0])).coordinates, this.devicePosition.coordinates);
       const isDestinationTheSame = this.localizacao.isPointsTheSame((this.mapGraph.getNodeAttributes(this.route[this.route.length - 1])).coordinates, this.destination.coordinates);
       const routeNotChanged = isStartPositionTheSame && isDestinationTheSame;
-      const floorNotChanged = this.selectedFloor == this.lastSelectedFloor || this.lastSelectedFloor == 0;
+      const floorNotChanged = this.selectedFloor == this.lastSelectedFloor;
       if(routeNotChanged && floorNotChanged) return;
     }
 

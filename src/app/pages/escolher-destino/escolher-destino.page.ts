@@ -274,14 +274,14 @@ export class EscolherDestinoPage {
         } as Node
         
 
-        // const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
+        const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
         
-        // if(!isUserOnBuilding){
-        //   this.devicePosition = deviceNode;
-        //   this.handleUserMarker();
-        //   this.handleRoute();
-        //   return;
-        // }
+        if(!isUserOnBuilding){
+          this.devicePosition = deviceNode;
+          this.handleUserMarker();
+          this.handleRoute();
+          return;
+        }
 
         const nodes = this.getNodesByFloor(this.userFloor);
         const nearestNode = this.localizacao.getNearestNode(deviceNode, nodes);

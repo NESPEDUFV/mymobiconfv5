@@ -132,12 +132,12 @@ export class EscolherDestinoPage {
 
   async getUserPosition() : Promise<void> {
     let devicePosition = await this.localizacao.getPositionFromDevice();
-    // const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(devicePosition);
-    // if(!isUserOnBuilding){
-    //   this.setMessageVisible();
-    //   this.devicePosition = devicePosition;
-    //   return;
-    // }
+    const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(devicePosition);
+    if(!isUserOnBuilding){
+      this.setMessageVisible();
+      this.devicePosition = devicePosition;
+      return;
+    }
     this.devicePosition = this.localizacao.getNearestNode(devicePosition, this.getNodesByFloor(this.userFloor));
   }
 
@@ -297,14 +297,14 @@ export class EscolherDestinoPage {
         } as Node
         
 
-        // const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
+        const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
         
-        // if(!isUserOnBuilding){
-        //   this.devicePosition = deviceNode;
-        //   this.handleUserMarker();
-        //   this.handleRoute();
-        //   return;
-        // }
+        if(!isUserOnBuilding){
+          this.devicePosition = deviceNode;
+          this.handleUserMarker();
+          this.handleRoute();
+          return;
+        }
 
         const nodes = this.getNodesByFloor(this.userFloor);
         const nearestNode = this.localizacao.getNearestNode(deviceNode, nodes);
@@ -353,11 +353,11 @@ export class EscolherDestinoPage {
     if(isRouteOnMap)
       this.removeRoute();
     
-    // const isUserOnBuilding = this.checkUserIsOnBuilding(this.devicePosition);
-    // if(!isUserOnBuilding){
-    //   this.toast.showMessage('Não existe uma rota para o destino selecionado. Vá para dentro do edifício e tente novamente', 'danger', 5000);
-    //   return;
-    // }
+    const isUserOnBuilding = this.checkUserIsOnBuilding(this.devicePosition);
+    if(!isUserOnBuilding){
+      this.toast.showMessage('Não existe uma rota para o destino selecionado. Vá para dentro do edifício e tente novamente', 'danger', 5000);
+      return;
+    }
     
     this.route = dijkstra.bidirectional(
       this.mapGraph,

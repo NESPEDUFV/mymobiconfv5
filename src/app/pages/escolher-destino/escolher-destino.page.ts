@@ -67,6 +67,7 @@ export class EscolherDestinoPage {
     if(this.isLeavingFromNavigationScreen){
       this.isStreamEnabled = true;
       this.isLeavingFromNavigationScreen = false;
+      this.shared.userPickedPosition = false;
       this.isPositionManuallySetted = false;
       await this.watchPosition();
       return;
@@ -419,11 +420,11 @@ export class EscolherDestinoPage {
       this.toast.showMessage('Não é possível iniciar a navegação sem um rota traçada. Vá para dentro do edifício e tente novamente', 'danger', 5000);
       return;
     }
-    
-    const route = this.route.map(label => this.mapGraph.getNodeAttributes(label));
-    await this.clearGeolocationStream();
+    if(!this.isPositionManuallySetted)
+      await this.clearGeolocationStream();
     this.isLeavingFromNavigationScreen = true;
     this.isStreamEnabled = false;
+    const route = this.route.map(label => this.mapGraph.getNodeAttributes(label));
     this.shared.route = route;
     this.navCtrl.navigateForward('navegacao');
   }
@@ -441,10 +442,10 @@ export class EscolherDestinoPage {
   setMessageVisible = () => this.isMessageVisible = !this.isMessageVisible;
   
   async goToManualPickPositionPage(): Promise<void> {
-    await this.clearGeolocationStream();
+    if(!this.isPositionManuallySetted)
+      await this.clearGeolocationStream();
     this.isLeavingFromPickScreen = true;
     this.isStreamEnabled = false;
-    
     const nodes = this.mapGraph.mapNodes((node, attributes) => attributes);
     this.shared.nodes = nodes;
     this.navCtrl.navigateForward('escolher-destino-manualmente');

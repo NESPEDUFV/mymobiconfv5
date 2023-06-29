@@ -5,8 +5,9 @@ import { NavController } from '@ionic/angular';
 import { CallbackID, Geolocation, Position } from '@capacitor/geolocation';
 import { ToastService } from 'src/app/services/toast.service';
 import { ACCESS_NODE_ICON, DEFAULT_LINE_STYLE, DEFAULT_NODE_ICON, DESTINATION_MARKER_IMAGE_PATH, FeatureColletion, MAP_ID, MapaService, USER_MARKER_IMAGE_PATH } from 'src/app/services/localizacao/mapa.service';
-import { LocalizacaoService, Node, Edge } from 'src/app/services/localizacao/localizacao.service';
+import { LocalizacaoService, Node, Edge, NO_IMAGE_PATH } from 'src/app/services/localizacao/localizacao.service';
 import {} from 'google-maps';
+import { LocationSharedVariables } from 'src/app/services/localizacao/shared.service';
 
 declare var google: any;
 
@@ -23,13 +24,16 @@ export class EscolherDestinoPage {
   
   /*Variáveis*/
   devicePosition: Node; 
-  lastDevicePosition: Node; 
   destination: Node;
+  destinationImage: string = '';
+  destinationDescription: string = '';
   destinationMarkers: google.maps.Marker[];
+  isPositionManuallySetted: boolean = false; 
   isMessageVisible: boolean = false; 
   isPermissionMessageVisible: boolean = false;
   isGpsMessageVisible: boolean = false;
   isLeavingFromNavigationScreen: boolean = false; 
+  isLeavingFromPickScreen: boolean = false; 
   isCardVisible: boolean = false;
   isStreamEnabled: boolean = true; 
   floorCount: number = 0;
@@ -50,7 +54,8 @@ export class EscolherDestinoPage {
     public navCtrl: NavController,
     private toast: ToastService,
     private mapa: MapaService,
-    private localizacao: LocalizacaoService
+    private localizacao: LocalizacaoService,
+    private shared: LocationSharedVariables
   ) {}
   
   ionViewDidEnter(): void {
@@ -58,15 +63,29 @@ export class EscolherDestinoPage {
   }
 
   async handlePageInit(): Promise<void> {
+    //Retornando da página de navegação
     if(this.isLeavingFromNavigationScreen){
-      /*
-        Maneira de alternar entre monitoramento de posição da página
-        "escolher-destino" para a página "navegação".
-        Não é possível manter as duas páginas monitorando pois, além
-        de desperdiçar dados móveis provoca inúmeros bugs
-      */
       this.isStreamEnabled = true;
       this.isLeavingFromNavigationScreen = false;
+      this.isPositionManuallySetted = false;
+      await this.watchPosition();
+      return;
+    }
+
+    //Retornando de seleção manual de posição
+    if(this.isLeavingFromPickScreen){
+      this.isLeavingFromPickScreen = false;
+      this.isPositionManuallySetted = this.shared.userPickedPosition;
+      if(this.isPositionManuallySetted){
+        this.toast.showMessage('Você selecionou manualmente a sua posição portanto não será possível usar a localização automática', 'warning', 5000);
+        this.devicePosition = this.shared.pickedPosition;
+        this.userFloor = this.devicePosition.floor;
+        this.handleUserMarker();
+        this.handleRoute();
+        return;
+      }
+
+      this.isStreamEnabled = true;
       await this.watchPosition();
       return;
     }
@@ -112,12 +131,12 @@ export class EscolherDestinoPage {
 
   async getUserPosition() : Promise<void> {
     let devicePosition = await this.localizacao.getPositionFromDevice();
-    const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(devicePosition);
-    if(!isUserOnBuilding){
-      this.setMessageVisible();
-      this.devicePosition = devicePosition;
-      return;
-    }
+    // const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(devicePosition);
+    // if(!isUserOnBuilding){
+    //   this.setMessageVisible();
+    //   this.devicePosition = devicePosition;
+    //   return;
+    // }
     this.devicePosition = this.localizacao.getNearestNode(devicePosition, this.getNodesByFloor(this.userFloor));
   }
 
@@ -197,6 +216,7 @@ export class EscolherDestinoPage {
   }
 
   async handleUserFloorChanges(): Promise<void> {
+    if(this.isPositionManuallySetted) return;
     await this.getUserPosition();
     this.handleRoute();
     this.handleUserMarker();
@@ -212,8 +232,10 @@ export class EscolherDestinoPage {
 
   addMarkerBehaviour(marker: google.maps.Marker, node: Node): void {
     marker.addListener('click', ()=> {
-      this.showCard();
       this.destination = node;
+      this.destinationImage = this.destination.image ? this.destination.image : NO_IMAGE_PATH;
+      this.destinationDescription = this.destination.description ? this.destination.description : "Sem descrição";
+      this.showCard();
       this.handleRoute();
     });
   }
@@ -274,14 +296,14 @@ export class EscolherDestinoPage {
         } as Node
         
 
-        const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
+        // const isUserOnBuilding: boolean = this.checkUserIsOnBuilding(deviceNode);
         
-        if(!isUserOnBuilding){
-          this.devicePosition = deviceNode;
-          this.handleUserMarker();
-          this.handleRoute();
-          return;
-        }
+        // if(!isUserOnBuilding){
+        //   this.devicePosition = deviceNode;
+        //   this.handleUserMarker();
+        //   this.handleRoute();
+        //   return;
+        // }
 
         const nodes = this.getNodesByFloor(this.userFloor);
         const nearestNode = this.localizacao.getNearestNode(deviceNode, nodes);
@@ -330,11 +352,11 @@ export class EscolherDestinoPage {
     if(isRouteOnMap)
       this.removeRoute();
     
-    const isUserOnBuilding = this.checkUserIsOnBuilding(this.devicePosition);
-    if(!isUserOnBuilding){
-      this.toast.showMessage('Não existe uma rota para o destino selecionado. Vá para dentro do edifício e tente novamente', 'danger', 5000);
-      return;
-    }
+    // const isUserOnBuilding = this.checkUserIsOnBuilding(this.devicePosition);
+    // if(!isUserOnBuilding){
+    //   this.toast.showMessage('Não existe uma rota para o destino selecionado. Vá para dentro do edifício e tente novamente', 'danger', 5000);
+    //   return;
+    // }
     
     this.route = dijkstra.bidirectional(
       this.mapGraph,
@@ -402,14 +424,8 @@ export class EscolherDestinoPage {
     await this.clearGeolocationStream();
     this.isLeavingFromNavigationScreen = true;
     this.isStreamEnabled = false;
-    this.navCtrl.navigateForward(
-      'navegacao', 
-      {
-        queryParams: {
-          route: route
-        }
-      }
-    );
+    this.shared.route = route;
+    this.navCtrl.navigateForward('navegacao');
   }
 
   reCenter(): void {
@@ -423,6 +439,16 @@ export class EscolherDestinoPage {
   }
 
   setMessageVisible = () => this.isMessageVisible = !this.isMessageVisible;
+  
+  async goToManualPickPositionPage(): Promise<void> {
+    await this.clearGeolocationStream();
+    this.isLeavingFromPickScreen = true;
+    this.isStreamEnabled = false;
+    
+    const nodes = this.mapGraph.mapNodes((node, attributes) => attributes);
+    this.shared.nodes = nodes;
+    this.navCtrl.navigateForward('escolher-destino-manualmente');
+  }
 
   handlePermissionDismissButton = () => {
     this.isPermissionMessageVisible = false;

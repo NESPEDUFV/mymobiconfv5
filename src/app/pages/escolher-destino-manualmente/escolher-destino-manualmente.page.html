@@ -1,0 +1,72 @@
+<div class="page">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button (click)="goBack()" default-href="#"></ion-back-button>
+      </ion-buttons>
+
+      <ion-title>
+        Selecione sua posição
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="wrapper">
+    <div *ngIf="floorCount > 1" class="selectGroupContainer">
+      <div class="selectFloorContainer">
+        <p class="selectFloorLabel">Andar sendo visualizado no mapa</p>
+        <div style="margin-right: 10px;"></div>
+        <ion-select class="selectFloor" [(ngModel)]="selectedFloor" (ionChange)="handleFloorChanges()" placeholder="1">
+          <ion-select-option *ngFor="let option of generateFloorOptions()" [value]="option">
+            {{ option }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+  </div>
+  
+  <div 
+    (click)="reCenter()" 
+    class="roundedButtonContainer"
+  > 
+    <ion-img src="../../../assets/img/localizacao/user.png"></ion-img>
+  </div>
+
+  <ion-card class="card" *ngIf="isCardVisible">
+    <ion-card-header class="cardTitle">
+      {{devicePosition.label}}
+    </ion-card-header>
+    
+    <ion-card-content>
+      <div class="column">
+        <div class="row">
+          <div class="cardImageContainer">
+            <ion-img class="cardImage" src={{currentPositionImage}}></ion-img>
+          </div>
+          <div style="margin: 0px 5px"></div>
+          <div class="cardImageContainer">
+            <p>{{currentPositionDescription}}</p>
+          </div>
+        </div>
+        
+        <div 
+          (click)="pickPosition()" 
+          *ngIf="devicePosition != undefined"  
+          class="navigationButton"
+        >
+          <div style="margin: 0px 8px"></div>
+          <ion-icon name="locate-outline" size="large" color="primary"></ion-icon>
+          <div style="margin: 0px 4px"></div>
+          <p>
+            Selecionar posição
+          </p>
+          <div style="margin: 0px 8px"></div>
+        </div>
+      </div>
+    </ion-card-content>
+
+    <ion-icon (click)="hideCard()" class="cardCloseIcon" name="close" size="large" color="primary"></ion-icon>
+  </ion-card>
+  
+  <div #map id="map"></div>
+</div>

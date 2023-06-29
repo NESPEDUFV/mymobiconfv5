@@ -159,3 +159,5 @@ export const FLOOR_TRANSITION_INSTRUCTION_IMAGE_PATH: string = '../../../assets/
 export const DEFAULT_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/arrow_direction.jpg';
 export const ACCESS_NODE_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/blue_point.png';
 export const SUCCESS_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/success.jpg';
+export const NO_IMAGE_PATH: string = '../../../assets/img/localizacao/no_image.jpg';
+export const NO_IMAGE_POINT_PATH: string = '../../../assets/img/localizacao/dot.png';

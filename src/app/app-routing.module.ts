@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'escolher-destino',
     pathMatch: 'full'
   },
   {
@@ -132,6 +132,10 @@ const routes: Routes = [
   {
     path: 'escolher-destino',
     loadChildren: () => import('./pages/escolher-destino/escolher-destino.module').then( m => m.EscolherDestinoPageModule)
+  },
+  {
+    path: 'escolher-destino-manualmente',
+    loadChildren: () => import('./pages/escolher-destino-manualmente/escolher-destino-manualmente.module').then( m => m.EscolherDestinoManualmentePageModule)
   },
   {
     path: 'navegacao',

@@ -83,16 +83,6 @@
   font-weight: bold;
 }
 
-.distance {
-  color: #FFA600;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  position: absolute;
-  top: 1px;
-  right: 55px;
-}
-
 .cardCloseIcon {
   position: absolute;
   top: 10px;
@@ -134,22 +124,6 @@
   padding: 10px;
 }
 
-.messageBanner {
-  width: 70%;
-  position: absolute;
-  top: 25%;
-  align-self: center;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border: solid 1px #5B5B5B;
-  padding: 10px 20px;
-  border-radius: 24px;
-  justify-content: center;
-  align-items: center;
-  z-index: 99;
-}
-
 .instructionTitle {
   font-weight: bold;
   text-align: center;
@@ -169,21 +143,6 @@
   width: 100%;
 }
 
-.dismissButton {
-  display: flex;
-  width: 100%;
-  border-radius: 6px;
-  align-items: center;
-  justify-content: center;
-  background-color: red;
-  border: solid 1px grey;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  font-weight: bold;
-  padding: 10px;
-}
-
 .roundedButtonContainer {
   display: flex;
   align-items: center;
@@ -197,36 +156,4 @@
   background-color: #F3FFA5 ;
   border: 1px solid grey;
   z-index: 99;
-}
-
-.floatingButtonsContainer {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  right: 4px;
-  bottom: 45%;
-  z-index: 99;
-}
-
-.centerButton {
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
-  background-color: #F3FFA5 ;
-  border: 1px solid grey;
-  z-index: 99;
-}
-
-.pickPositionButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 47px;
-  height: 47px;
-  border-radius: 32px;
-  padding: 4px;
-  background-color: #EFEFEF;
-  border: 1px solid grey;
 }

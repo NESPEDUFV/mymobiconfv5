@@ -8,6 +8,7 @@ import { ToastService } from 'src/app/services/toast.service';
 import { ACCESS_NODE_INSTRUCTION_IMAGE_PATH, DEFAULT_INSTRUCTION_IMAGE_PATH, FLOOR_TRANSITION_INSTRUCTION_IMAGE_PATH, GPS_ACCURACY_LIMIT_IN_METERS, LocalizacaoService, Node, STEP_SIZE_IN_METERS, STEP_THRESHOLD, SUCCESS_INSTRUCTION_IMAGE_PATH } from 'src/app/services/localizacao/localizacao.service';
 import { ACCESS_NODE_ICON, DEFAULT_LINE_STYLE, DEFAULT_NODE_ICON, NAVIGATION_DESTINATION_IMAGE_PATH, NAVIGATION_MARKER_IMAGE_PATH, MAP_ID } from 'src/app/services/localizacao/mapa.service';
 import {} from 'google-maps';
+import { LocationSharedVariables } from 'src/app/services/localizacao/shared.service';
 
 declare var google: any;
 
@@ -63,7 +64,7 @@ export class NavegacaoPage {
   // accelerationStream: any = null;
 
   constructor(
-    private routeParams: ActivatedRoute,
+    private shared: LocationSharedVariables,
     public navCtrl: NavController,
     private platform: Platform,
     private toast: ToastService,
@@ -72,7 +73,7 @@ export class NavegacaoPage {
 
   async ionViewDidEnter(): Promise<void> {
     this.setAndroidBackButtonAction();
-    this.getDataFromRoute();
+    this.getDataFromShared();
     this.handlePageInit();
   }
 
@@ -84,8 +85,8 @@ export class NavegacaoPage {
 
   goBack = () => this.navCtrl.pop();
 
-  getDataFromRoute(): void {
-    this.route = this.routeParams.snapshot.queryParams.route;
+  getDataFromShared(): void {
+    this.route = this.shared.route;
     const startPosition = this.route[0];
     this.destination = this.route[this.route.length - 1];
     this.distance = this.localizacao.getPathDistance(this.route);

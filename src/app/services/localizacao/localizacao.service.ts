@@ -153,7 +153,8 @@ export interface Edge {
 
 //Constantes
 export const STEP_THRESHOLD: number = 1.3;
-export const STEP_SIZE_IN_METERS: number = 0.22;
+export const STEP_SIZE_IN_METERS: number = 0.7;
+export const STEP_DURATION_AVERAGE_IN_MILISSECONDS: number = 275;
 export const GPS_ACCURACY_LIMIT_IN_METERS: number = 8.4;
 export const FLOOR_TRANSITION_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/change_floor.jpg';
 export const DEFAULT_INSTRUCTION_IMAGE_PATH: string = '../../../assets/img/localizacao/arrow_direction.jpg';

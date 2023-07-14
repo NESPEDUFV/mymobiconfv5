@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { CallbackID, Geolocation, Position } from '@capacitor/geolocation';
-import { AccelListenerEvent, Motion } from '@capacitor/motion';
+import { AccelListenerEvent, Motion, RotationRate } from '@capacitor/motion';
 import { NavController, Platform } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
-import { ACCESS_NODE_INSTRUCTION_IMAGE_PATH, DEFAULT_INSTRUCTION_IMAGE_PATH, FLOOR_TRANSITION_INSTRUCTION_IMAGE_PATH, GPS_ACCURACY_LIMIT_IN_METERS, LocalizacaoService, Node, STEP_SIZE_IN_METERS, STEP_THRESHOLD, SUCCESS_INSTRUCTION_IMAGE_PATH } from 'src/app/services/localizacao/localizacao.service';
+import { ACCESS_NODE_INSTRUCTION_IMAGE_PATH, DEFAULT_INSTRUCTION_IMAGE_PATH, FLOOR_TRANSITION_INSTRUCTION_IMAGE_PATH, GPS_ACCURACY_LIMIT_IN_METERS, LocalizacaoService, Node, STEP_DURATION_AVERAGE_IN_MILISSECONDS, STEP_SIZE_IN_METERS, STEP_THRESHOLD, SUCCESS_INSTRUCTION_IMAGE_PATH } from 'src/app/services/localizacao/localizacao.service';
 import { ACCESS_NODE_ICON, DEFAULT_LINE_STYLE, DEFAULT_NODE_ICON, NAVIGATION_DESTINATION_IMAGE_PATH, NAVIGATION_MARKER_IMAGE_PATH, MAP_ID } from 'src/app/services/localizacao/mapa.service';
 import {} from 'google-maps';
 import { LocationSharedVariables } from 'src/app/services/localizacao/shared.service';
@@ -39,6 +38,7 @@ export class NavegacaoPage {
   isStreamPaused: boolean = false;
   currentPositionMarker: google.maps.Marker;
   currentDirectionInDegrees: number;  
+  initialDirection: number;  
   geolocationStream: CallbackID = null;
   steps: number = 0;
   floor: number = 1;
@@ -50,6 +50,7 @@ export class NavegacaoPage {
   lastValidPosition: Node;
   lastMarkerPosition: Node;
   isMessageVisible: boolean = false;
+  countedOnThisInverval: boolean = false;
   isFloorMessageVisible: boolean = false; 
   isSuccessMessageVisible: boolean = false;   
   instructionTitle: string;
@@ -99,11 +100,11 @@ export class NavegacaoPage {
   }
 
   handlePageInit(): void {
+    this.watchOrientation();
     this.showMap(); 
     this.setUserMarker();
     this.handleRoute();
     this.watchPosition();
-    this.watchOrientation();
     this.watchAcceleration();
   }
 
@@ -112,7 +113,7 @@ export class NavegacaoPage {
     const options = {
       center: latLng,
       zoom: 100,
-      heading: 0,
+      heading: this.initialDirection ?? 0,
       zoomControl: true,
       disableDefaultUI: true,
       vectorRendering: 'auto',
@@ -402,26 +403,71 @@ export class NavegacaoPage {
   }
 
   watchOrientation(): void {
-    Motion.addListener('orientation', (event: DeviceOrientationEvent) => {
+    Motion.addListener('orientation', (event: RotationRate) => {
       if(!this.isStreamEnabled || this.isStreamPaused) return;
+      if(!this.initialDirection) this.initialDirection = this.getFirstHeading(event);
 
-      const rotation = event.alpha ? 360 - event.alpha : 0;
+      const rotation = event.alpha ? this.initialDirection - event.alpha : 0;
       this.currentDirectionInDegrees = rotation;
       this.map.setHeading(rotation);
     });
   }
+  
+  getFirstHeading(event: RotationRate) {
+    const {alpha, beta, gamma} = event;
+    const isAnglesFilled =  Boolean(alpha) && Boolean(beta) && Boolean(gamma);
+    if(!isAnglesFilled) return;
+    
+    const gammaRad = this.degreesToRadians(gamma);
+    const alphaRad = this.degreesToRadians(alpha);
+
+    // Calculate heading (azimuth)
+    let heading = Math.atan2(-Math.sin(gammaRad) * Math.cos(alphaRad), 
+                            -Math.sin(alphaRad));
+
+    // Convert heading to degrees
+    heading = this.radiansToDegrees(heading);
+
+    // Adjust heading value to ensure it falls within 0-360 degrees
+    if (heading < 0) {
+      heading += 360;
+    }
+
+    this.toast.showMessage(`first heading: ${heading}`);
+    return heading;
+  }
+
+  degreesToRadians(degrees) {
+    return degrees * (Math.PI / 180);
+  }
+
+  radiansToDegrees(radians) {
+    return radians * (180 / Math.PI);
+  }
 
   watchAcceleration(): void {
+    this.handleStepInterval();
+
     Motion.addListener('accel', (event: AccelListenerEvent) => {
       if(!this.isStreamEnabled || this.isStreamPaused) return;
+      if(this.countedOnThisInverval) return;
 
       const countedStepOnXAxis = event.acceleration.x < -STEP_THRESHOLD || event.acceleration.x > STEP_THRESHOLD;
       const countedStepOnYAxis = event.acceleration.y < -STEP_THRESHOLD || event.acceleration.y > STEP_THRESHOLD;
       const countedStepOnZAxis = event.acceleration.z < -STEP_THRESHOLD || event.acceleration.z > STEP_THRESHOLD;
 
-      if(countedStepOnXAxis || countedStepOnYAxis || countedStepOnZAxis)
+      if(countedStepOnXAxis || countedStepOnYAxis || countedStepOnZAxis){
         this.steps++;
+        // this.toast.showMessage(`${this.steps}`, 'warning');
+        this.countedOnThisInverval = true;
+      }
     });
+  }
+
+  handleStepInterval(){
+    // this.toast.showMessage(`Entrou`, 'success');
+    this.countedOnThisInverval = false;
+    setTimeout(() => this.handleStepInterval(), STEP_DURATION_AVERAGE_IN_MILISSECONDS);
   }
 
   setMessageVisible = () => this.isMessageVisible = !this.isMessageVisible;
